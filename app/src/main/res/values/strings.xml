@@ -60,7 +60,7 @@
     <string name="set_challenge_max">챌린지 최대 인원을 설정해주세요</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
-    <string name="min_num">1</string>
+    <string name="min_num">2</string>
     <string name="max_num">4</string>
     <string name="set_challenge_image">이미지를 설정해주세요</string>
     <string name="previous_button">이전</string>
@@ -71,5 +71,15 @@
     <string name="end_time_button">종료 시간</string>
     <string name="set_point_button">요금 설정</string>
     <string name="set_point">원하는 포인트를 설정해주세요</string>
-    <string name="current_point">현재 잔액 포인트 : 1000 P</string>res
+    <string name="current_point">현재 잔액 포인트 : 1000 P</string>
+    <string name="challenge_complete">챌린지가 예약되었습니다</string>
+    <string name="example_challenge_title">[운동] \' 3대 500을 위하여 \'</string>
+    <string name="example_challenge_body">2시간 달리기, 지속적으로 달리는 듯한 화면만 나와있으면 인증합니다!</string>
+    <string name="people_number">인원</string>
+    <string name="people_number_range">최소인원 ~ 최대인원</string>
+    <string name="challenge_time">챌린지 시간</string>
+    <string name="example_challenge_time">10월 16일 14:00 ~ 15:00</string>
+    <string name="reservation_point">예약금</string>
+    <string name="example_reservation_point">500P</string>
+    <string name="go_to_home">홈으로</string>res
 </resources>
