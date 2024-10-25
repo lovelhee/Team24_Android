@@ -8,20 +8,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RadioGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityCreateChallengeBinding
-import com.example.challengeonairandroid.databinding.ActivityMyPageBinding
 import com.example.challengeonairandroid.viewmodel.ChallengeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,9 +29,7 @@ class CreateChallengeActivity : AppCompatActivity() {
         val createChallengeBinding: ActivityCreateChallengeBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_challenge)
         createChallengeBinding.lifecycleOwner = this
 
-        // 챌린지 생성 페이지를 연 전 페이지로 돌아가기
         createChallengeBinding.ibClose.setOnClickListener {
-
         }
 
         // 챌린지 생성 1단계 ---
@@ -94,7 +84,7 @@ class CreateChallengeActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.btnPlusMinNum).setOnClickListener {
+        createChallengeBinding.btnPlusMinNum.setOnClickListener {
             val currentValue = createChallengeBinding.tvMinNum.text.toString().toInt()
             if (currentValue < 8) {
                 createChallengeBinding.tvMinNum.text = (currentValue + 1).toString()
@@ -104,7 +94,7 @@ class CreateChallengeActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.btnMinusMaxNum).setOnClickListener {
+        createChallengeBinding.btnMinusMaxNum.setOnClickListener {
             val currentValue = createChallengeBinding.tvMaxNum.text.toString().toInt()
             if (currentValue > 2) {
                 createChallengeBinding.tvMaxNum.text = (currentValue - 1).toString()
