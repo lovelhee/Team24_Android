@@ -8,18 +8,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import com.example.challengeonairandroid.R
+import com.example.challengeonairandroid.databinding.ActivityCreateChallengeBinding
 import com.example.challengeonairandroid.viewmodel.ChallengeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,15 +26,16 @@ class CreateChallengeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
 
-        // 챌린지 생성 페이지를 연 전 페이지로 돌아가기
-        findViewById<ImageButton>(R.id.ibClose).setOnClickListener {
+        val createChallengeBinding: ActivityCreateChallengeBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_challenge)
+        createChallengeBinding.lifecycleOwner = this
 
+        createChallengeBinding.ibClose.setOnClickListener {
         }
 
         // 챌린지 생성 1단계 ---
         var categoryId: Int = -1
 
-        findViewById<RadioGroup>(R.id.rgChallengeCategory).setOnCheckedChangeListener { group, checkedId ->
+        createChallengeBinding.rgChallengeCategory.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rbExercise -> categoryId = 0
                 R.id.rbDevelopment -> categoryId = 1
@@ -52,7 +47,7 @@ class CreateChallengeActivity : AppCompatActivity() {
 
 
         lateinit var challengeTitle: String
-        findViewById<EditText>(R.id.etChallengeTitle).addTextChangedListener(object : TextWatcher {
+        createChallengeBinding.etChallengeTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -66,7 +61,7 @@ class CreateChallengeActivity : AppCompatActivity() {
         })
 
         lateinit var challengeBody: String
-        findViewById<EditText>(R.id.etChallengeBody).addTextChangedListener(object : TextWatcher {
+        createChallengeBinding.etChallengeBody.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -79,30 +74,30 @@ class CreateChallengeActivity : AppCompatActivity() {
             }
         })
 
-        findViewById<Button>(R.id.btnMinusMinNum).setOnClickListener {
-            val currentValue = findViewById<TextView>(R.id.tvMinNum).text.toString().toInt()
+        createChallengeBinding.btnMinusMinNum.setOnClickListener {
+            val currentValue = createChallengeBinding.tvMinNum.text.toString().toInt()
             if (currentValue > 2) {
-                findViewById<TextView>(R.id.tvMinNum).text = (currentValue - 1).toString()
+                createChallengeBinding.tvMinNum.text = (currentValue - 1).toString()
             }
             else {
                 Toast.makeText(this, "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        findViewById<Button>(R.id.btnPlusMinNum).setOnClickListener {
-            val currentValue = findViewById<TextView>(R.id.tvMinNum).text.toString().toInt()
+        createChallengeBinding.btnPlusMinNum.setOnClickListener {
+            val currentValue = createChallengeBinding.tvMinNum.text.toString().toInt()
             if (currentValue < 8) {
-                findViewById<TextView>(R.id.tvMinNum).text = (currentValue + 1).toString()
+                createChallengeBinding.tvMinNum.text = (currentValue + 1).toString()
             }
             else {
                 Toast.makeText(this, "인원은 최대 8명입니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        findViewById<Button>(R.id.btnMinusMaxNum).setOnClickListener {
-            val currentValue = findViewById<TextView>(R.id.tvMaxNum).text.toString().toInt()
+        createChallengeBinding.btnMinusMaxNum.setOnClickListener {
+            val currentValue = createChallengeBinding.tvMaxNum.text.toString().toInt()
             if (currentValue > 2) {
-                findViewById<TextView>(R.id.tvMaxNum).text = (currentValue - 1).toString()
+                createChallengeBinding.tvMaxNum.text = (currentValue - 1).toString()
             }
             else {
                 Toast.makeText(this, "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
@@ -110,10 +105,10 @@ class CreateChallengeActivity : AppCompatActivity() {
 
         }
 
-        findViewById<Button>(R.id.btnPlusMaxNum).setOnClickListener {
-            val currentValue = findViewById<TextView>(R.id.tvMaxNum).text.toString().toInt()
+        createChallengeBinding.btnPlusMaxNum.setOnClickListener {
+            val currentValue = createChallengeBinding.tvMaxNum.text.toString().toInt()
             if (currentValue < 8) {
-                findViewById<TextView>(R.id.tvMaxNum).text = (currentValue + 1).toString()
+                createChallengeBinding.tvMaxNum.text = (currentValue + 1).toString()
             }
             else {
                 Toast.makeText(this, "인원은 최대 8명입니다.", Toast.LENGTH_SHORT).show()
@@ -121,60 +116,60 @@ class CreateChallengeActivity : AppCompatActivity() {
         }
 
         // 갤러리에서 이미지 골라오기
-        findViewById<ImageView>(R.id.ivChallengeImg).setOnClickListener {
+        createChallengeBinding.ivChallengeImg.setOnClickListener {
 
         }
 
-        findViewById<Button>(R.id.btnNext).setOnClickListener {
-            findViewById<NestedScrollView>(R.id.svCreateStep1).visibility = View.GONE
-            findViewById<NestedScrollView>(R.id.svCreateStep2).visibility = View.VISIBLE
-            findViewById<Button>(R.id.btnChallengeStep2).setBackgroundResource(R.drawable.create_challenge_selected_button)
-            findViewById<Button>(R.id.btnChallengeStep2).setTextColor(Color.WHITE)
+        createChallengeBinding.btnNext.setOnClickListener {
+            createChallengeBinding.svCreateStep1.visibility = View.GONE
+            createChallengeBinding.svCreateStep2.visibility = View.VISIBLE
+            createChallengeBinding.btnChallengeStep2.setBackgroundResource(R.drawable.create_challenge_selected_button)
+            createChallengeBinding.btnChallengeStep2.setTextColor(Color.WHITE)
         }
 
-        findViewById<Button>(R.id.btnPrevious).setOnClickListener {
-            findViewById<NestedScrollView>(R.id.svCreateStep1).visibility = View.VISIBLE
-            findViewById<NestedScrollView>(R.id.svCreateStep2).visibility = View.GONE
-            findViewById<Button>(R.id.btnChallengeStep2).setBackgroundResource(R.drawable.create_challenge_unselected_button)
-            findViewById<Button>(R.id.btnChallengeStep2).setTextColor(Color.BLACK)
+        createChallengeBinding.btnPrevious.setOnClickListener {
+            createChallengeBinding.svCreateStep1.visibility = View.VISIBLE
+            createChallengeBinding.svCreateStep2.visibility = View.GONE
+            createChallengeBinding.btnChallengeStep2.setBackgroundResource(R.drawable.create_challenge_unselected_button)
+            createChallengeBinding.btnChallengeStep2.setTextColor(Color.BLACK)
         }
 
         // 챌린지 생성 2단계 ---
-        findViewById<Button>(R.id.btnStartTime).setOnClickListener {
-            if (findViewById<LinearLayout>(R.id.llStartTimeLayout).visibility == View.VISIBLE) {
-                findViewById<Button>(R.id.btnStartTime).setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                findViewById<LinearLayout>(R.id.llStartTimeLayout).visibility = View.GONE
+        createChallengeBinding.btnStartTime.setOnClickListener {
+            if (createChallengeBinding.llStartTimeLayout.visibility == View.VISIBLE) {
+                createChallengeBinding.btnStartTime.setBackgroundResource(R.drawable.create_challenge_uncompleted)
+                createChallengeBinding.llStartTimeLayout.visibility = View.GONE
             }
             else {
-                findViewById<Button>(R.id.btnStartTime).setBackgroundResource(R.drawable.create_challenge_completed)
-                findViewById<LinearLayout>(R.id.llStartTimeLayout).visibility = View.VISIBLE
+                createChallengeBinding.btnStartTime.setBackgroundResource(R.drawable.create_challenge_completed)
+                createChallengeBinding.llStartTimeLayout.visibility = View.VISIBLE
             }
         }
 
-        findViewById<Button>(R.id.btnEndTime).setOnClickListener {
-            if (findViewById<LinearLayout>(R.id.llEndTimeLayout).visibility == View.VISIBLE) {
-                findViewById<Button>(R.id.btnEndTime).setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                findViewById<LinearLayout>(R.id.llEndTimeLayout).visibility = View.GONE
+        createChallengeBinding.btnEndTime.setOnClickListener {
+            if (createChallengeBinding.llEndTimeLayout.visibility == View.VISIBLE) {
+                createChallengeBinding.btnEndTime.setBackgroundResource(R.drawable.create_challenge_uncompleted)
+                createChallengeBinding.llEndTimeLayout.visibility = View.GONE
             }
             else {
-                findViewById<Button>(R.id.btnEndTime).setBackgroundResource(R.drawable.create_challenge_completed)
-                findViewById<LinearLayout>(R.id.llEndTimeLayout).visibility = View.VISIBLE
+                createChallengeBinding.btnEndTime.setBackgroundResource(R.drawable.create_challenge_completed)
+                createChallengeBinding.llEndTimeLayout.visibility = View.VISIBLE
             }
         }
 
-        findViewById<Button>(R.id.btnSetChallengePoint).setOnClickListener {
-            if (findViewById<LinearLayout>(R.id.llSetChallengePoint).visibility == View.VISIBLE) {
-                findViewById<Button>(R.id.btnSetChallengePoint).setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                findViewById<LinearLayout>(R.id.llSetChallengePoint).visibility = View.GONE
+        createChallengeBinding.btnSetChallengePoint.setOnClickListener {
+            if (createChallengeBinding.llSetChallengePoint.visibility == View.VISIBLE) {
+                createChallengeBinding.btnSetChallengePoint.setBackgroundResource(R.drawable.create_challenge_uncompleted)
+                createChallengeBinding.llSetChallengePoint.visibility = View.GONE
             }
             else {
-                findViewById<Button>(R.id.btnSetChallengePoint).setBackgroundResource(R.drawable.create_challenge_completed)
-                findViewById<LinearLayout>(R.id.llSetChallengePoint).visibility = View.VISIBLE
+                createChallengeBinding.btnSetChallengePoint.setBackgroundResource(R.drawable.create_challenge_completed)
+                createChallengeBinding.llSetChallengePoint.visibility = View.VISIBLE
             }
         }
 
         lateinit var challengePoint: String
-        findViewById<EditText>(R.id.etSetChallengePoint).addTextChangedListener(object : TextWatcher {
+        createChallengeBinding.etSetChallengePoint.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
