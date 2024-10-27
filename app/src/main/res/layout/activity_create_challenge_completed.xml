@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
-            android:text="챌린지가 예약되었습니다"
+            android:text="@string/challenge_complete"
             android:textStyle="bold"
             android:textSize="24sp"
             android:textColor="@color/black"
@@ -66,8 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:padding="5dp"
-                android:text="[운동] ' 3대 500을 위하여 '"
-                android:hint="[운동] ' 3대 500을 위하여 '"
+                android:text="@string/example_challenge_title"
+                android:hint="@string/example_challenge_title"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/black"
@@ -82,8 +82,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:padding="5dp"
-                android:text="2시간 달리기, 지속적으로 달리는 듯한 화면만 나와있으면 인증합니다!"
-                android:hint="2시간 달리기, 지속적으로 달리는 듯한 화면만 나와있으면 인증합니다!"
+                android:text="@string/example_challenge_body"
+                android:hint="@string/example_challenge_body"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,15 +105,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="인원"
+                    android:text="@string/people_number"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="(최소인원)명 ~ (최대인원)명"
-                    android:hint="최소인원 ~ 최대인원"
+                    android:text="@string/people_number_range"
+                    android:hint="@string/people_number_range"
                     android:textColor="@color/main_red"
                     android:textStyle="bold"
                     android:textSize="13sp" />
@@ -135,15 +135,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="챌린지 시간"
+                    android:text="@string/challenge_time"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="10월 16일 14:00 ~ 15:00"
-                    android:hint="10월 16일 14:00 ~ 15:00"
+                    android:text="@string/example_challenge_time"
+                    android:hint="@string/example_challenge_time"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -163,15 +163,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="예약금"
+                    android:text="@string/reservation_point"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="500P"
-                    android:hint="500P"
+                    android:text="@string/example_reservation_point"
+                    android:hint="@string/example_reservation_point"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -195,7 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/main_red"
-            android:text="홈으로"
+            android:text="@string/go_to_home"
             android:textColor="@color/white" />
 
     </LinearLayout>
