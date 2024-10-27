@@ -6,17 +6,25 @@
     android:padding="16dp"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/ivChallengeCover"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvChallengeCover"
         android:layout_width="83dp"
         android:layout_height="83dp"
-        android:background="@drawable/rounded_cover"
-        android:clipToOutline="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sample_exercise"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        android:clipChildren="true"
+        android:clipToPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivChallengeCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_exercise" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvDate"
@@ -26,7 +34,7 @@
         android:textColor="#9E9E9E"
         android:textSize="10sp"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -72,7 +80,7 @@
         android:layout_marginTop="2dp"
         android:textSize="11sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
         app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
     <TextView
@@ -83,13 +91,14 @@
         android:textColor="#5D5D5D"
         android:layout_marginStart="8dp"
         android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
         app:layout_constraintTop_toBottomOf="@+id/tvChallengeName" />
 
     <LinearLayout
+        android:id="@+id/iconContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/ivChallengeCover"
+        app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
