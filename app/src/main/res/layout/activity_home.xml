@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintBottom_toTopOf="@id/btnComplete"
             tools:itemCount="1"
-            tools:listitem="@layout/home_parent_item" />
+            tools:listitem="@layout/item_home_parent" />
 
         <Button
             android:layout_width="match_parent"

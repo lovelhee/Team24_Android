@@ -230,7 +230,7 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/layoutCategory"
             tools:itemCount="5"
-            tools:listitem="@layout/category_challenge_item"/>
+            tools:listitem="@layout/item_category_challenge"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

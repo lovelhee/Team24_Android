@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.model.data.Challenge
-import com.example.challengeonairandroid.databinding.CategoryChallengeItemBinding
+import com.example.challengeonairandroid.databinding.ItemCategoryChallengeBinding
 
 class ChildAdapter(
     private var challenges: List<Challenge>
 ) : RecyclerView.Adapter<ChildAdapter.ChildViewHolder>() {
 
-    inner class ChildViewHolder(private val binding: CategoryChallengeItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ChildViewHolder(private val binding: ItemCategoryChallengeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(challenge: Challenge) {
             binding.tvChallengeName.text = challenge.challengeName
 //            binding.tvDate.text = challenge.challengeDate
@@ -40,7 +40,7 @@ class ChildAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
-        val binding = CategoryChallengeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemCategoryChallengeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ChildViewHolder(binding)
     }
 

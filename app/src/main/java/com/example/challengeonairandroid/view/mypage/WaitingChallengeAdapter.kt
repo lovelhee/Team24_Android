@@ -6,19 +6,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.WaitingChallengeItemBinding
+import com.example.challengeonairandroid.databinding.ItemWaitingChallengeBinding
 import com.example.challengeonairandroid.model.data.Challenge
 
 class WaitingChallengeAdapter(
     private val waitingChallengeList: List<Challenge>,
 ) : RecyclerView.Adapter<WaitingChallengeAdapter.WaitingChallengeViewHolder>() {
 
-    class WaitingChallengeViewHolder(val binding: WaitingChallengeItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class WaitingChallengeViewHolder(val binding: ItemWaitingChallengeBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaitingChallengeViewHolder {
-        val binding: WaitingChallengeItemBinding = DataBindingUtil.inflate(
+        val binding: ItemWaitingChallengeBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.waiting_challenge_item,
+            R.layout.item_waiting_challenge,
             parent,
             false
         )

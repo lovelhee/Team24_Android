@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.challengeonairandroid.databinding.HomeParentItemBinding
+import com.example.challengeonairandroid.databinding.ItemHomeParentBinding
 import com.example.challengeonairandroid.model.data.Category
 import com.example.challengeonairandroid.model.data.Challenge
 
@@ -13,7 +13,7 @@ class ParentAdapter(
     private val challengesByCategory: Map<Long, List<Challenge>>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
-    inner class ParentViewHolder(val binding: HomeParentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ParentViewHolder(val binding: ItemHomeParentBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val childAdapter = ChildAdapter(emptyList())
 
@@ -50,7 +50,7 @@ class ParentAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
-        val binding = HomeParentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemHomeParentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ParentViewHolder(binding)
     }
 
