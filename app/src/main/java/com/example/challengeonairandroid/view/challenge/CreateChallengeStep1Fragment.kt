@@ -53,7 +53,6 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
         super.onViewCreated(view, savedInstanceState)
 
         var categoryId: Int = -1
-
         binding.rgChallengeCategory.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rbExercise -> categoryId = 0
@@ -96,10 +95,17 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
             }
         })
 
+        var minNum = binding.tvMinNum.text.toString().toInt()
+        var maxNum = binding.tvMaxNum.text.toString().toInt()
         binding.btnMinusMinNum.setOnClickListener {
-            val currentValue = binding.tvMinNum.text.toString().toInt()
-            if (currentValue > 2) {
-                binding.tvMinNum.text = (currentValue - 1).toString()
+            if (minNum > 2) {
+                if (minNum - 1 <= maxNum) {
+                    minNum -= 1
+                    binding.tvMinNum.text = minNum.toString()
+                }
+                else {
+                    Toast.makeText(requireContext(), "최소 인원은 최대 인원보다 작아야 합니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 Toast.makeText(requireContext(), "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
@@ -108,9 +114,14 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
         }
 
         binding.btnPlusMinNum.setOnClickListener {
-            val currentValue = binding.tvMinNum.text.toString().toInt()
-            if (currentValue < 8) {
-                binding.tvMinNum.text = (currentValue + 1).toString()
+            if (minNum < 8) {
+                if (minNum + 1 <= maxNum) {
+                    minNum += 1
+                    binding.tvMinNum.text = minNum.toString()
+                }
+                else {
+                    Toast.makeText(requireContext(), "최소 인원은 최대 인원보다 작아야 합니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 Toast.makeText(requireContext(), "인원은 최대 8명입니다.", Toast.LENGTH_SHORT).show()
@@ -119,9 +130,14 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
         }
 
         binding.btnMinusMaxNum.setOnClickListener {
-            val currentValue = binding.tvMaxNum.text.toString().toInt()
-            if (currentValue > 2) {
-                binding.tvMaxNum.text = (currentValue - 1).toString()
+            if (maxNum > 2) {
+                if (maxNum - 1 >= minNum) {
+                    maxNum -= 1
+                    binding.tvMaxNum.text = maxNum.toString()
+                }
+                else {
+                    Toast.makeText(requireContext(), "최대 인원은 최소 인원보다 커야 합니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 Toast.makeText(requireContext(), "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
@@ -130,9 +146,14 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
         }
 
         binding.btnPlusMaxNum.setOnClickListener {
-            val currentValue = binding.tvMaxNum.text.toString().toInt()
-            if (currentValue < 8) {
-                binding.tvMaxNum.text = (currentValue + 1).toString()
+            if (maxNum < 8) {
+                if (maxNum + 1 >= minNum) {
+                    maxNum += 1
+                    binding.tvMaxNum.text = maxNum.toString()
+                }
+                else {
+                    Toast.makeText(requireContext(), "최대 인원은 최소 인원보다 커야 합니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 Toast.makeText(requireContext(), "인원은 최대 8명입니다.", Toast.LENGTH_SHORT).show()
