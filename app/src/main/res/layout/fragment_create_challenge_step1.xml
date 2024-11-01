@@ -143,7 +143,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llChallengeMinNum"
+                    android:id="@+id/llChallengePeopleNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -154,7 +154,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/set_challenge_min"
+                        android:text="@string/set_challenge_people_num"
                         android:textStyle="bold"
                         android:textSize="14sp"/>
 
@@ -189,31 +189,14 @@
                             android:text="@string/plus"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
-                    </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llChallengeMaxNum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/llChallengeMinNum">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/set_challenge_max"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginVertical="5dp"
-                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tvWave"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="15dp"
+                            android:gravity="center"
+                            android:text="@string/wave" />
 
                         <Button
                             android:id="@+id/btnMinusMaxNum"
@@ -251,7 +234,7 @@
                     android:layout_margin="20dp"
                     android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llChallengeMaxNum"
+                    app:layout_constraintTop_toBottomOf="@+id/llChallengePeopleNum"
                     tools:ignore="UseCompoundDrawables">
 
                     <TextView
