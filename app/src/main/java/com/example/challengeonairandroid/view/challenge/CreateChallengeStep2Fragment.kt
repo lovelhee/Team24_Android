@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.challenge
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.challengeonairandroid.R
@@ -27,6 +29,7 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,6 +43,30 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
 
         binding.btnSetChallengePoint.setOnClickListener {
             toggleVisibility(binding.llSetChallengePoint, binding.btnSetChallengePoint)
+        }
+
+        lateinit var startDate: String
+        binding.dpStartTime.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
+            startDate = "$year-${monthOfYear + 1}-$dayOfMonth"
+            Log.d("createChallenge", "$startDate")
+        }
+
+        lateinit var startTime: String
+        binding.tpStartTime.setOnTimeChangedListener { view, hourOfDay, minute ->
+            startTime = "$hourOfDay:$minute"
+            Log.d("createChallenge", "$startTime")
+        }
+
+        lateinit var endDate: String
+        binding.dpEndTime.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
+            endDate = "$year-${monthOfYear + 1}-$dayOfMonth"
+            Log.d("createChallenge", "$endDate")
+        }
+
+        lateinit var endTime: String
+        binding.tpEndTime.setOnTimeChangedListener { view, hourOfDay, minute ->
+            endTime = "$hourOfDay:$minute"
+            Log.d("createChallenge", "$endTime")
         }
 
         lateinit var challengePoint: String
