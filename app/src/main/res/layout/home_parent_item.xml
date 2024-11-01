@@ -1,234 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imgBtnEvent"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        android:clipChildren="true"
-        android:clipToPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgBtnEvent"
+            android:layout_width="320dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:clipChildren="true"
+            android:clipToPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_event"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tvEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_event_text"
+            android:paddingStart="10dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="4dp"
+            android:text="이벤트"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBtnEvent"
+            app:layout_constraintStart_toStartOf="@+id/imgBtnEvent"
+            app:layout_constraintTop_toTopOf="@+id/imgBtnEvent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="신규 회원 첫번째 챌린지 예약 시\n1000p 선착순 100명 증정!"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBtnEvent"
+            app:layout_constraintStart_toStartOf="@+id/imgBtnEvent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEvent" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:textSize="18sp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnEvent" />
+
+        <GridLayout
+            android:id="@+id/layoutCategory"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/sample_event"
-            android:background="@android:color/transparent" />
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/tvEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_event_text"
-        android:paddingStart="10dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="4dp"
-        android:text="이벤트"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBtnEvent"
-        app:layout_constraintStart_toStartOf="@+id/imgBtnEvent"
-        app:layout_constraintTop_toTopOf="@+id/imgBtnEvent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="신규 회원 첫번째 챌린지 예약 시\n1000p 선착순 100명 증정!"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBtnEvent"
-        app:layout_constraintStart_toStartOf="@+id/imgBtnEvent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEvent" />
-
-    <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="카테고리"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnEvent" />
-
-    <GridLayout
-        android:id="@+id/layoutCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_gravity="center"
-        android:rowCount="1"
-        android:columnCount="4"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategory">
-
-        <LinearLayout
-            android:id="@+id/layoutExercise"
-            android:clickable="true"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@android:color/transparent"
-            android:focusable="true">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"
+            android:rowCount="1"
+            android:columnCount="4"
+            app:layout_constraintTop_toBottomOf="@+id/tvCategory">
 
-            <ImageView
-                android:id="@+id/ivExercise"
+            <LinearLayout
+                android:id="@+id/layoutExercise"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:background="@android:color/transparent"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/ivExercise"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_exercise" />
+
+                <TextView
+                    android:id="@+id/tvExercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="러닝 · 등산"
+                    android:textSize="8sp"
+                    android:textColor="#9E9E9E"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDevelop"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_exercise" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:focusable="true">
 
-            <TextView
-                android:id="@+id/tvExercise"
+                <ImageView
+                    android:id="@+id/ivDevelop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_develop"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/tvDevelop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="자기 계발"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="악기 · 독서"
+                    android:textSize="8sp"
+                    android:textColor="#9E9E9E"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutHobby"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="운동"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:focusable="true">
 
-            <TextView
+                <ImageView
+                    android:id="@+id/ivHobby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_hobby"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/tvHobby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취미"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="요리 · 뜨개질"
+                    android:textSize="8sp"
+                    android:textColor="#9E9E9E"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:layout_columnWeight="1"
+                android:id="@+id/layoutStudy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="러닝 · 등산"
-                android:textSize="8sp"
-                android:textColor="#9E9E9E"/>
+                android:orientation="vertical"
+                android:gravity="center"
+                android:focusable="true">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivStudy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_study"
+                    android:background="@android:color/transparent"/>
 
-        <LinearLayout
-            android:id="@+id/layoutDevelop"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_columnWeight="1"
-            android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공부"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
-            <ImageView
-                android:id="@+id/ivDevelop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_develop"
-                android:background="@android:color/transparent"/>
+                <TextView
+                    android:id="@+id/tvStudy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스터디 · 모각코"
+                    android:textSize="8sp"
+                    android:textColor="#9E9E9E"/>
 
-            <TextView
-                android:id="@+id/tvDevelop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="자기 계발"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="악기 · 독서"
-                android:textSize="8sp"
-                android:textColor="#9E9E9E"/>
+        </GridLayout>
 
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutCategory"
+            tools:itemCount="5"
+            tools:listitem="@layout/category_challenge_item"/>
 
-        <LinearLayout
-            android:id="@+id/layoutHobby"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:focusable="true">
-
-            <ImageView
-                android:id="@+id/ivHobby"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_hobby"
-                android:background="@android:color/transparent"/>
-
-            <TextView
-                android:id="@+id/tvHobby"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취미"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="요리 · 뜨개질"
-                android:textSize="8sp"
-                android:textColor="#9E9E9E"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:clickable="true"
-            android:layout_columnWeight="1"
-            android:id="@+id/layoutStudy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:focusable="true">
-
-            <ImageView
-                android:id="@+id/ivStudy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_study"
-                android:background="@android:color/transparent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공부"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:id="@+id/tvStudy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="스터디 · 모각코"
-                android:textSize="8sp"
-                android:textColor="#9E9E9E"/>
-
-        </LinearLayout>
-
-    </GridLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChallenge"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/layoutCategory"
-        tools:itemCount="5"
-        tools:listitem="@layout/category_challenge_item"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
