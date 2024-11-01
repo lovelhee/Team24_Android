@@ -25,12 +25,14 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        lateinit var image: Intent
         openGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val data = result.data
-                Log.d("createChallenge", "${data?.data}")
+                image = result.data!!
+                Log.d("createChallenge", "${image?.data}")
+                // TODO: 이미지 저장 로직 추가
             }
             else {
                 Toast.makeText(requireContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_SHORT).show()
