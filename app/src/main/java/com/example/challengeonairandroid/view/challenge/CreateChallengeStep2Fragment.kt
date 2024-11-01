@@ -31,36 +31,15 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnStartTime.setOnClickListener {
-            if (binding.llStartTimeLayout.visibility == View.VISIBLE) {
-                binding.btnStartTime.setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                binding.llStartTimeLayout.visibility = View.GONE
-            }
-            else {
-                binding.btnStartTime.setBackgroundResource(R.drawable.create_challenge_completed)
-                binding.llStartTimeLayout.visibility = View.VISIBLE
-            }
+            toggleVisibility(binding.llStartTimeLayout, binding.btnStartTime)
         }
 
         binding.btnEndTime.setOnClickListener {
-            if (binding.llEndTimeLayout.visibility == View.VISIBLE) {
-                binding.btnEndTime.setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                binding.llEndTimeLayout.visibility = View.GONE
-            }
-            else {
-                binding.btnEndTime.setBackgroundResource(R.drawable.create_challenge_completed)
-                binding.llEndTimeLayout.visibility = View.VISIBLE
-            }
+            toggleVisibility(binding.llEndTimeLayout, binding.btnEndTime)
         }
 
         binding.btnSetChallengePoint.setOnClickListener {
-            if (binding.llSetChallengePoint.visibility == View.VISIBLE) {
-                binding.btnSetChallengePoint.setBackgroundResource(R.drawable.create_challenge_uncompleted)
-                binding.llSetChallengePoint.visibility = View.GONE
-            }
-            else {
-                binding.btnSetChallengePoint.setBackgroundResource(R.drawable.create_challenge_completed)
-                binding.llSetChallengePoint.visibility = View.VISIBLE
-            }
+            toggleVisibility(binding.llSetChallengePoint, binding.btnSetChallengePoint)
         }
 
         lateinit var challengePoint: String
@@ -76,5 +55,16 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
             override fun afterTextChanged(s: Editable?) {
             }
         })
+    }
+
+    private fun toggleVisibility(layout: View, button: View) {
+        if (layout.visibility == View.VISIBLE) {
+            button.setBackgroundResource(R.drawable.create_challenge_uncompleted)
+            layout.visibility = View.GONE
+        }
+        else {
+            button.setBackgroundResource(R.drawable.create_challenge_completed)
+            layout.visibility = View.VISIBLE
+        }
     }
 }
