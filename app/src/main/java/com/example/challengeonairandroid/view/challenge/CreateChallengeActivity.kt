@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.challenge
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -39,8 +40,14 @@ class CreateChallengeActivity : AppCompatActivity() {
         }
 
         createChallengeBinding.btnNext.setOnClickListener {
-            if (createChallengeBinding.viewPager.currentItem < adapter.itemCount - 1) {
+            val currentItem = createChallengeBinding.viewPager.currentItem
+            if (currentItem < adapter.itemCount - 1) {
                 createChallengeBinding.viewPager.currentItem += 1
+            }
+            else {
+                val intent = Intent(this, CreateChallengeCompletedActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 
