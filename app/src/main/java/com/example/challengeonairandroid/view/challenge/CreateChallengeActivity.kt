@@ -19,7 +19,7 @@ class CreateChallengeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val createChallengeBinding: ActivityCreateChallengeBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_challenge)
+        createChallengeBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_challenge)
         createChallengeBinding.lifecycleOwner = this
 
         val adapter = CreateChallengeStepAdapter(this)
