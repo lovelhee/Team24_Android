@@ -172,7 +172,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
 //TODO: accessToken을 뷰모델 생성자를 통해 주입
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val myPageRepository: MyPageRepository
+    private val repository: Repository
 ) : ViewModel() {
     private val _histories = MutableStateFlow<List<History>>(emptyList())
     val histories: StateFlow<List<History>> = _histories.asStateFlow()
@@ -211,12 +211,20 @@ class MyPageViewModel @Inject constructor(
 
     private fun loadAllHistories() {
         viewModelScope.launch {
-            val historyListResponse = dummyHistoryListResponse
-//            val historyListResponse = myPageRepository.getAllHistory(accessToken)
-            historyListResponse?.let { response ->
-                updateHistories(response.histories)
+            try {
+                val response = repository.getAllHistory(accessToken)
+                if (response.isSuccessful) {
+                    response.body()?.let { historyListResponse ->
+                        updateHistories(historyListResponse.histories)
+                    }
+                } else {
+                    // TODO: Error handling
+                    Log.e("MyPageViewModel", "Failed to load histories: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading histories", e)
+                // TODO: Error handling
             }
-            Log.d("histories", "loadAllHistories: ${_histories.value}")
         }
     }
 
@@ -227,44 +235,46 @@ class MyPageViewModel @Inject constructor(
                 challengeStartTime = historyResponse.challenge.startTime,
                 challengeEndTime = historyResponse.challenge.endTime,
                 historyDate = historyResponse.challenge.challengeDate,
-                isSucceed = historyResponse.isSucceed,
+                isSucceed = historyResponse.isSucceeded,
                 isHost = historyResponse.isHost
             )
         }
-        val successCount = histories.count { it.isSucceed }
+
+        val successCount = histories.count { it.isSucceeded }
         _successChallengeNum.value = successCount
+
         val tryCount = histories.size
         _tryChallengeNum.value = tryCount
+
         val myCreateCount = histories.count { it.isHost }
         _myCreatedChallengeNum.value = myCreateCount
-        val hostFlag = histories[0].isHost
-        if (hostFlag) {
-            _myCreatedMarked.value = View.VISIBLE
-        }
-        else {
-            _myCreatedMarked.value = View.GONE
-        }
-        val successFlag = histories[0].isSucceed
-        if (successFlag) {
-            _successMarked.value = View.VISIBLE
-            _failMarked.value = View.GONE
-        }
-        else {
-            _successMarked.value = View.GONE
-            _failMarked.value = View.VISIBLE
-        }
 
+        if (histories.isNotEmpty()) {
+            val hostFlag = histories[0].isHost
+            _myCreatedMarked.value = if (hostFlag) View.VISIBLE else View.GONE
 
+            val successFlag = histories[0].isSucceeded
+            _successMarked.value = if (successFlag) View.VISIBLE else View.GONE
+            _failMarked.value = if (successFlag) View.GONE else View.VISIBLE
+        }
     }
 
     private fun loadUserData() {
         viewModelScope.launch {
-            val userProfileResponse = dummyUserProfileResponse
-//            val userProfileResponse = myPageRepository.getUserProfile(accessToken)
-            userProfileResponse?.let { response ->
-                updateUserProfile(response)
+            try {
+                val response = repository.getUserProfile(accessToken)
+                if (response.isSuccessful) {
+                    response.body()?.let { userProfileResponse ->
+                        updateUserProfile(userProfileResponse)
+                    }
+                } else {
+                    // TODO: Error handling
+                    Log.e("MyPageViewModel", "Failed to load user profile: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading user profile", e)
+                // TODO: Error handling
             }
-            Log.d("userProfiles", "loadUserData: ${_userProfile.value}")
         }
     }
 
@@ -279,6 +289,14 @@ class MyPageViewModel @Inject constructor(
 
     private fun loadWaitingChallenges() {
         viewModelScope.launch {
+            try {
+                // TODO: Implement API call for waiting challenges once available
+                // For now, keeping the challenges empty
+                _challenges.value = emptyList()
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading waiting challenges", e)
+                // TODO: Error handling
+            }
             val challengeResponses = dummyChallengeResponses // TODO: API 만들어지면 교체
 //            val challengeResponse = myPageRepository.
             updateChallenges(challengeResponses)

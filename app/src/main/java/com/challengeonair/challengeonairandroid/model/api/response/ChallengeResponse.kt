@@ -1,20 +1,25 @@
-package com.challengeonair.challengeonairandroid.model.api.response
+package com.example.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
 
+data class AllChallengesResponse(
+    @SerializedName("challenges") val challenges: List<ChallengeResponse>
+) // 아직 백엔드에서 안 만들어졌음
+
 data class ChallengeResponse(
-    @SerializedName("category_id") val categoryId: Int,
-    @SerializedName("challenge_name") val challengeName: String,
-    @SerializedName("challenge_body") val challengeBody: String,
+    @SerializedName("challengeId") val challengeId: Long,
+    @SerializedName("challengeName") val challengeName: String,
+    @SerializedName("challengeBody") val challengeBody: String,
     @SerializedName("point") val point: Int,
-    @SerializedName("challenge_date") val challengeDate: String,
-    @SerializedName("start_time") val startTime: String,
-    @SerializedName("end_time") val endTime: String,
-    @SerializedName("image_url") val imageUrl: String,
-    @SerializedName("min_participant_num") val minParticipantNum: Int,
-    @SerializedName("max_participant_num") val maxParticipantNum: Int,
-    @SerializedName("current_participant_num") val currentParticipantNum: Int,
-    @SerializedName("host_id") val hostId: Long,
+    @SerializedName("challengeDate") val challengeDate: String,
+    @SerializedName("startTime") val startTime: String,
+    @SerializedName("endTime") val endTime: String,
+    @SerializedName("imageExtension") val imageExtension: String,
+    @SerializedName("minParticipantNum") val minParticipantNum: Int,
+    @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
+    @SerializedName("currentParticipantNum") val currentParticipantNum: Int,
+    @SerializedName("hostId") val hostId: Long,
+    @SerializedName("categoryId") val categoryId: Int
 )
 
 data class ChallengeCategoryResponse(
@@ -22,18 +27,17 @@ data class ChallengeCategoryResponse(
 )
 
 data class ChallengeCreationRequest(
-    @SerializedName("host_id") val hostId: Long,
-    @SerializedName("category_id") val categoryId: Int,
-    @SerializedName("challenge_name") val challengeName: String,
-    @SerializedName("challenge_body") val challengeBody: String,
+    @SerializedName("hostId") val hostId: Long,
+    @SerializedName("categoryId") val categoryId: Int,
+    @SerializedName("challengeName") val challengeName: String,
+    @SerializedName("challengeBody") val challengeBody: String? = null,
     @SerializedName("point") val point: Int,
-    @SerializedName("challenge_date") val challengeDate: String,
-    @SerializedName("start_time") val startTime: String,
-    @SerializedName("end_time") val endTime: String,
-    @SerializedName("image_url") val imageUrl: String? = null,
-    @SerializedName("max_participant_num") val maxParticipantNum: Int,
-    @SerializedName("min_participant_num") val minParticipantNum: Int,
-    @SerializedName("current_participant_num") val currentParticipantNum: Int
+    @SerializedName("challengeDate") val challengeDate: String,
+    @SerializedName("startTime") val startTime: String,
+    @SerializedName("endTime") val endTime: String,
+    @SerializedName("imageExtension") val imageExtension: String? = null,
+    @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
+    @SerializedName("minParticipantNum") val minParticipantNum: Int
 )
 
 data class ChallengeCreationResponse(
