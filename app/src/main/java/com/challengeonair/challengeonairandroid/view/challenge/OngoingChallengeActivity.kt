@@ -8,7 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OngoingChallengeActivity : AppCompatActivity() {
-    private val ongoingChallengeViewModel: ChallengeViewModel by viewModels()
+    private val ongoingChallengeDetailViewModel: ChallengeDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

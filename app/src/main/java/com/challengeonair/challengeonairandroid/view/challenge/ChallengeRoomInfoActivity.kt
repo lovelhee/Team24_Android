@@ -1,7 +1,5 @@
 package com.challengeonair.challengeonairandroid.view.challenge
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChallengeRoomInfoActivity : AppCompatActivity() {
-    private val challengeRoomInfoViewModel: ChallengeViewModel by viewModels()
+    private val challengeRoomInfoViewModel: ChallengeDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
