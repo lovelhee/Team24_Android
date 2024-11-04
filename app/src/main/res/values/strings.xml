@@ -56,8 +56,7 @@
     <string name="input_challenge_title">챌린지 제목을 입력해주세요</string>
     <string name="edittext_placeholder">자유롭게 남겨주세요</string>
     <string name="input_challenge_body">챌린지 내용과 인증방식을 공유해주세요</string>
-    <string name="set_challenge_min">챌린지 최소 인원을 설정해주세요</string>
-    <string name="set_challenge_max">챌린지 최대 인원을 설정해주세요</string>
+    <string name="set_challenge_people_num">챌린지 최소 인원 및 최대 인원을 설정해주세요</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="min_num">2</string>
@@ -81,5 +80,6 @@
     <string name="example_challenge_time">10월 16일 14:00 ~ 15:00</string>
     <string name="reservation_point">예약금</string>
     <string name="example_reservation_point">500P</string>
-    <string name="go_to_home">홈으로</string>res
+    <string name="go_to_home">홈으로</string>
+    <string name="wave">~</string>res
 </resources>

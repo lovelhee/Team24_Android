@@ -296,7 +296,7 @@
                 android:layout_margin="20dp"
                 android:foregroundGravity="center"
                 android:scrollbars="horizontal"
-                tools:listitem="@layout/waiting_challenge_item"
+                tools:listitem="@layout/item_waiting_challenge"
                 tools:itemCount="2"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/glChallengeList"

@@ -1,1 +1,65 @@
-/build
+# Android Studio specific
+.idea/
+*.iml
+*.hprof
+
+# Gradle specific
+.gradle/
+build/
+captures/
+output.json
+local.properties
+*.apk
+*.ap_
+*.aab
+
+# Keystore files
+*.jks
+
+# IntelliJ
+*.ipr
+*.iws
+.idea/
+
+# User-specific files
+.DS_Store
+*.log
+*.stacktrace
+*.hprof
+
+# Android specific
+app/build/
+app/release/
+app/debug/
+
+# External libraries
+.libs/
+
+# Proguard folder
+proguard/
+
+# NDK
+.cxx/
+.externalNativeBuild/
+
+# Local Gradle config
+/local.properties
+
+# Kotlin specific
+*.kts
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~.nib
+*~.tmproj
+
+# JetBrains specific
+.vscode/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/vcs.xml
