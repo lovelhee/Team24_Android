@@ -23,9 +23,10 @@ roomCompiler = "2.5.0"
 roomKtx = "2.5.0"
 roomRuntime = "2.5.0"
 splashscreen = "1.0.1"
-datastore = "1.0.0"
+datastore = "1.1.1"
 security-crypto = "1.1.0-alpha06"
 databindingRuntime = "8.6.1"
+browser = "1.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,6 +57,7 @@ androidx-security-crypto = { group = "androidx.security", name = "security-crypt
 androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

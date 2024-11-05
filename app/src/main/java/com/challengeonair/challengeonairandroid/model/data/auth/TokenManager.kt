@@ -1,20 +1,22 @@
 package com.challengeonair.challengeonairandroid.model.data.auth
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class TokenManager @Inject constructor(private val dataStore: DataStore<Preferences>) {
-    private val ACCESS_TOKEN = stringPreferencesKey("access_token")
-    private val REFRESH_TOKEN = stringPreferencesKey("refresh_token")
+@Singleton
+class TokenManager @Inject constructor(
+    private val dataStore: DataStore<Preferences>
+) {
+    companion object {
+        private val ACCESS_TOKEN = stringPreferencesKey("access_token")
+        private val REFRESH_TOKEN = stringPreferencesKey("refresh_token")
+    }
 
     suspend fun saveAccessToken(token: String) {
         dataStore.edit { preferences ->
@@ -28,6 +30,16 @@ class TokenManager @Inject constructor(private val dataStore: DataStore<Preferen
         }
     }
 
+    // Flow를 반환하는 버전 추가 (옵션)
+    fun getAccessTokenFlow() = dataStore.data.map { preferences ->
+        preferences[ACCESS_TOKEN]
+    }
+
+    fun getRefreshTokenFlow() = dataStore.data.map { preferences ->
+        preferences[REFRESH_TOKEN]
+    }
+
+    // 기존 메서드들
     suspend fun getAccessToken(): String? {
         return dataStore.data.map { preferences ->
             preferences[ACCESS_TOKEN]
@@ -44,6 +56,14 @@ class TokenManager @Inject constructor(private val dataStore: DataStore<Preferen
         dataStore.edit { preferences ->
             preferences.remove(ACCESS_TOKEN)
             preferences.remove(REFRESH_TOKEN)
+        }
+    }
+
+    // 두 토큰을 한 번에 저장하는 메서드 추가 (옵션)
+    suspend fun saveTokens(accessToken: String, refreshToken: String) {
+        dataStore.edit { preferences ->
+            preferences[ACCESS_TOKEN] = accessToken
+            preferences[REFRESH_TOKEN] = refreshToken
         }
     }
 }

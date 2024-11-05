@@ -9,20 +9,23 @@ import com.example.challengeonairandroid.model.api.response.ChallengeReservation
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
 import com.example.challengeonairandroid.model.api.response.HistoryListResponse
 import com.example.challengeonairandroid.model.api.response.HistoryResponse
+import com.example.challengeonairandroid.model.api.response.LogInResponse
 import com.example.challengeonairandroid.model.api.response.LogoutResponse
+import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
 import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
 import com.example.challengeonairandroid.model.api.response.UserProfileResponse
 import com.example.challengeonairandroid.model.api.response.UserProfileUpdateRequest
 import com.example.challengeonairandroid.model.api.response.UserProfileUpdateResponse
-import com.example.challengeonairandroid.model.api.response.UserRegistrationRequest
-import com.example.challengeonairandroid.model.api.response.UserRegistrationResponse
 import com.example.challengeonairandroid.model.api.service.ChallengeApi
 import com.example.challengeonairandroid.model.api.service.HistoryApi
 import com.example.challengeonairandroid.model.api.service.UserApi
 import com.example.challengeonairandroid.model.api.service.UserProfileApi
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class Repository(
+@Singleton
+class Repository @Inject constructor(
     private val challengeApi: ChallengeApi,
     private val historyApi: HistoryApi,
     private val userApi: UserApi,
@@ -62,17 +65,21 @@ class Repository(
     }
 
     // User 관련
-    suspend fun registerUser(request: UserRegistrationRequest): Response<UserRegistrationResponse> {
-        return userApi.registerUser(request)
-    }
-
-    suspend fun logout(accessToken: String): Response<LogoutResponse> {
-        return userApi.logout(accessToken)
-    }
-
-    suspend fun deleteUser(accessToken: String): Response<UserDeletionResponse> {
-        return userApi.deleteUser(accessToken)
-    }
+//    suspend fun login(): Response<LogInResponse> {
+//        return userApi.login()
+//    }
+//
+//    suspend fun logout(accessToken: String): Response<LogoutResponse> {
+//        return userApi.logout(accessToken)
+//    }
+//
+//    suspend fun deleteUser(accessToken: String): Response<UserDeletionResponse> {
+//        return userApi.deleteUser(accessToken)
+//    }
+//
+//    suspend fun reIssueToken(reIssueToken: String): Response<ReIssueTokenResponse> {
+//        return userApi.reIssueToken(reIssueToken)
+//    }
 
     // UserProfile 관련
     suspend fun getUserProfile(accessToken: String): Response<UserProfileResponse> {
