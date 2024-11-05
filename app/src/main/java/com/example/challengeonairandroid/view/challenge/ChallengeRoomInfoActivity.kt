@@ -1,5 +1,7 @@
 package com.example.challengeonairandroid.view.challenge
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,5 +15,11 @@ class ChallengeRoomInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // viewModel 사용
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, ChallengeRoomInfoActivity::class.java)
+        }
     }
 }

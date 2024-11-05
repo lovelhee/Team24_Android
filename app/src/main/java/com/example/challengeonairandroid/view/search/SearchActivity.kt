@@ -1,6 +1,8 @@
 package com.example.challengeonairandroid.view.search
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -76,6 +78,12 @@ class SearchActivity : AppCompatActivity() {
                 else -> 0
             }
             searchViewModel.setCategoryId(selectedCategoryId) // ViewModel에 선택된 categoryId 전달
+        }
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, SearchActivity::class.java)
         }
     }
 }

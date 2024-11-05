@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -41,5 +42,11 @@ class MyPageHistoryActivity : AppCompatActivity() {
         historyAdapter = HistoryAdapter(dummyHistoryList)
         rvHistory.layoutManager = LinearLayoutManager(this)
         rvHistory.adapter = historyAdapter
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, MyPageHistoryActivity::class.java)
+        }
     }
 }

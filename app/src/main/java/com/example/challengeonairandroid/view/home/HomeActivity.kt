@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,6 +10,7 @@ import com.example.challengeonairandroid.databinding.ActivityHomeBinding
 import com.example.challengeonairandroid.model.data.Category
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.view.challenge.CreateChallengeActivity
+import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,13 +27,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnComplete.setOnClickListener {
-            val intent = Intent(this, CreateChallengeActivity::class.java)
-            startActivity(intent)
+            startActivity(CreateChallengeActivity.intent(this))
         }
 
         binding.ibSearch.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+            startActivity(SearchActivity.intent(this))
         }
 
         // 더미 데이터
@@ -145,6 +145,12 @@ class HomeActivity : AppCompatActivity() {
         binding.rvParent.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = parentAdapter
+        }
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, HomeActivity::class.java)
         }
     }
 }

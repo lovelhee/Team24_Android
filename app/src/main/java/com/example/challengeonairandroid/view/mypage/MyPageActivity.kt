@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageBinding
+import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.home.HomeActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
@@ -32,28 +34,30 @@ class MyPageActivity : AppCompatActivity() {
         waitingChallengeRecyclerView.adapter = waitingChallengeAdapter
 
         val challengeProfile = myPageBinding.btnProfileChange
-        val profileIntent = Intent(this, MyPageProfileActivity::class.java)
         challengeProfile.setOnClickListener {
-            startActivity(profileIntent)
+            startActivity(MyPageProfileActivity.intent(this))
         }
 
         val challengeHistory = myPageBinding.glChallengeList
-        val historyIntent = Intent(this, MyPageHistoryActivity::class.java)
         challengeHistory.setOnClickListener {
-            startActivity(historyIntent)
+            startActivity(MyPageHistoryActivity.intent(this))
         }
 
         val challengeSearch = myPageBinding.ibSearch
-        val searchIntent = Intent(this, SearchActivity::class.java)
         challengeSearch.setOnClickListener {
-            startActivity(searchIntent)
+            startActivity(SearchActivity.intent(this))
         }
 
         val challengeHome = myPageBinding.ibHome
-        val homeIntent = Intent(this, HomeActivity::class.java)
         challengeHome.setOnClickListener {
-            startActivity(homeIntent)
+            startActivity(HomeActivity.intent(this))
         }
 
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, MyPageActivity::class.java)
+        }
     }
 }
