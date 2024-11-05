@@ -1,12 +1,13 @@
 package com.example.challengeonairandroid.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.challengeonairandroid.model.api.response.LogInResponse
 import com.example.challengeonairandroid.model.api.response.LogoutResponse
+import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
 import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
-import com.example.challengeonairandroid.model.api.response.UserRegistrationRequest
-import com.example.challengeonairandroid.model.api.response.UserRegistrationResponse
-import com.example.challengeonairandroid.model.repository.Repository
+import com.example.challengeonairandroid.model.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,68 +15,61 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-    // UI State
-    private val _userState = MutableStateFlow<UserState>(UserState.Initial)
-    val userState = _userState.asStateFlow()
+    private val _loginState = MutableStateFlow<Result<LogInResponse>?>(null)
+    val loginState = _loginState.asStateFlow()
 
-    // User Actions
-    fun registerUser(request: UserRegistrationRequest) {
+    private val _logoutState = MutableStateFlow<Result<LogoutResponse>?>(null)
+    val logoutState = _logoutState.asStateFlow()
+
+    private val _deleteUserState = MutableStateFlow<Result<UserDeletionResponse>?>(null)
+    val deleteUserState = _deleteUserState.asStateFlow()
+
+    private val _reIssueTokenState = MutableStateFlow<Result<ReIssueTokenResponse>?>(null)
+    val reIssueTokenState = _reIssueTokenState.asStateFlow()
+
+    fun login() {
         viewModelScope.launch {
-            _userState.value = UserState.Loading
-            try {
-                val response = repository.registerUser(request)
-                if (response.isSuccessful && response.body() != null) {
-                    _userState.value = UserState.RegisterSuccess(response.body()!!)
-                } else {
-                    _userState.value = UserState.Error("회원가입 실패: ${response.message()}")
-                }
-            } catch (e: Exception) {
-                _userState.value = UserState.Error("회원가입 중 오류 발생: ${e.message}")
+            Log.d("UserViewModel", "로그인 시작")
+            _loginState.value = userRepository.login().also { result ->
+                Log.d("UserViewModel", "로그인 결과: $result")
             }
         }
     }
 
     fun logout(accessToken: String) {
         viewModelScope.launch {
-            _userState.value = UserState.Loading
-            try {
-                val response = repository.logout(accessToken)
-                if (response.isSuccessful && response.body() != null) {
-                    _userState.value = UserState.LogoutSuccess(response.body()!!)
-                } else {
-                    _userState.value = UserState.Error("로그아웃 실패: ${response.message()}")
-                }
-            } catch (e: Exception) {
-                _userState.value = UserState.Error("로그아웃 중 오류 발생: ${e.message}")
-            }
+            _logoutState.value = userRepository.logout(accessToken)
         }
     }
 
     fun deleteUser(accessToken: String) {
         viewModelScope.launch {
-            _userState.value = UserState.Loading
-            try {
-                val response = repository.deleteUser(accessToken)
-                if (response.isSuccessful && response.body() != null) {
-                    _userState.value = UserState.DeleteSuccess(response.body()!!)
-                } else {
-                    _userState.value = UserState.Error("회원탈퇴 실패: ${response.message()}")
-                }
-            } catch (e: Exception) {
-                _userState.value = UserState.Error("회원탈퇴 중 오류 발생: ${e.message}")
-            }
+            _deleteUserState.value = userRepository.deleteUser(accessToken)
         }
     }
 
-    // UI State를 나타내는 sealed class
-    sealed class UserState {
-        object Initial : UserState()
-        object Loading : UserState()
-        data class RegisterSuccess(val data: UserRegistrationResponse) : UserState()
-        data class LogoutSuccess(val data: LogoutResponse) : UserState()
-        data class DeleteSuccess(val data: UserDeletionResponse) : UserState()
-        data class Error(val message: String) : UserState()
+    fun reIssueToken(reIssueToken: String) {
+        viewModelScope.launch {
+            _reIssueTokenState.value = userRepository.reIssueToken(reIssueToken)
+        }
+    }
+
+    // 상태 초기화 함수들
+    fun resetLoginState() {
+        _loginState.value = null
+    }
+
+    fun resetLogoutState() {
+        _logoutState.value = null
+    }
+
+    fun resetDeleteUserState() {
+        _deleteUserState.value = null
+    }
+
+    fun resetReIssueTokenState() {
+        _reIssueTokenState.value = null
     }
 }

@@ -1,16 +1,13 @@
 package com.challengeonair.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
-data class UserRegistrationRequest(
-    @SerializedName("userName") val userName: String,
-    @SerializedName("userNickName") val userNickName: String,
-    @SerializedName("password") val password: String,
-    @SerializedName("email") val email: String
-)
-
-data class UserRegistrationResponse(
-    @SerializedName("email") val email: String
+data class LogInResponse(
+    @SerializedName("status") val status: String,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("data") val data: Nothing? = null
 )
 
 data class LogoutResponse(
@@ -19,4 +16,10 @@ data class LogoutResponse(
 
 data class UserDeletionResponse(
     @SerializedName("userId") val userId: Long
+)
+
+@Serializable
+data class ReIssueTokenResponse(
+    @SerializedName("Authorization") val accessToken: String, // 새로운 access Token
+    @SerializedName("reIssueToken") val reIssueToken: String // 새로운 reissue 토큰
 )
