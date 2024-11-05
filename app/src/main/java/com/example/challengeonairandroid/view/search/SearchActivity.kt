@@ -1,6 +1,5 @@
 package com.example.challengeonairandroid.view.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivitySearchBinding
-import com.example.challengeonairandroid.view.mypage.MyPageHistoryActivity
 import com.example.challengeonairandroid.viewmodel.SearchViewModel
 
 class SearchActivity : AppCompatActivity() {
