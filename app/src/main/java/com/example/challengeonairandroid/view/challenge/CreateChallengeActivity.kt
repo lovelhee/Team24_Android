@@ -11,6 +11,10 @@ import com.example.challengeonairandroid.viewmodel.ChallengeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
+enum class TabKind {
+    STEP1, STEP2
+}
+
 @AndroidEntryPoint
 class CreateChallengeActivity : AppCompatActivity() {
     private val createChallengeViewModel: ChallengeViewModel by viewModels()
@@ -26,9 +30,9 @@ class CreateChallengeActivity : AppCompatActivity() {
         createChallengeBinding.viewPager.adapter = adapter
 
         TabLayoutMediator(createChallengeBinding.tlChallengeStep, createChallengeBinding.viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.challenge_step1)
-                1 -> getString(R.string.challenge_step2)
+            tab.text = when (TabKind.entries[position]) {
+                TabKind.STEP1 -> getString(R.string.challenge_step1)
+                TabKind.STEP2 -> getString(R.string.challenge_step2)
                 else -> null
             }
         }.attach()
