@@ -23,6 +23,7 @@ private val dummyHistoryListResponse = HistoryListResponse(
     histories = listOf(
         HistoryResponse(
             challenge = ChallengeResponse(
+                categoryId = 0,
                 challengeName = "아침 운동 챌린지",
                 challengeBody = "매일 아침 30분 운동하기",
                 point = 100,
@@ -40,6 +41,7 @@ private val dummyHistoryListResponse = HistoryListResponse(
         ),
         HistoryResponse(
             challenge = ChallengeResponse(
+                categoryId = 1,
                 challengeName = "독서 챌린지",
                 challengeBody = "한 달 동안 5권 책 읽기",
                 point = 150,
@@ -67,6 +69,7 @@ private val dummyUserProfileResponse = UserProfileResponse(
 
 private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
     ChallengeResponse(
+        categoryId = 1,
         challengeName = "아침 운동 챌린지",
         challengeBody = "매일 아침 30분 운동하기",
         point = 100,
@@ -80,6 +83,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         hostId = "user123"
     ),
     ChallengeResponse(
+        categoryId = 1,
         challengeName = "독서 챌린지",
         challengeBody = "한 달 동안 5권 책 읽기",
         point = 150,
@@ -93,6 +97,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         hostId = "user456"
     ),
     ChallengeResponse(
+        categoryId = 1,
         challengeName = "물 마시기 챌린지",
         challengeBody = "하루 2리터 물 마시기",
         point = 80,
@@ -106,6 +111,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         hostId = "user789"
     ),
     ChallengeResponse(
+        categoryId = 1,
         challengeName = "코딩 스터디 챌린지",
         challengeBody = "매일 2시간 코딩 공부하기",
         point = 200,
@@ -119,6 +125,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         hostId = "user101"
     ),
     ChallengeResponse(
+        categoryId = 1,
         challengeName = "환경 보호 챌린지",
         challengeBody = "일주일 동안 일회용품 사용 줄이기",
         point = 120,
@@ -253,6 +260,7 @@ class MyPageViewModel @Inject constructor(
     private fun updateChallenges(challengeResponses: List<ChallengeResponse>) {
         _challenges.value = challengeResponses.map { response ->
             Challenge(
+                categoryId = response.categoryId,
                 challengeName = response.challengeName,
                 imageUrl = response.imageUrl,
                 hostId = response.hostId.toLongOrNull() ?: 0L

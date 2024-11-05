@@ -3,6 +3,7 @@ package com.example.challengeonairandroid.model.api.response
 import com.google.gson.annotations.SerializedName
 
 data class ChallengeResponse(
+    @SerializedName("category_id") val categoryId: Int,
     @SerializedName("challenge_name") val challengeName: String,
     @SerializedName("challenge_body") val challengeBody: String,
     @SerializedName("point") val point: Int,

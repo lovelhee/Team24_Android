@@ -28,6 +28,7 @@ data class Category(
 ) // 카테고리 아이디를 받으면 enum으로
 
 data class Challenge(
+    val categoryId: Int,
     val challengeName: String,
     val imageUrl: String,
 //    val isHost: Boolean, // 이거 없어도 될 듯?
