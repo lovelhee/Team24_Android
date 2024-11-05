@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +39,22 @@ class SearchActivity : AppCompatActivity() {
 
         searchBinding.btnBack.setOnClickListener {
             finish()
+        }
+
+        searchBinding.etSearch.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                val drawableEnd = searchBinding.etSearch.compoundDrawables[2] // drawableEnd는 index 2
+                if (drawableEnd != null) {
+                    val drawableWidth = drawableEnd.bounds.width()
+                    val touchArea = searchBinding.etSearch.width - searchBinding.etSearch.paddingEnd - drawableWidth
+
+                    if (event.rawX >= touchArea) {
+                        searchBinding.etSearch.text.clear()
+                        return@setOnTouchListener true
+                    }
+                }
+            }
+            false
         }
 
         searchBinding.etSearch.addTextChangedListener(object : TextWatcher {
