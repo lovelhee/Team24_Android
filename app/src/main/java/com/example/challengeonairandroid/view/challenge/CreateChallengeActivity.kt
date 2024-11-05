@@ -41,6 +41,9 @@ class CreateChallengeActivity : AppCompatActivity() {
             if (createChallengeBinding.viewPager.currentItem > 0) {
                 createChallengeBinding.viewPager.currentItem -= 1
             }
+            else {
+                finish()
+            }
         }
 
         createChallengeBinding.btnNext.setOnClickListener {
