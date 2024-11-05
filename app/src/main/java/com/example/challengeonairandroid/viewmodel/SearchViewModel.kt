@@ -94,6 +94,9 @@ class SearchViewModel : ViewModel() {
     private val _categoryId = MutableStateFlow(0) // 초기값 설정
     val categoryId: StateFlow<Int> get() = _categoryId.asStateFlow()
 
+    private val _searchQuery = MutableStateFlow("") // 검색어 상태 추가
+    val searchQuery: StateFlow<String> get() = _searchQuery.asStateFlow()
+
     private val _allChallenges = MutableStateFlow<List<Challenge>>(emptyList())
     private val _challenges = MutableStateFlow<List<Challenge>>(emptyList())
     val challenges: StateFlow<List<Challenge>> = _challenges.asStateFlow()
@@ -119,23 +122,35 @@ class SearchViewModel : ViewModel() {
                 hostId = response.hostId.toLongOrNull() ?: 0L
             )
         }
-        filterChallengesByCategory()
+        filterChallenges()
     }
 
     fun setCategoryId(id: Int) {
         _categoryId.value = id
     }
 
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
+
     private fun observeCategoryChanges() {
         viewModelScope.launch {
             _categoryId.collect {
-                filterChallengesByCategory()
+                filterChallenges()
+            }
+        }
+        viewModelScope.launch {
+            searchQuery.collect {
+                filterChallenges()
             }
         }
     }
 
-    private fun filterChallengesByCategory() {
-        val filteredList = _allChallenges.value.filter { it.categoryId == _categoryId.value }
+    private fun filterChallenges() {
+        val filteredList = _allChallenges.value.filter { challenge ->
+            challenge.categoryId == _categoryId.value &&
+                    challenge.challengeName.contains(_searchQuery.value, ignoreCase = true)
+        }
         _challenges.value = filteredList
     }
 }
