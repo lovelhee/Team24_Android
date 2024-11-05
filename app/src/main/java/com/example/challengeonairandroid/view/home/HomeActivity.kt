@@ -29,6 +29,11 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.ibSearch.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
         // 더미 데이터
         val categories = listOf(
             Category(1, "운동", "운동 카테고리"),

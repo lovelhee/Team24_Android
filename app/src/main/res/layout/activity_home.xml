@@ -24,6 +24,7 @@
                 android:src="@drawable/ic_my_page" />
 
             <ImageButton
+                android:id="@+id/ibSearch"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end"
