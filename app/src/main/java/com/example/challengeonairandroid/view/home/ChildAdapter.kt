@@ -16,10 +16,10 @@ class ChildAdapter(
     inner class ChildViewHolder(private val binding: ItemCategoryChallengeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(challenge: Challenge) {
             binding.tvChallengeName.text = challenge.challengeName
-//            binding.tvDate.text = challenge.challengeDate
-//            binding.tvStartTime.text = challenge.startTime
-//            binding.tvEndTime.text = challenge.endTime
-//            binding.tvCurrentNum.text = challenge.currentParticipantNum.toString()
+            binding.tvDate.text = challenge.challengeDate
+            binding.tvStartTime.text = challenge.startTime
+            binding.tvEndTime.text = challenge.endTime
+            binding.tvCurrentNum.text = challenge.currentParticipantNum.toString()
 
             Glide.with(binding.ivChallengeCover.context)
                 .load(challenge.imageUrl)
