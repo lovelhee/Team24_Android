@@ -25,7 +25,38 @@ class ChildAdapter(
                 .load(challenge.imageUrl)
                 .into(binding.ivChallengeCover)
 
-            // 현재 인원에 따른 아이콘 변화 코드 필요
+            updateParticipantIcons(challenge.currentParticipantNum, challenge.maxParticipantNum)
+        }
+
+        private fun updateParticipantIcons(currentNum: Int, maxNum: Int) {
+
+            binding.iconContainer.removeViews(2, binding.iconContainer.childCount - 2)
+
+            repeat(currentNum) {
+                val currentIcon = ImageView(binding.iconContainer.context).apply {
+                    setImageResource(R.drawable.ic_current_num)
+                    layoutParams = ViewGroup.MarginLayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        marginStart = 4
+                    }
+                }
+                binding.iconContainer.addView(currentIcon)
+            }
+
+            repeat(maxNum - currentNum) {
+                val maxIcon = ImageView(binding.iconContainer.context).apply {
+                    setImageResource(R.drawable.ic_max_num)
+                    layoutParams = ViewGroup.MarginLayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        marginStart = 4
+                    }
+                }
+                binding.iconContainer.addView(maxIcon)
+            }
         }
 
         private fun getCategoryName(categoryId: Int): String {

@@ -119,8 +119,7 @@
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:textColor="#FF3B30"
-                android:textSize="8sp"
-                />
+                android:textSize="8sp" />
 
             <TextView
                 android:id="@+id/tvPeople"
@@ -129,30 +128,6 @@
                 android:text="명 예약중"
                 android:textColor="#FF3B30"
                 android:textSize="8sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_current_num"
-                android:layout_marginStart="4dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_current_num"
-                android:layout_marginStart="1dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_current_num"
-                android:layout_marginStart="1dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_max_num"
-                android:layout_marginStart="1dp"/>
 
         </LinearLayout>
 
