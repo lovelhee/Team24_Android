@@ -8,9 +8,11 @@ import com.bumptech.glide.Glide
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.databinding.ItemCategoryChallengeBinding
+import com.example.challengeonairandroid.model.data.Category
 
 class ChildAdapter(
-    private var challenges: List<Challenge>
+    private var challenges: List<Challenge>,
+    private val categories: List<Category>
 ) : RecyclerView.Adapter<ChildAdapter.ChildViewHolder>() {
 
     inner class ChildViewHolder(private val binding: ItemCategoryChallengeBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -20,6 +22,8 @@ class ChildAdapter(
             binding.tvStartTime.text = challenge.startTime
             binding.tvEndTime.text = challenge.endTime
             binding.tvCurrentNum.text = challenge.currentParticipantNum.toString()
+
+            binding.tvCategory.text = getCategoryName(challenge.categoryId)
 
             Glide.with(binding.ivChallengeCover.context)
                 .load(challenge.imageUrl)
@@ -60,13 +64,7 @@ class ChildAdapter(
         }
 
         private fun getCategoryName(categoryId: Int): String {
-            return when (categoryId) {
-                1 -> "운동"
-                2 -> "자기 계발"
-                3 -> "취미"
-                4 -> "공부"
-                else -> "기타"
-            }
+            return categories.first { it.categoryId == categoryId.toLong() }.categoryName
         }
     }
 

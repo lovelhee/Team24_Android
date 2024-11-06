@@ -20,7 +20,7 @@ class ParentAdapter(
 
     inner class ParentViewHolder(val binding: ItemHomeParentBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private val childAdapter = ChildAdapter(emptyList())
+        private val childAdapter = ChildAdapter(emptyList(), categories)
 
         init {
             binding.rvChallenge.apply {
