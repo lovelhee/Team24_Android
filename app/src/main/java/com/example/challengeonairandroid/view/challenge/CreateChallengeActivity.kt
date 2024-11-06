@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityCreateChallengeBinding
-import com.example.challengeonairandroid.viewmodel.ChallengeViewModel
+import com.example.challengeonairandroid.viewmodel.CreateChallengeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +18,7 @@ enum class TabKind {
 
 @AndroidEntryPoint
 class CreateChallengeActivity : AppCompatActivity() {
-    private val createChallengeViewModel: ChallengeViewModel by viewModels()
+    private val createChallengeViewModel: CreateChallengeViewModel by viewModels()
     private lateinit var createChallengeBinding: ActivityCreateChallengeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
