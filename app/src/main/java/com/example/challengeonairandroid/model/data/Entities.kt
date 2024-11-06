@@ -28,11 +28,18 @@ data class Category(
 ) // 카테고리 아이디를 받으면 enum으로
 
 data class Challenge(
-    val categoryId: Int,
     val challengeName: String,
+    val challengeBody: String,
+    val point: Int,
+    val challengeDate: String,
+    val startTime: String,
+    val endTime: String,
     val imageUrl: String,
-//    val isHost: Boolean, // 이거 없어도 될 듯?
-    val hostId: Long
+    val minParticipantNum: Int,
+    val maxParticipantNum: Int,
+    val currentParticipantNum: Int,
+    val hostId: Long,
+    val categoryId: Int
 )
 
 data class Participant(

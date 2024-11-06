@@ -34,7 +34,7 @@ private val dummyHistoryListResponse = HistoryListResponse(
                 minParticipantNum = 5,
                 maxParticipantNum = 20,
                 currentParticipantNum = 12,
-                hostId = "user123"
+                hostId = 2L
             ),
             isSucceed = true,
             isHost = false
@@ -52,7 +52,7 @@ private val dummyHistoryListResponse = HistoryListResponse(
                 minParticipantNum = 10,
                 maxParticipantNum = 50,
                 currentParticipantNum = 25,
-                hostId = "user456"
+                hostId = 2L
             ),
             isSucceed = false,
             isHost = true
@@ -80,7 +80,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 5,
         maxParticipantNum = 20,
         currentParticipantNum = 12,
-        hostId = "user123"
+        hostId = 2L
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -94,7 +94,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 10,
         maxParticipantNum = 50,
         currentParticipantNum = 25,
-        hostId = "user456"
+        hostId = 3L
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -108,7 +108,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 3,
         maxParticipantNum = 100,
         currentParticipantNum = 75,
-        hostId = "user789"
+        hostId = 4L
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -122,7 +122,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 5,
         maxParticipantNum = 15,
         currentParticipantNum = 8,
-        hostId = "user101"
+        hostId = 5L
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -136,7 +136,35 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 20,
         maxParticipantNum = 200,
         currentParticipantNum = 150,
-        hostId = "user202"
+        hostId = 2L
+    ),
+    ChallengeResponse(
+        challengeName = "취미 요리",
+        challengeDate = "2024-10-16",
+        startTime = "15:00",
+        endTime = "17:00",
+        imageUrl = "https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_1280.jpg",
+        currentParticipantNum = 2,
+        maxParticipantNum = 4,
+        challengeBody = "222",
+        point = 10,
+        minParticipantNum = 2,
+        hostId = 3L,
+        categoryId = 3
+    ),
+    ChallengeResponse(
+        challengeName = "뜨개질로 목도리 만들기",
+        challengeDate = "2024-10-16",
+        startTime = "15:00",
+        endTime = "17:00",
+        imageUrl = "https://cdn.pixabay.com/photo/2020/06/08/23/52/tissue-5276453_1280.jpg",
+        currentParticipantNum = 2,
+        maxParticipantNum = 4,
+        challengeBody = "222",
+        point = 10,
+        minParticipantNum = 2,
+        hostId = 3L,
+        categoryId = 3
     )
 )
 
@@ -262,8 +290,16 @@ class MyPageViewModel @Inject constructor(
             Challenge(
                 categoryId = response.categoryId,
                 challengeName = response.challengeName,
+                challengeBody = response.challengeBody,
+                challengeDate = response.challengeDate,
+                maxParticipantNum = response.maxParticipantNum,
+                minParticipantNum = response.minParticipantNum,
+                currentParticipantNum = response.currentParticipantNum,
+                point = response.point,
+                startTime = response.startTime,
+                endTime = response.endTime,
                 imageUrl = response.imageUrl,
-                hostId = response.hostId.toLongOrNull() ?: 0L
+                hostId = response.hostId
             )
         }
     }
