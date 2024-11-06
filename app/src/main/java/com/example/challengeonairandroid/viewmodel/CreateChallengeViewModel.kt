@@ -128,4 +128,19 @@ class CreateChallengeViewModel @Inject constructor(
         _maxParticipantNum.value = response.maxParticipantNum
         _challengeImage.value = response.imageUrl
     }
+
+    fun isStep1Valid(): Boolean {
+        return _categoryId.value != -1 &&
+                _challengeName.value.isNotBlank() &&
+                _challengeBody.value.isNotBlank() &&
+                _minParticipantNum.value >= 2 &&
+                _maxParticipantNum.value <= 4
+    }
+
+    fun isStep2Valid(): Boolean {
+        return _challengeDate.value.isNotBlank() &&
+                _startTime.value.isNotBlank() &&
+                _endTime.value.isNotBlank() &&
+                _point.value.toInt() > 0
+    }
 }
