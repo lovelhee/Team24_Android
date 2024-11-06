@@ -25,13 +25,13 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lateinit var image: Intent
+        lateinit var challengeImage: Intent
         openGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                image = result.data!!
-                Log.d("createChallenge", "${image?.data}")
+                challengeImage = result.data!!
+                Log.d("createChallenge", "${challengeImage?.data}")
                 // TODO: 이미지 저장 로직 추가
             }
             else {
