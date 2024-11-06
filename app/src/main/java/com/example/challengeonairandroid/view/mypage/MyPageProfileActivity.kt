@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.view.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageProfileBinding
+import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +26,7 @@ class MyPageProfileActivity : AppCompatActivity() {
 
         val btnBack = myPageProfileBinding.btnBack
         btnBack.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
-            startActivity(intent)
+            startActivity(MyPageActivity.intent(this))
             finish()
         }
 
@@ -33,6 +34,12 @@ class MyPageProfileActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, MyPageProfileActivity::class.java)
         }
     }
 }

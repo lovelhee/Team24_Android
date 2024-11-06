@@ -1,5 +1,7 @@
 package com.example.challengeonairandroid.view.challenge
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,5 +28,11 @@ class CreateChallengeCompletedActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, CreateChallengeCompletedActivity::class.java)
+        }
     }
 }

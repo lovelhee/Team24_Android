@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.challengeonairandroid.R
+import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         splashScreen.setKeepOnScreenCondition { true }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(HomeActivity.intent(this))
             finish()
         }, 2000) // 2초 후 HomeActivity로 전환
     }
