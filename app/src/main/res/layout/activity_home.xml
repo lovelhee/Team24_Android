@@ -16,6 +16,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/ibMyPage"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end"
@@ -33,6 +34,7 @@
                 android:src="@drawable/ic_search2" />
 
             <ImageButton
+                android:id="@+id/ibAlarm"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end"

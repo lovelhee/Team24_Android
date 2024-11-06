@@ -11,6 +11,7 @@ import com.example.challengeonairandroid.model.data.Category
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
+import com.example.challengeonairandroid.view.mypage.MyPageActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,11 @@ class HomeActivity : AppCompatActivity() {
         binding.ibSearch.setOnClickListener {
             startActivity(SearchActivity.intent(this))
         }
+
+        binding.ibMyPage.setOnClickListener {
+            startActivity(MyPageActivity.intent(this))
+        }
+
 
         // 더미 데이터
         val categories = listOf(
