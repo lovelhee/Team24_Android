@@ -130,6 +130,34 @@ class CreateChallengeViewModel @Inject constructor(
         _point.value = point
     }
 
+    private val _isDateSet = MutableStateFlow(false)
+    val isDateSet: StateFlow<Boolean> = _isDateSet
+
+    private val _isStartTimeSet = MutableStateFlow(false)
+    val isStartTimeSet: StateFlow<Boolean> = _isStartTimeSet
+
+    private val _isEndTimeSet = MutableStateFlow(false)
+    val isEndTimeSet: StateFlow<Boolean> = _isEndTimeSet
+
+    private val _isPointSet = MutableStateFlow(false)
+    val isPointSet: StateFlow<Boolean> = _isPointSet
+
+    fun setDate(date: String) {
+        _isDateSet.value = true
+    }
+
+    fun setStartTime(time: String) {
+        _isStartTimeSet.value = true
+    }
+
+    fun setEndTime(time: String) {
+        _isEndTimeSet.value = true
+    }
+
+    fun setPoint(point: Int) {
+        _isPointSet.value = true
+    }
+
     init {
         initializeChallengeData()
     }
