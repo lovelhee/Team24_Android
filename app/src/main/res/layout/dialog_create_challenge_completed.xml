@@ -35,9 +35,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
+                android:padding="10dp"
                 android:text="@string/challenge_complete"
                 android:textStyle="bold"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -119,7 +120,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@{String.valueOf(viewModel.challengeData.minParticipantNum) + '~' + viewModel.challengeData.maxParticipantNum}"
+                        android:text="@{String.valueOf(viewModel.challengeData.minParticipantNum) + '명' + ' ' + '~' + ' ' + String.valueOf(viewModel.challengeData.maxParticipantNum) + '명'}"
                         tools:text="@string/people_number_range"
                         android:textColor="@color/main_red"
                         android:textStyle="bold"
@@ -128,7 +129,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llChallengeTime"
+                    android:id="@+id/llDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -142,15 +143,43 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="@string/challenge_time"
+                        android:text="@string/date"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@{String.valueOf(viewModel.challengeData.challengeDate) + ' ' + String.valueOf(viewModel.challengeData.startTime) + '~' + String.valueOf(viewModel.challengeData.endTime)}"
-                        tools:text="@string/example_challenge_time"
+                        android:text="@{String.valueOf(viewModel.challengeData.challengeDate)}"
+                        tools:text="@string/example_date"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llDate">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/time"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@{String.valueOf(viewModel.challengeData.startTime) + ' ' + '~' + ' ' + String.valueOf(viewModel.challengeData.endTime)}}"
+                        tools:text="@string/example_start_time"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -164,7 +193,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llChallengeTime">
+                    app:layout_constraintTop_toBottomOf="@+id/llEndTime">
 
                     <TextView
                         android:layout_width="0dp"
