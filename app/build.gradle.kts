@@ -68,6 +68,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.glide)
     kapt (libs.compiler)
+    implementation(libs.androidx.fragment.ktx)
 }
 
 kapt {

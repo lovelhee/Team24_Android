@@ -48,7 +48,7 @@
             android:name=".view.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.challenge.CreateChallengeCompletedActivity"
+            android:name=".view.challenge.CreateChallengeCompletedDialog"
             android:exported="false" />
 
     </application>

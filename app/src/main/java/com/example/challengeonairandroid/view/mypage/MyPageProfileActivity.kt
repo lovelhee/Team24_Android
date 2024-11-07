@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageProfileBinding
-import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

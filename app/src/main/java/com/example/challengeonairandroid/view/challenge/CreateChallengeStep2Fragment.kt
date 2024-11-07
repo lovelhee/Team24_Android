@@ -2,20 +2,25 @@ package com.example.challengeonairandroid.view.challenge
 
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.FragmentCreateChallengeStep2Binding
+import com.example.challengeonairandroid.viewmodel.CreateChallengeViewModel
+import kotlinx.coroutines.launch
 
 class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge_step2) {
 
+    private val createChallengeViewModel: CreateChallengeViewModel by activityViewModels()
     private lateinit var binding: FragmentCreateChallengeStep2Binding
 
     override fun onCreateView(
@@ -33,55 +38,99 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    createChallengeViewModel.isDateSet.collect { isSet ->
+                        binding.btnDate.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
+                    }
+                }
+                launch {
+                    createChallengeViewModel.isStartTimeSet.collect { isSet ->
+                        binding.btnStartTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
+                    }
+                }
+                launch {
+                    createChallengeViewModel.isEndTimeSet.collect { isSet ->
+                        binding.btnEndTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
+                    }
+                }
+                launch {
+                    createChallengeViewModel.isPointSet.collect { isSet ->
+                        binding.btnSetChallengePoint.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
+                    }
+                }
+            }
+        }
+
+        binding.btnDate.setOnClickListener {
+            toggleVisibility(binding.llDateLayout, binding.btnDate)
+        }
+
+        val initialYear = binding.dpDate.year
+        val initialMonth = binding.dpDate.month + 1
+        val initialDay = binding.dpDate.dayOfMonth
+        createChallengeViewModel.updateChallengeDate("${initialYear}년 ${initialMonth}월 ${initialDay}일")
+
+        binding.dpDate.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
+            createChallengeViewModel.updateChallengeDate("${year}년 ${monthOfYear + 1}월 ${dayOfMonth}일")
+        }
+
+        binding.btnDateDone.setOnClickListener {
+            val date = binding.dpDate
+            createChallengeViewModel.setDate(date.toString())
+            binding.llDateLayout.visibility = View.GONE
+        }
+
         binding.btnStartTime.setOnClickListener {
             toggleVisibility(binding.llStartTimeLayout, binding.btnStartTime)
+        }
+
+        val initialStartHour = binding.tpStartTime.hour
+        val initialStartMinute = binding.tpStartTime.minute
+        createChallengeViewModel.updateStartTime("${initialStartHour}시 ${initialStartMinute}분")
+
+        binding.tpStartTime.setOnTimeChangedListener { view, hour, minute ->
+            createChallengeViewModel.updateStartTime("${hour}시 ${minute}분")
+        }
+
+        binding.btnStartTimeDone.setOnClickListener {
+            val startTime = binding.tpStartTime
+            createChallengeViewModel.setStartTime(startTime.toString())
+            binding.llStartTimeLayout.visibility = View.GONE
         }
 
         binding.btnEndTime.setOnClickListener {
             toggleVisibility(binding.llEndTimeLayout, binding.btnEndTime)
         }
 
+        binding.tpEndTime.setOnTimeChangedListener { view, hour, minute ->
+            createChallengeViewModel.updateEndTime("${hour}시 ${minute}분")
+        }
+
+        val initialEndHour = binding.tpStartTime.hour
+        val initialEndMinute = binding.tpStartTime.minute
+        createChallengeViewModel.updateStartTime("${initialEndHour}시 ${initialEndMinute}분")
+
+        binding.btnEndTimeDone.setOnClickListener {
+            val endTime = binding.tpEndTime
+            createChallengeViewModel.setEndTime(endTime.toString())
+            binding.llEndTimeLayout.visibility = View.GONE
+        }
+
         binding.btnSetChallengePoint.setOnClickListener {
             toggleVisibility(binding.llSetChallengePoint, binding.btnSetChallengePoint)
         }
 
-        lateinit var startDate: String
-        binding.dpStartTime.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
-            startDate = "$year-${monthOfYear + 1}-$dayOfMonth"
-            Log.d("createChallenge", "$startDate")
+        binding.etSetChallengePoint.addTextChangedListener { text ->
+            createChallengeViewModel.updatePoint(text.toString())
         }
 
-        lateinit var startTime: String
-        binding.tpStartTime.setOnTimeChangedListener { view, hourOfDay, minute ->
-            startTime = "$hourOfDay:$minute"
-            Log.d("createChallenge", "$startTime")
+        binding.btnSetPointDone.setOnClickListener {
+            val point = binding.etSetChallengePoint.text.toString().toIntOrNull() ?: 0
+            createChallengeViewModel.setPoint(point)
+            binding.llSetChallengePoint.visibility = View.GONE
         }
-
-        lateinit var endDate: String
-        binding.dpEndTime.setOnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
-            endDate = "$year-${monthOfYear + 1}-$dayOfMonth"
-            Log.d("createChallenge", "$endDate")
-        }
-
-        lateinit var endTime: String
-        binding.tpEndTime.setOnTimeChangedListener { view, hourOfDay, minute ->
-            endTime = "$hourOfDay:$minute"
-            Log.d("createChallenge", "$endTime")
-        }
-
-        lateinit var challengePoint: String
-        binding.etSetChallengePoint.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                challengePoint = s.toString()
-                Log.d("createChallenge", "${challengePoint}")
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
     }
 
     private fun toggleVisibility(layout: View, button: View) {

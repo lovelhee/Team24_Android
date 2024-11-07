@@ -25,14 +25,15 @@ data class ChallengeCreationRequest(
     @SerializedName("host_id") val hostId: Long,
     @SerializedName("category_id") val categoryId: Int,
     @SerializedName("challenge_name") val challengeName: String,
-    @SerializedName("challenge_body") val challengeBody: String? = null,
+    @SerializedName("challenge_body") val challengeBody: String,
     @SerializedName("point") val point: Int,
     @SerializedName("challenge_date") val challengeDate: String,
     @SerializedName("start_time") val startTime: String,
     @SerializedName("end_time") val endTime: String,
     @SerializedName("image_url") val imageUrl: String? = null,
     @SerializedName("max_participant_num") val maxParticipantNum: Int,
-    @SerializedName("min_participant_num") val minParticipantNum: Int
+    @SerializedName("min_participant_num") val minParticipantNum: Int,
+    @SerializedName("current_participant_num") val currentParticipantNum: Int
 )
 
 data class ChallengeCreationResponse(

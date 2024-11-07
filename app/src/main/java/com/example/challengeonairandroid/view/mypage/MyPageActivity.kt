@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityMyPageBinding
-import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.home.HomeActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.MyPageViewModel

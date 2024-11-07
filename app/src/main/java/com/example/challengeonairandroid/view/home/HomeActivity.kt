@@ -10,7 +10,6 @@ import com.example.challengeonairandroid.databinding.ActivityHomeBinding
 import com.example.challengeonairandroid.model.data.Category
 import com.example.challengeonairandroid.model.data.Challenge
 import com.example.challengeonairandroid.view.challenge.CreateChallengeActivity
-import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.mypage.MyPageActivity
 import com.example.challengeonairandroid.view.search.SearchActivity
 import com.example.challengeonairandroid.viewmodel.HomeViewModel
