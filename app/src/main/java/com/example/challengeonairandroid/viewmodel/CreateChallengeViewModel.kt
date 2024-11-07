@@ -2,18 +2,55 @@ package com.example.challengeonairandroid.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.challengeonairandroid.model.api.response.ChallengeResponse
+import androidx.lifecycle.viewModelScope
+import com.example.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.example.challengeonairandroid.model.repository.ChallengeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CreateChallengeViewModel @Inject constructor(
     private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
+
+    private val _challengeCreationStatus = MutableStateFlow<Boolean>(false)
+    val challengeCreationStatus: StateFlow<Boolean> = _challengeCreationStatus.asStateFlow()
+
+    private val _challengeData = MutableStateFlow<ChallengeCreationRequest?>(null)
+    val challengeData: StateFlow<ChallengeCreationRequest?> = _challengeData.asStateFlow()
+
+    fun resetStatus() {
+        _challengeCreationStatus.value = false
+    }
+
+    fun createChallenge() {
+        _challengeData.value = ChallengeCreationRequest(
+            categoryId = categoryId.value,
+            challengeName = challengeName.value,
+            challengeBody = challengeBody.value,
+            challengeDate = challengeDate.value,
+            maxParticipantNum = maxParticipantNum.value,
+            minParticipantNum = minParticipantNum.value,
+            currentParticipantNum = 1,
+            startTime = startTime.value,
+            endTime = endTime.value,
+            point = point.value.toInt(),
+            imageUrl = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
+            hostId = 1L // TODO: 실제 사용자 정보로 설정
+        )
+    }
+
+    fun sendChallengeDataToServer() {
+        viewModelScope.launch {
+            val response = challengeRepository.createChallenge(_challengeData.value!!)
+            // TODO : 서버로 데이터 전송 및 저장 확인 후 상태 갱신하도록 변경
+            _challengeCreationStatus.value = true
+        }
+    }
 
     // Step 1
     private val _categoryId = MutableStateFlow<Int>(0)
@@ -98,8 +135,7 @@ class CreateChallengeViewModel @Inject constructor(
     }
 
     private fun initializeChallengeData() {
-
-        val defaultResponse = ChallengeResponse(
+        val defaultResponse = ChallengeCreationRequest(
             categoryId = 0,
             challengeName = "",
             challengeBody = "",
@@ -107,7 +143,7 @@ class CreateChallengeViewModel @Inject constructor(
             challengeDate = "",
             startTime = "",
             endTime = "",
-            imageUrl = "",
+            imageUrl = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             minParticipantNum = 2,
             maxParticipantNum = 4,
             currentParticipantNum = 1,
@@ -116,17 +152,17 @@ class CreateChallengeViewModel @Inject constructor(
         updateChallenges(defaultResponse)
     }
 
-    private fun updateChallenges(response: ChallengeResponse) {
-        _categoryId.value = response.categoryId
-        _challengeName.value = response.challengeName
-        _challengeBody.value = response.challengeBody
-        _point.value = response.point.toString()
-        _challengeDate.value = response.challengeDate
-        _startTime.value = response.startTime
-        _endTime.value = response.endTime
-        _minParticipantNum.value = response.minParticipantNum
-        _maxParticipantNum.value = response.maxParticipantNum
-        _challengeImage.value = response.imageUrl
+    private fun updateChallenges(request: ChallengeCreationRequest) {
+        _categoryId.value = request.categoryId
+        _challengeName.value = request.challengeName
+        _challengeBody.value = request.challengeBody
+        _point.value = request.point.toString()
+        _challengeDate.value = request.challengeDate
+        _startTime.value = request.startTime
+        _endTime.value = request.endTime
+        _minParticipantNum.value = request.minParticipantNum
+        _maxParticipantNum.value = request.maxParticipantNum
+        _challengeImage.value = request.imageUrl
     }
 
     fun isStep1Valid(): Boolean {

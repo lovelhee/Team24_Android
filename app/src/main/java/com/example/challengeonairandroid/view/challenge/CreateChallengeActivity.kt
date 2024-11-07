@@ -3,15 +3,19 @@ package com.example.challengeonairandroid.view.challenge
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.challengeonairandroid.R
 import com.example.challengeonairandroid.databinding.ActivityCreateChallengeBinding
 import com.example.challengeonairandroid.viewmodel.CreateChallengeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 enum class TabKind {
     STEP1, STEP2
@@ -49,7 +53,9 @@ class CreateChallengeActivity : AppCompatActivity() {
 
         createChallengeBinding.btnNext.setOnClickListener {
             val currentItem = createChallengeBinding.viewPager.currentItem
-            if (currentItem == 0) {
+            Log.d("createChallnege!!!!", "$currentItem")
+            Log.d(":createChallnege!!!!", "${TabKind.STEP1.ordinal}")
+            if (currentItem == TabKind.STEP1.ordinal) {
                 if (createChallengeViewModel.isStep1Valid()) {
                     createChallengeBinding.viewPager.currentItem += 1
                 }
@@ -60,12 +66,22 @@ class CreateChallengeActivity : AppCompatActivity() {
             }
             else {
                 if (createChallengeViewModel.isStep2Valid()) {
-                    startActivity(CreateChallengeCompletedActivity.intent(this))
-                    finish()
+                    createChallengeViewModel.createChallenge()
+                    createChallengeViewModel.sendChallengeDataToServer()
                 }
                 else {
                     Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
                     // TODO: 유효성 검사 문구 상황별 제공 추가
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            createChallengeViewModel.challengeCreationStatus.collectLatest { isCreated ->
+                if (isCreated) {
+                    val dialog = CreateChallengeCompletedDialog()
+                    dialog.show(supportFragmentManager, "ChallengeCreatedDialog")
+                    createChallengeViewModel.resetStatus()
                 }
             }
         }
@@ -78,7 +94,9 @@ class CreateChallengeActivity : AppCompatActivity() {
 
     companion object {
         fun intent(context: Context): Intent {
-            return Intent(context, CreateChallengeActivity::class.java)
+            return Intent(context, CreateChallengeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         }
     }
 }

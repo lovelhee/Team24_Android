@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
+    </data>
+
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.challenge.CreateChallengeCompletedActivity">
+        tools:context=".view.challenge.CreateChallengeCompletedDialog">
 
         <LinearLayout
             android:id="@+id/llChallengeCreateStep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:orientation="vertical">
 
             <ImageButton
@@ -67,8 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:padding="5dp"
-                    android:text="@string/example_challenge_title"
-                    android:hint="@string/example_challenge_title"
+                    tools:text="@string/example_challenge_title"
+                    android:text="@{String.valueOf(viewModel.challengeData.challengeName)}"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:textColor="@color/black"
@@ -83,8 +89,8 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
                     android:padding="5dp"
-                    android:text="@string/example_challenge_body"
-                    android:hint="@string/example_challenge_body"
+                    android:text="@{String.valueOf(viewModel.challengeData.challengeBody)}"
+                    tools:text="@string/example_challenge_body"
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvChallengeBody">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="@string/people_number"
@@ -113,8 +119,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/people_number_range"
-                        android:hint="@string/people_number_range"
+                        android:text="@{String.valueOf(viewModel.challengeData.minParticipantNum) + '~' + viewModel.challengeData.maxParticipantNum}"
+                        tools:text="@string/people_number_range"
                         android:textColor="@color/main_red"
                         android:textStyle="bold"
                         android:textSize="13sp" />
@@ -143,8 +149,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/example_challenge_time"
-                        android:hint="@string/example_challenge_time"
+                        android:text="@{String.valueOf(viewModel.challengeData.challengeDate) + ' ' + String.valueOf(viewModel.challengeData.startTime) + '~' + String.valueOf(viewModel.challengeData.endTime)}"
+                        tools:text="@string/example_challenge_time"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -171,8 +177,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/example_reservation_point"
-                        android:hint="@string/example_reservation_point"
+                        android:text="@{String.valueOf(viewModel.challengeData.point)+'p'}"
+                        tools:text="@string/example_reservation_point"
                         android:textSize="13sp" />
 
                 </LinearLayout>
