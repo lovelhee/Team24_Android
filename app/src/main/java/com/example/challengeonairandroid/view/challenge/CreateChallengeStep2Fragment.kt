@@ -88,10 +88,10 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
 
         val initialStartHour = binding.tpStartTime.hour
         val initialStartMinute = binding.tpStartTime.minute
-        createChallengeViewModel.updateStartTime("${initialStartHour}시 ${initialStartMinute}분")
+        createChallengeViewModel.updateStartTime(String.format("%02d:%02d", initialStartHour, initialStartMinute))
 
         binding.tpStartTime.setOnTimeChangedListener { view, hour, minute ->
-            createChallengeViewModel.updateStartTime("${hour}시 ${minute}분")
+            createChallengeViewModel.updateStartTime(String.format("%02d:%02d", hour, minute))
         }
 
         binding.btnStartTimeDone.setOnClickListener {
@@ -105,12 +105,12 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
         }
 
         binding.tpEndTime.setOnTimeChangedListener { view, hour, minute ->
-            createChallengeViewModel.updateEndTime("${hour}시 ${minute}분")
+            createChallengeViewModel.updateEndTime(String.format("%02d:%02d", hour, minute))
         }
 
         val initialEndHour = binding.tpStartTime.hour
         val initialEndMinute = binding.tpStartTime.minute
-        createChallengeViewModel.updateStartTime("${initialEndHour}시 ${initialEndMinute}분")
+        createChallengeViewModel.updateStartTime(String.format("%02d:%02d", initialEndHour, initialEndMinute))
 
         binding.btnEndTimeDone.setOnClickListener {
             val endTime = binding.tpEndTime
