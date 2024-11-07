@@ -1,13 +1,11 @@
 package com.example.challengeonairandroid.view.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.view.challenge.CreateChallengeCompletedActivity
 import com.example.challengeonairandroid.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
