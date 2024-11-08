@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
+            type="com.challengeonair.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

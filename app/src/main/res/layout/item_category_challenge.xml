@@ -4,7 +4,7 @@
     <data>
         <variable
             name="challenge"
-            type="com.example.challengeonairandroid.model.data.Challenge" />
+            type="com.challengeonair.challengeonairandroid.model.data.Challenge" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
