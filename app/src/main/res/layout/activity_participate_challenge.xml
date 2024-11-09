@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.challengeonairandroid.viewmodel.ParticipateChallengeViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.challenge.ParticipateChallengeActivity">
+
+            <ImageView
+                android:id="@+id/ivChallengeCover"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="280dp"
+                android:src="@drawable/sample_running"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_white_backward"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRecruit"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="   모집중   "
+                android:visibility="visible"
+                android:textColor="@color/main_red"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/rounded_recruit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivChallengeCover"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"/>
+
+            <TextView
+                android:id="@+id/tvRecruitComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="  모집 완료  "
+                android:visibility="invisible"
+                android:textColor="@color/text_green"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/rounded_recruit_complete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivChallengeCover"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"/>
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/sample_user_profile"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruit"
+                android:background="@drawable/rounded_host_profile"
+                android:layout_marginTop="12dp"
+                android:clipToOutline="true"
+                android:layout_marginStart="24dp"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/ivProfile"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruit">
+
+                <TextView
+                    android:id="@+id/tvHostName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="김여름"
+                    android:layout_gravity="center"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/rounded_host"
+                    android:layout_gravity="center"
+                    android:text="  방장  "
+                    android:textColor="@color/text_gray"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutBody"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="“ 3대 500을 위하여 ”"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="함께 운동할 사람 구합니다.\n헬스장, 홈트, 요가, 필라테스 종목 상관없이 열심히 함께 할 인원을\n구합니다."
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRecruitText"
+                android:layout_width="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutBody"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_height="wrap_content"
+                android:text="모집 인원"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutCurrentNum"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/layoutBody"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:text="2"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/main_red"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:id="@+id/tvCurrentNum"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/main_red"
+                    android:layout_marginEnd="6dp"
+                    android:text="명"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/main_red"
+                    android:layout_marginEnd="6dp"
+                    android:text=" / "/>
+
+                <TextView
+                    android:text="3"
+                    android:layout_width="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/main_red"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:id="@+id/tvMaxNum"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/main_red"
+                    android:layout_marginEnd="6dp"
+                    android:text="명"/>
+
+                <ImageView
+                    android:id="@+id/ivCurrentNum"
+                    android:layout_width="14dp"
+                    android:layout_gravity="center"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_current_num"/>
+
+                <ImageView
+                    android:id="@+id/ivCurrentNum2"
+                    android:layout_gravity="center"
+                    android:layout_width="14dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_current_num"/>
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_gravity="center"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_max_num"
+                    android:id="@+id/ivMaxNum"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvChallengeTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="챌린지 시간"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvEndTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
+                android:text="15:00"
+                android:layout_marginTop="24dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ~ "
+                android:id="@+id/tvTilde"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
+                app:layout_constraintEnd_toStartOf="@+id/tvEndTime"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:00"
+                android:id="@+id/tvStartTime"
+                android:layout_marginTop="24dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
+                app:layout_constraintEnd_toStartOf="@+id/tvTilde"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘"
+                android:id="@+id/tvDate"
+                android:layout_marginTop="24dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
+                app:layout_constraintEnd_toStartOf="@+id/tvStartTime"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvChallengeTimeText"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="예약금"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray" />
+
+            <TextView
+                android:id="@+id/tvPoint"
+                android:layout_marginTop="24dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toBottomOf="@+id/tvChallengeTimeText"
+                app:layout_constraintEnd_toStartOf="@+id/tvPointSymbol"
+                android:layout_marginEnd="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:gravity="end" />
+
+            <TextView
+                android:id="@+id/tvPointSymbol"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvChallengeTimeText"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_gray"
+                android:text="원"
+                android:gravity="end" />
+
+            <LinearLayout
+                android:id="@+id/layoutHostBtn"
+                android:visibility="visible"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:background="@drawable/rounded_delete_btn"
+                    android:text="챌린지 삭제하기"/>
+
+                <Button
+                    android:id="@+id/btnEnter"
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_enter_btn"
+                    android:text="방 입장하기"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/white"
+                android:id="@+id/layoutUserBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutEnterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="참여할래요"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/ic_hand" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="최소 인원이 모이면 방이 열릴 거예요!"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnEnterChallenge"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/rounded_enter_btn"
+                    android:text="챌린지 참가하기"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/layoutUserEnterBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <Button
+                        android:id="@+id/btnCancle"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_delete_btn"
+                        android:text="챌린지 취소하기"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnUserEnter"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:background="@drawable/rounded_waiting_btn"
+                        android:text="방 입장하기"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
