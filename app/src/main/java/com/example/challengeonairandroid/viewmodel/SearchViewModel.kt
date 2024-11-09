@@ -3,7 +3,8 @@ package com.example.challengeonairandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
-import com.example.challengeonairandroid.model.repository.Repository
+import com.example.challengeonairandroid.model.repository.ChallengeRepository
+import com.example.challengeonairandroid.model.repository.HomeRepository
 import com.example.challengeonairandroid.model.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: Repository
+    private val searchRepository: SearchRepository,
+    private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
     // 전체 챌린지 리스트 (원본 데이터)
@@ -36,9 +38,9 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = repository.getAllChallenges(accessToken)
-                if (response.isSuccessful) {
-                    _allChallenges.value = response.body()?.challenges ?: emptyList()
+                val response = challengeRepository.getAllChallenges()
+                if (response != null) {
+                    _allChallenges.value = response.challenges
                     // 초기에는 검색 결과도 전체 리스트로 설정
                     _searchResults.value = _allChallenges.value
                 }
@@ -70,8 +72,8 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = repository.getChallengeDetails(accessToken, challengeId, date)
-                if (response.isSuccessful) {
+                val response = challengeRepository.getChallengeDetails(challengeId)
+                if (response != null) {
                     // 상세 정보 처리
                 }
             } catch (e: Exception) {

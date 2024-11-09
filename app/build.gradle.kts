@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.security.crypto)
     implementation(libs.androidx.databinding.runtime)
     implementation(libs.androidx.browser)
+    implementation(libs.jitsi.meet) { isTransitive = true }
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
     testImplementation(libs.junit)

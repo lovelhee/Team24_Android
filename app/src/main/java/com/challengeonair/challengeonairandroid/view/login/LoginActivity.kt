@@ -9,55 +9,68 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import com.example.challengeonairandroid.R
+import com.example.challengeonairandroid.databinding.ActivityLoginBinding
 import com.example.challengeonairandroid.viewmodel.UserViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        // CookieManager 설정
-        CookieManager.getInstance().apply {
-            setAcceptCookie(true)
-            setAcceptThirdPartyCookies(WebView(this@LoginActivity), true)
-        }
-
-        val url = "http://52.79.130.181:8080/oauth2/authorization/naver"
-        val builder = CustomTabsIntent.Builder()
-        val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(this, Uri.parse(url))
-
-        // 쿠키 확인
-        checkCookies()
+        setupStateObserver()
+        setupKakaoLoginButton()
     }
 
-    private fun checkCookies() {
-        val cookieManager = CookieManager.getInstance()
-        val cookies = cookieManager.getCookie("http://52.79.130.181:8080")
+    private fun setupStateObserver() {
+        lifecycleScope.launch {
+            try {
+                userViewModel.uiState.collect { state ->
+                    when (state.loginState) {
+                        is UserViewModel.LoginState.LOGGED_IN -> {
+                            // 로그인 성공 처리
+                        }
+                        is UserViewModel.LoginState.NOT_LOGGED_IN -> {
+                            // 로그인 필요
+                        }
+                        is UserViewModel.LoginState.ACCESS_TOKEN_EXPIRED -> {
+                            // 토큰 재발급 필요
+                        }
+                        is UserViewModel.LoginState.ALL_TOKENS_EXPIRED -> {
+                            // 재로그인 필요
+                        }
+                    }
 
-        Log.d("LoginActivity", "All cookies: $cookies")
-
-        cookies?.split(";")?.forEach { cookie ->
-            val trimmedCookie = cookie.trim()
-            when {
-                trimmedCookie.startsWith("access_token=") -> {
-                    val accessToken = trimmedCookie.substring("access_token=".length)
-                    Log.d("LoginActivity", "Access Token: $accessToken")
+                    state.error?.let { error ->
+                        // 에러 처리
+                    }
                 }
-                trimmedCookie.startsWith("refresh_token=") -> {
-                    val refreshToken = trimmedCookie.substring("refresh_token=".length)
-                    Log.d("LoginActivity", "Refresh Token: $refreshToken")
-                }
+            } catch (e: Exception) {
+                // 에러 처리
             }
+        }
+    }
+
+    private fun setupKakaoLoginButton() {
+        binding.kakaoLoginButton.setOnClickListener {
+            userViewModel.loginWithKakao(this@LoginActivity)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        // 앱으로 돌아올 때마다 쿠키 확인
-        checkCookies()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

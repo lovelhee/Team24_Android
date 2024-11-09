@@ -2,7 +2,7 @@ package com.example.challengeonairandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.api.response.ChallengeCreationRequest
-import com.example.challengeonairandroid.model.repository.Repository
+import com.example.challengeonairandroid.model.repository.ChallengeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChallengeCreateViewModel @Inject constructor(
-    private val repository: Repository
+    private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
     private val _challengeCreateUiState = MutableStateFlow(ChallengeCreateUiState())
@@ -137,8 +137,8 @@ class ChallengeCreateViewModel @Inject constructor(
                     minParticipantNum = challengeCreateUiState.value.minParticipants.toInt()
                 )
 
-                val response = repository.createChallenge(accessToken, request)
-                if (response.isSuccessful) {
+                val response = challengeRepository.createChallenge(request)
+                if (response != null) {
                     _challengeCreateUiState.update { it.copy(isSuccess = true) }
                 } else {
                     _challengeCreateUiState.update { it.copy(error = "챌린지 생성에 실패했습니다") }
