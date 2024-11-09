@@ -24,9 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.challenge.DeleteChallengeActivity"
+            android:exported="false"/>
         <activity
             android:name=".view.challenge.OngoingChallengeActivity"
             android:exported="false" />
+        <activity android:name=".view.challenge.ParticipateChallengeActivity"
+            android:exported="false"/>
         <activity
             android:name=".view.challenge.ChallengeRoomInfoActivity"
             android:exported="false" />
