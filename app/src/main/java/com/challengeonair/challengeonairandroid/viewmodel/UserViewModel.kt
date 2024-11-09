@@ -1,75 +1,205 @@
 package com.example.challengeonairandroid.viewmodel
 
+import android.app.Activity
+import android.net.Uri
 import android.util.Log
+import android.webkit.CookieManager
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challengeonairandroid.model.api.response.LogInResponse
-import com.example.challengeonairandroid.model.api.response.LogoutResponse
-import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
-import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
+import com.example.challengeonairandroid.model.data.auth.TokenManager
 import com.example.challengeonairandroid.model.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
+class UserViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    val tokenManager: TokenManager
+) : ViewModel() {
+    data class UserUiState(
+        val accessToken: String = "",
+        val refreshToken: String = "",
+        val loginState: LoginState = LoginState.NOT_LOGGED_IN,
+        val isLoading: Boolean = false,
+        val error: String? = null
+    )
 
-    private val _loginState = MutableStateFlow<Result<LogInResponse>?>(null)
-    val loginState = _loginState.asStateFlow()
+    sealed class LoginState {
+        data object NOT_LOGGED_IN : LoginState()
+        data object LOGGED_IN : LoginState()
+        data object ACCESS_TOKEN_EXPIRED : LoginState()
+        data object ALL_TOKENS_EXPIRED : LoginState()
+    }
 
-    private val _logoutState = MutableStateFlow<Result<LogoutResponse>?>(null)
-    val logoutState = _logoutState.asStateFlow()
+    private val _uiState = MutableStateFlow(UserUiState())
+    val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
 
-    private val _deleteUserState = MutableStateFlow<Result<UserDeletionResponse>?>(null)
-    val deleteUserState = _deleteUserState.asStateFlow()
+    private fun updateUiState(update: (UserUiState) -> UserUiState) {
+        _uiState.update(update)
+    }
 
-    private val _reIssueTokenState = MutableStateFlow<Result<ReIssueTokenResponse>?>(null)
-    val reIssueTokenState = _reIssueTokenState.asStateFlow()
+    fun loginWithKakao(activity: Activity) {
+        val webView = WebView(activity).apply {
+            settings.javaScriptEnabled = true
+            webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    val cookieManager = CookieManager.getInstance()
+                    val cookies = cookieManager.getCookie(url)
 
-    fun login() {
+                    Log.d("UserViewModel", "Received cookies: $cookies")  // 토큰 확인용 로그
+
+                    cookies?.split(";")?.forEach { cookie ->
+                        val trimmedCookie = cookie.trim()
+                        when {
+                            trimmedCookie.startsWith("ACCESS_TOKEN=") -> {
+                                val accessToken = trimmedCookie.substring("ACCESS_TOKEN=".length)
+                                viewModelScope.launch {
+                                    tokenManager.saveAccessToken(accessToken)
+                                    updateUiState { it.copy(loginState = LoginState.LOGGED_IN) }
+                                }
+                                Log.d("UserViewModel", "Access Token saved to DataStore")  // 토큰 저장 확인 로그
+                            }
+                            trimmedCookie.startsWith("REFRESH_TOKEN=") -> {
+                                val refreshToken = trimmedCookie.substring("REFRESH_TOKEN=".length)
+                                viewModelScope.launch {
+                                    tokenManager.saveRefreshToken(refreshToken)
+                                }
+                                Log.d("UserViewModel", "Refresh Token saved to DataStore")  // 토큰 저장 확인 로그
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        CookieManager.getInstance().apply {
+            setAcceptCookie(true)
+            setAcceptThirdPartyCookies(webView, true)
+        }
+
+        activity.setContentView(webView)
+        webView.loadUrl("http://52.79.51.86:8080/oauth2/authorization/kakao")
+    }
+
+    suspend fun reissueToken() {
+        Log.d("UserViewModel", "토큰 재발급 시작")
+        updateUiState { it.copy(isLoading = true) }
+
+        try {
+            val currentRefreshToken = tokenManager.getRefreshToken()
+            Log.d("UserViewModel", "현재 Refresh Token: $currentRefreshToken")
+
+            if (currentRefreshToken.isNullOrEmpty()) {
+                Log.d("UserViewModel", "Refresh Token이 없음, 토큰 만료 처리")
+                handleAllTokensExpired()
+                return
+            }
+
+            userRepository.reIssueToken(currentRefreshToken).fold(
+                onSuccess = { response ->
+                    Log.d("UserViewModel", "토큰 재발급 성공: Access Token: ${response.accessToken}, Refresh Token: ${response.reIssueToken}")
+                    updateTokens(
+                        accessToken = response.accessToken,
+                        refreshToken = response.reIssueToken
+                    )
+                    updateUiState { it.copy(isLoading = false, error = null) }
+                },
+                onFailure = { exception ->
+                    Log.e("UserViewModel", "토큰 재발급 실패", exception)
+                    when {
+                        isRefreshTokenExpired(exception) -> handleAllTokensExpired()
+//                        else -> handleError(exception.message ?: "Unknown error occurred")
+                    }
+                }
+            )
+        } catch (e: Exception) {
+            Log.e("UserViewModel", "토큰 재발급 중 예외 발생", e)
+//            handleError(e.message ?: "Unknown error occurred")
+        }
+    }
+
+    private fun handleAllTokensExpired() {
+        Log.d("UserViewModel", "모든 토큰 만료됨")
+        updateUiState { currentState ->
+            currentState.copy(
+                accessToken = "",
+                refreshToken = "",
+                loginState = LoginState.ALL_TOKENS_EXPIRED,
+                error = "모든 토큰이 만료되었습니다. 다시 로그인해주세요."
+            )
+        }
+    }
+
+    suspend fun updateTokens(accessToken: String, refreshToken: String) {
+        Log.d("UserViewModel", "토큰 업데이트: Access Token: $accessToken, Refresh Token: $refreshToken")
+        tokenManager.saveTokens(accessToken, refreshToken)
+        updateUiState { currentState ->
+            currentState.copy(
+                loginState = LoginState.LOGGED_IN,
+                error = null
+            )
+        }
+        Log.d("UserViewModel", "토큰 저장 완료")
+    }
+
+    fun logout() {
+        Log.d("UserViewModel", "로그아웃 시작")
         viewModelScope.launch {
-            Log.d("UserViewModel", "로그인 시작")
-            _loginState.value = userRepository.login().also { result ->
-                Log.d("UserViewModel", "로그인 결과: $result")
+            tokenManager.clearTokens()
+            updateUiState { currentState ->
+                currentState.copy(
+                    loginState = LoginState.NOT_LOGGED_IN
+                )
+            }
+            Log.d("UserViewModel", "로그아웃 완료")
+        }
+    }
+
+    suspend fun <T> callWithToken(
+        apiCall: suspend (String) -> T
+    ): T {
+        try {
+            val currentToken = _uiState.value.accessToken
+            Log.d("UserViewModel", "API 호출 시도 (현재 토큰: $currentToken)")
+            return apiCall(currentToken)
+        } catch (e: Exception) {
+            when {
+                isUnauthorizedError(e) -> {
+                    Log.d("UserViewModel", "Access Token 만료, 재발급 시도")
+                    updateUiState { it.copy(loginState = LoginState.ACCESS_TOKEN_EXPIRED) }
+                    reissueToken()
+                    val newToken = _uiState.value.accessToken
+                    Log.d("UserViewModel", "새로운 토큰으로 API 재시도: $newToken")
+                    return apiCall(newToken)
+                }
+                isRefreshTokenExpired(e) -> {
+                    Log.d("UserViewModel", "Refresh Token 만료")
+                    handleAllTokensExpired()
+                    throw e
+                }
+                else -> {
+                    Log.e("UserViewModel", "API 호출 중 오류 발생", e)
+                    throw e
+                }
             }
         }
     }
 
-    fun logout(accessToken: String) {
-        viewModelScope.launch {
-            _logoutState.value = userRepository.logout(accessToken)
-        }
+    private fun isUnauthorizedError(e: Exception): Boolean {
+        return e is HttpException && e.code() == 401
     }
 
-    fun deleteUser(accessToken: String) {
-        viewModelScope.launch {
-            _deleteUserState.value = userRepository.deleteUser(accessToken)
-        }
-    }
-
-    fun reIssueToken(reIssueToken: String) {
-        viewModelScope.launch {
-            _reIssueTokenState.value = userRepository.reIssueToken(reIssueToken)
-        }
-    }
-
-    // 상태 초기화 함수들
-    fun resetLoginState() {
-        _loginState.value = null
-    }
-
-    fun resetLogoutState() {
-        _logoutState.value = null
-    }
-
-    fun resetDeleteUserState() {
-        _deleteUserState.value = null
-    }
-
-    fun resetReIssueTokenState() {
-        _reIssueTokenState.value = null
+    private fun isRefreshTokenExpired(e: Throwable): Boolean {
+        return e is HttpException && e.code() == 401 && e.response()?.errorBody()?.string()?.contains("refresh_token_expired") == true
     }
 }

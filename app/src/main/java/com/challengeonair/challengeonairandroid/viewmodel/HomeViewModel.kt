@@ -3,8 +3,8 @@ package com.challengeonair.challengeonairandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
+import com.example.challengeonairandroid.model.repository.ChallengeRepository
 import com.example.challengeonairandroid.model.repository.HomeRepository
-import com.example.challengeonairandroid.model.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: Repository
+    private val homeRepository: HomeRepository,
+    private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
     private val _challengesList = MutableStateFlow<List<ChallengeResponse>>(emptyList())
@@ -27,9 +28,9 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = repository.getAllChallenges(accessToken)
-                if (response.isSuccessful) {
-                    _challengesList.value = response.body()?.challenges ?: emptyList()
+                val response = challengeRepository.getAllChallenges()
+                if (response != null) {
+                    _challengesList.value = response.challenges
                 }
             } catch (e: Exception) {
                 // 에러 처리
@@ -43,8 +44,8 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = repository.getChallengeDetails(accessToken, challengeId, date)
-                if (response.isSuccessful) {
+                val response = challengeRepository.getChallengeDetails(challengeId)
+                if (response != null) {
                     // 상세 정보 처리
                 }
             } catch (e: Exception) {

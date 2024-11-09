@@ -7,6 +7,7 @@ import com.example.challengeonairandroid.model.api.response.ChallengeDeletionRes
 import com.example.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.example.challengeonairandroid.model.api.response.ChallengeResponse
 import com.example.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.example.challengeonairandroid.model.api.response.ApiResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -14,37 +15,37 @@ interface ChallengeApi {
     @GET("api/challenges")
     suspend fun getAllChallenges(
         @Header("Authorization") accessToken: String
-    ): Response<AllChallengesResponse> // 이건 백엔드에서 아직 안 만들어졌음.
+    ): ApiResponse<AllChallengesResponse>
 
     @GET("api/challenges/{challengeId}")
     suspend fun getChallengeDetails(
         @Header("Authorization") accessToken: String,
         @Path("challengeId") challengeId: Long,
         @Body date: String
-    ): Response<ChallengeResponse>
+    ): ApiResponse<ChallengeResponse>
 
     @GET("api/challenges/category/{categoryId}")
     suspend fun getChallengesByCategory(
         @Header("Authorization") accessToken: String,
         @Path("categoryId") categoryId: Int,
         @Query("date") date: String
-    ): Response<ChallengeCategoryResponse>
+    ): ApiResponse<ChallengeCategoryResponse>
 
     @POST("api/challenges")
     suspend fun createChallenge(
         @Header("Authorization") accessToken: String,
         @Body request: ChallengeCreationRequest
-    ): Response<ChallengeCreationResponse>
+    ): ApiResponse<ChallengeCreationResponse>
 
     @DELETE("api/challenges/{challengeId}")
     suspend fun deleteChallenge(
         @Header("Authorization") accessToken: String,
         @Path("challengeId") challengeId: Long
-    ): Response<ChallengeDeletionResponse>
+    ): ApiResponse<ChallengeDeletionResponse>
 
     @POST("api/challenges/reservation/{challengeId}")
     suspend fun reserveChallenge(
         @Header("Authorization") accessToken: String,
         @Path("challengeId") challengeId: Long
-    ): Response<ChallengeReservationResponse>
+    ): ApiResponse<ChallengeReservationResponse>
 }

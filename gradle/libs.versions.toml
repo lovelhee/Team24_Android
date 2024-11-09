@@ -27,6 +27,7 @@ datastore = "1.1.1"
 security-crypto = "1.1.0-alpha06"
 databindingRuntime = "8.6.1"
 browser = "1.8.0"
+jitsi = "8.1.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -58,6 +59,7 @@ androidx-databinding-runtime = { group = "androidx.databinding", name = "databin
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+jitsi-meet = { group = "org.jitsi.react", name = "jitsi-meet-sdk", version.ref = "jitsi" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -30,16 +30,13 @@ class TokenManager @Inject constructor(
         }
     }
 
-    // Flow를 반환하는 버전 추가 (옵션)
-    fun getAccessTokenFlow() = dataStore.data.map { preferences ->
-        preferences[ACCESS_TOKEN]
+    suspend fun saveTokens(accessToken: String, refreshToken: String) {
+        dataStore.edit { preferences ->
+            preferences[ACCESS_TOKEN] = accessToken
+            preferences[REFRESH_TOKEN] = refreshToken
+        }
     }
 
-    fun getRefreshTokenFlow() = dataStore.data.map { preferences ->
-        preferences[REFRESH_TOKEN]
-    }
-
-    // 기존 메서드들
     suspend fun getAccessToken(): String? {
         return dataStore.data.map { preferences ->
             preferences[ACCESS_TOKEN]
@@ -56,14 +53,6 @@ class TokenManager @Inject constructor(
         dataStore.edit { preferences ->
             preferences.remove(ACCESS_TOKEN)
             preferences.remove(REFRESH_TOKEN)
-        }
-    }
-
-    // 두 토큰을 한 번에 저장하는 메서드 추가 (옵션)
-    suspend fun saveTokens(accessToken: String, refreshToken: String) {
-        dataStore.edit { preferences ->
-            preferences[ACCESS_TOKEN] = accessToken
-            preferences[REFRESH_TOKEN] = refreshToken
         }
     }
 }

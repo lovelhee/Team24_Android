@@ -1,5 +1,6 @@
 package com.example.challengeonairandroid.model.api.service
 
+import com.example.challengeonairandroid.model.api.response.ApiResponse
 import com.example.challengeonairandroid.model.api.response.LogInResponse
 import com.example.challengeonairandroid.model.api.response.LogoutResponse
 import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
@@ -11,25 +12,25 @@ import retrofit2.http.POST
 
 interface UserApi {
     // 1. 회원 가입
-    @POST("oauth2/authorization/naver")
+    @POST("oauth2/authorization/kakao")
     suspend fun login(
-    ): Response<LogInResponse>
+    ): ApiResponse<LogInResponse>
 
     // 2. 로그아웃
     @POST("api/users/logout")
     suspend fun logout(
         @Header("Authorization") accessToken: String
-    ): Response<LogoutResponse>
+    ): ApiResponse<LogoutResponse>
 
     // 3. 회원 삭제
     @DELETE("api/users")
     suspend fun deleteUser(
         @Header("Authorization") accessToken: String
-    ): Response<UserDeletionResponse>
+    ): ApiResponse<UserDeletionResponse>
 
     // 4. 토큰 재발행
     @POST("api/auth/reissue")
     suspend fun reIssueToken(
         @Header("reIssueToken") reIssueToken: String
-    ): Response<ReIssueTokenResponse>
+    ): ApiResponse<ReIssueTokenResponse>
 }

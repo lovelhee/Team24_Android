@@ -26,8 +26,8 @@ class MyPageRepository @Inject constructor(
     suspend fun getUserProfile(accessToken: String): UserProfileResponse? = withContext(Dispatchers.IO) {
         try {
             val response = userProfileApi.getUserProfile(accessToken)
-            if (response.isSuccessful) {
-                response.body()
+            if (response.isSuccessful()) {
+                response.data
             } else {
                 null
             }
@@ -44,8 +44,8 @@ class MyPageRepository @Inject constructor(
     ): UserProfileUpdateResponse? = withContext(Dispatchers.IO) {
         try {
             val response = userProfileApi.updateUserProfile(accessToken, userProfileUpdateRequest)
-            if (response.isSuccessful) {
-                response.body()
+            if (response.isSuccessful()) {
+                response.data
             } else {
                 null
             }
@@ -59,8 +59,8 @@ class MyPageRepository @Inject constructor(
     suspend fun getAllHistory(accessToken: String): HistoryListResponse? = withContext(Dispatchers.IO) {
         try {
             val response = historyApi.getAllHistory(accessToken)
-            if (response.isSuccessful) {
-                response.body()
+            if (response.isSuccessful()) {
+                response.data
             } else {
                 null
             }
@@ -75,8 +75,8 @@ class MyPageRepository @Inject constructor(
         try {
             val date = getCurrentDateTime()
             val response = challengeApi.getChallengeDetails("", challengeId, date)
-            if (response.isSuccessful) {
-                response.body()
+            if (response.isSuccessful()) {
+                response.data
             } else {
                 null
             }
@@ -90,8 +90,8 @@ class MyPageRepository @Inject constructor(
     suspend fun reserveChallenge(challengeId: Long): ChallengeReservationResponse? = withContext(Dispatchers.IO) {
         try {
             val response = challengeApi.reserveChallenge("", challengeId)
-            if (response.isSuccessful) {
-                response.body()
+            if (response.isSuccessful()) {
+                response.data
             } else {
                 null
             }

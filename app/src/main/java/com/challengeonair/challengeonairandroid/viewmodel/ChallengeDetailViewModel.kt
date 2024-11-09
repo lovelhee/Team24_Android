@@ -2,7 +2,7 @@ package com.example.challengeonairandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challengeonairandroid.model.repository.Repository
+import com.example.challengeonairandroid.model.repository.ChallengeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChallengeDetailViewModel @Inject constructor(
-    private val repository: Repository
+    private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
     private val _challengeDetailUiState = MutableStateFlow(ChallengeDetailUiState())
@@ -41,25 +41,24 @@ class ChallengeDetailViewModel @Inject constructor(
         viewModelScope.launch {
             _challengeDetailUiState.update { it.copy(isLoading = true) }
             try {
-                val response = repository.getChallengeDetails(accessToken, challengeId, date)
-                if (response.isSuccessful && response.body() != null) {
-                    val challenge = response.body()!!
+                val response = challengeRepository.getChallengeDetails(challengeId)
+                if (response!= null) {
                     _challengeDetailUiState.update { currentState ->
                         currentState.copy(
                             isLoading = false,
-                            challengeId = challenge.challengeId,
-                            challengeName = challenge.challengeName,
-                            challengeBody = challenge.challengeBody,
-                            point = challenge.point,
-                            challengeDate = challenge.challengeDate,
-                            startTime = challenge.startTime,
-                            endTime = challenge.endTime,
-                            imageExtension = challenge.imageExtension,
-                            minParticipantNum = challenge.minParticipantNum,
-                            maxParticipantNum = challenge.maxParticipantNum,
-                            currentParticipantNum = challenge.currentParticipantNum,
-                            hostId = challenge.hostId,
-                            categoryId = challenge.categoryId
+                            challengeId = response.challengeId,
+                            challengeName = response.challengeName,
+                            challengeBody = response.challengeBody,
+                            point = response.point,
+                            challengeDate = response.challengeDate,
+                            startTime = response.startTime,
+                            endTime = response.endTime,
+                            imageExtension = response.imageExtension,
+                            minParticipantNum = response.minParticipantNum,
+                            maxParticipantNum = response.maxParticipantNum,
+                            currentParticipantNum = response.currentParticipantNum,
+                            hostId = response.hostId,
+                            categoryId = response.categoryId
                         )
                     }
                 } else {

@@ -4,6 +4,11 @@
     package="com.challengeonair.challengeonairandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -18,9 +23,13 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".view.challenge.ChallengeOngoingActivity"
             android:exported="true"
-            android:theme="@style/Theme.ChallengeOnAirAndroid">
+            android:theme="@style/Theme.ChallengeOnAirAndroid" />
+
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,6 +66,26 @@
         <activity
             android:name=".view.alarm.AlarmActivity"
             android:exported="false" />
+
+        <activity android:name=".view.challenge.OngoingChallengeActivity" android:exported="false" />
+        <activity android:name=".view.challenge.ChallengeRoomInfoActivity" android:exported="false" />
+        <activity android:name=".view.mypage.MyPageActivity" android:exported="false" />
+        <activity android:name=".view.home.HomeActivity" android:exported="false" />
+        <activity android:name=".view.challenge.CreateChallengeActivity" android:exported="false" />
+        <activity android:name=".view.mypage.MyPageHistoryActivity" android:exported="false" />
+        <activity android:name=".view.mypage.MyPageProfileActivity" android:exported="false" />
+        <activity android:name=".view.search.SearchActivity" android:exported="false" />
+        <activity android:name=".view.challenge.CreateChallengeCompletedActivity" android:exported="false" />
+
+        <receiver
+            android:name="org.jitsi.meet.sdk.BroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.jitsi.meet.CONFERENCE_JOINED" />
+                <action android:name="org.jitsi.meet.CONFERENCE_TERMINATED" />
+                <action android:name="org.jitsi.meet.CONFERENCE_WILL_JOIN" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
