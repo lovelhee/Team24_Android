@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_challenge_reservation"
+        android:padding="16dp">
+
+    <ImageView
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_canclebox"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="챌린지를 삭제하시겠습니까?"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvReservationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="삭제 후 취소는 불가합니다."
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/text_gray"
+        android:textSize="13sp"
+        android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutCheckBtn"
+            android:visibility="visible"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/rounded_delete_btn"
+                android:text="돌아가기"/>
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_enter_btn"
+                android:text="챌린지 삭제하기"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
+
