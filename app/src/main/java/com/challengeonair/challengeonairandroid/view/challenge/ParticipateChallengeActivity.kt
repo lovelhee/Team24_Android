@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.challenge
+package com.challengeonair.challengeonairandroid.view.challenge
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,12 +6,11 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.ActivityParticipateChallengeBinding
-import com.example.challengeonairandroid.databinding.DialogCancleBinding
-import com.example.challengeonairandroid.databinding.DialogDeleteChallengeBinding
-import com.example.challengeonairandroid.databinding.DialogReservationBinding
-import com.example.challengeonairandroid.view.home.HomeActivity
+import com.challengeonair.challengeonairandroid.R
+import com.challengeonair.challengeonairandroid.databinding.ActivityParticipateChallengeBinding
+import com.challengeonair.challengeonairandroid.databinding.DialogCancleBinding
+import com.challengeonair.challengeonairandroid.databinding.DialogDeleteChallengeBinding
+import com.challengeonair.challengeonairandroid.databinding.DialogReservationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

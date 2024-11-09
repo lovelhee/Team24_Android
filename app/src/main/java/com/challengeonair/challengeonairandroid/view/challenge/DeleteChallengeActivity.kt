@@ -1,12 +1,12 @@
-package com.example.challengeonairandroid.view.challenge
+package com.challengeonair.challengeonairandroid.view.challenge
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.ActivityDeleteChallengeBinding
-import com.example.challengeonairandroid.view.home.HomeActivity
+import com.challengeonair.challengeonairandroid.R
+import com.challengeonair.challengeonairandroid.databinding.ActivityDeleteChallengeBinding
+import com.challengeonair.challengeonairandroid.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
