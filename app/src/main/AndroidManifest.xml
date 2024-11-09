@@ -50,6 +50,9 @@
         <activity
             android:name=".view.challenge.CreateChallengeCompletedDialog"
             android:exported="false" />
+        <activity
+            android:name=".view.alarm.AlarmActivity"
+            android:exported="false" />
 
     </application>
 
