@@ -27,7 +27,6 @@ class CreateChallengeViewModel @Inject constructor(
         _challengeCreationStatus.value = false
     }
 
-
     fun createChallenge() {
         _challengeData.value = ChallengeCreationRequest(
             categoryId = categoryId.value,
@@ -42,6 +41,7 @@ class CreateChallengeViewModel @Inject constructor(
             imageExtension = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             hostId = 1L // TODO: 실제 사용자 정보로 설정
         )
+        sendChallengeDataToServer()
     }
 
     fun sendChallengeDataToServer() {
