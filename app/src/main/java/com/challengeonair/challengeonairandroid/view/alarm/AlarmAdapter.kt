@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.challengeonair.challengeonairandroid.R
 import com.challengeonair.challengeonairandroid.databinding.ItemAlarmBinding
 import com.challengeonair.challengeonairandroid.model.data.entity.Alarm
-import com.challengeonair.challengeonairandroid.model.data.Alarm
-import com.challengeonair.challengeonairandroid.model.data.entity.Alarm
 
 class AlarmAdapter(
     private val alarmList: List<Alarm>,

@@ -14,10 +14,6 @@ import com.challengeonair.challengeonairandroid.viewmodel.HomeViewModel
 import com.challengeonair.challengeonairandroid.model.data.Category
 import com.challengeonair.challengeonairandroid.model.data.Challenge
 import com.challengeonair.challengeonairandroid.view.alarm.AlarmActivity
-import com.challengeonair.challengeonairandroid.databinding.ActivityHomeBinding
-import com.challengeonair.challengeonairandroid.model.data.Category
-import com.challengeonair.challengeonairandroid.model.data.Challenge
-import com.challengeonair.challengeonairandroid.view.alarm.AlarmActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
