@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2024-10-12"
-            android:textColor="#9E9E9E"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvStartTime"
             android:text="11:00"
-            android:textColor="#9E9E9E"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@+id/tvDate"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTime"
             android:text="~"
-            android:textColor="#9E9E9E"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="1dp"
             app:layout_constraintStart_toEndOf="@+id/tvStartTime"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvEndTime"
             android:text="13:00"
-            android:textColor="#9E9E9E"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="1dp"
             app:layout_constraintStart_toEndOf="@+id/tvTime"
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="운동 · 헬스"
-            android:textColor="#5D5D5D"
+            android:textColor="@color/text_gray"
             android:layout_marginStart="8dp"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:textColor="#FF3B30"
+                android:textColor="@color/main_red"
                 android:textSize="8sp" />
 
             <TextView
@@ -126,10 +126,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="명 예약중"
-                android:textColor="#FF3B30"
+                android:textColor="@color/main_red"
                 android:textSize="8sp" />
 
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
