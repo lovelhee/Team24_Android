@@ -83,11 +83,11 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
                     createChallengeViewModel.updateMinParticipantNum(minNum)
                 }
                 else {
-                    Toast.makeText(requireContext(), "최소 인원은 최대 인원보다 작아야 합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error_minimum_people_less_than_maximum), Toast.LENGTH_SHORT).show()
                 }
             }
             else {
-                Toast.makeText(requireContext(), "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_minimum_people_required), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -100,11 +100,11 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
                     createChallengeViewModel.updateMinParticipantNum(minNum)
                 }
                 else {
-                    Toast.makeText(requireContext(), "최소 인원은 최대 인원보다 작아야 합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error_minimum_people_less_than_maximum), Toast.LENGTH_SHORT).show()
                 }
             }
             else {
-                Toast.makeText(requireContext(), "인원은 최대 4명입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_maximum_people_allowed), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -117,11 +117,11 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
                     createChallengeViewModel.updateMaxParticipantNum(maxNum)
                 }
                 else {
-                    Toast.makeText(requireContext(), "최대 인원은 최소 인원보다 커야 합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error_maximum_people_must_be_greater_than_minimum), Toast.LENGTH_SHORT).show()
                 }
             }
             else {
-                Toast.makeText(requireContext(), "인원은 최소 2명입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_minimum_people_required), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -134,11 +134,11 @@ class CreateChallengeStep1Fragment : Fragment(R.layout.fragment_create_challenge
                     createChallengeViewModel.updateMaxParticipantNum(maxNum)
                 }
                 else {
-                    Toast.makeText(requireContext(), "최대 인원은 최소 인원보다 커야 합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error_maximum_people_must_be_greater_than_minimum), Toast.LENGTH_SHORT).show()
                 }
             }
             else {
-                Toast.makeText(requireContext(), "인원은 최대 4명입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_maximum_people_allowed), Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -82,5 +82,10 @@
     <string name="example_reservation_point">500P</string>
     <string name="go_to_home">홈으로</string>
     <string name="wave">~</string>
-    <string name="date">날짜</string>xf
+    <string name="date">날짜</string>
+    <string name="error_minimum_people_less_than_maximum">최소 인원은 최대 인원보다 작아야 합니다.</string>
+    <string name="error_maximum_people_must_be_greater_than_minimum">최대 인원은 최소 인원보다 커야 합니다.</string>
+    <string name="error_maximum_people_allowed">인원은 최대 4명입니다.</string>
+    <string name="error_minimum_people_required">인원은 최소 2명입니다.</string>
+
 </resources>
