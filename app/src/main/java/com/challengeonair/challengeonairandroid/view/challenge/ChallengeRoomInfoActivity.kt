@@ -1,4 +1,4 @@
-package com.challengeonair.challengeonairandroid.view.challenge
+package com.example.challengeonairandroid.view.challenge
 
 import android.os.Bundle
 import androidx.activity.viewModels

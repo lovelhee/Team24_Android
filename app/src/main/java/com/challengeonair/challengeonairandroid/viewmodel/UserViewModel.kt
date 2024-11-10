@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.viewmodel
+package com.challengeonair.challengeonairandroid.viewmodel
 
 import android.app.Activity
 import android.util.Log
@@ -7,8 +7,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challengeonairandroid.model.data.auth.TokenManager
-import com.example.challengeonairandroid.model.repository.UserRepository
+import com.challengeonair.challengeonairandroid.model.data.auth.TokenManager
+import com.challengeonair.challengeonairandroid.model.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

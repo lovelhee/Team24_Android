@@ -1,10 +1,10 @@
-package com.example.challengeonairandroid.model.api.service
+package com.challengeonair.challengeonairandroid.model.api.service
 
-import com.example.challengeonairandroid.model.api.response.ApiResponse
-import com.example.challengeonairandroid.model.api.response.LogInResponse
-import com.example.challengeonairandroid.model.api.response.LogoutResponse
-import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
-import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
+import com.challengeonair.challengeonairandroid.model.api.response.LogInResponse
+import com.challengeonair.challengeonairandroid.model.api.response.LogoutResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ReIssueTokenResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserDeletionResponse
 import retrofit2.http.DELETE
 import retrofit2.http.Header
 import retrofit2.http.POST

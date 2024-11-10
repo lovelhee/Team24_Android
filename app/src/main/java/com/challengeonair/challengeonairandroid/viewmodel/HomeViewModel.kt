@@ -2,9 +2,9 @@ package com.challengeonair.challengeonairandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challengeonairandroid.model.api.response.ChallengeResponse
-import com.example.challengeonairandroid.model.repository.ChallengeRepository
-import com.example.challengeonairandroid.model.repository.HomeRepository
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
+import com.challengeonair.challengeonairandroid.model.repository.ChallengeRepository
+import com.challengeonair.challengeonairandroid.model.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

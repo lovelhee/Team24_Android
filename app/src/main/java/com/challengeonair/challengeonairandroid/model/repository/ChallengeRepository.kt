@@ -1,14 +1,14 @@
-package com.example.challengeonairandroid.model.repository
+package com.challengeonair.challengeonairandroid.model.repository
 
 import android.util.Log
-import com.example.challengeonairandroid.model.api.response.AllChallengesResponse
-import com.example.challengeonairandroid.model.api.service.ChallengeApi
-import com.example.challengeonairandroid.model.api.response.ChallengeCategoryResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeCreationRequest
-import com.example.challengeonairandroid.model.api.response.ChallengeCreationResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeDeletionResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeReservationResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCategoryResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationRequest
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeDeletionResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers

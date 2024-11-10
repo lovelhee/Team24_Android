@@ -1,14 +1,13 @@
-package com.example.challengeonairandroid.model.api.service
+package com.challengeonair.challengeonairandroid.model.api.service
 
-import com.example.challengeonairandroid.model.api.response.ChallengeCategoryResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeCreationRequest
-import com.example.challengeonairandroid.model.api.response.ChallengeCreationResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeDeletionResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeReservationResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeResponse
-import com.example.challengeonairandroid.model.api.response.AllChallengesResponse
-import com.example.challengeonairandroid.model.api.response.ApiResponse
-import retrofit2.Response
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCategoryResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationRequest
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeDeletionResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
 import retrofit2.http.*
 
 interface ChallengeApi {

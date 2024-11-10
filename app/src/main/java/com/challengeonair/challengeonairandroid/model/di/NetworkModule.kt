@@ -1,15 +1,15 @@
-package com.example.challengeonairandroid.model.di
+package com.challengeonair.challengeonairandroid.model.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.challengeonairandroid.model.api.service.ChallengeApi
-import com.example.challengeonairandroid.model.api.service.HistoryApi
-import com.example.challengeonairandroid.model.api.service.UserApi
-import com.example.challengeonairandroid.model.api.service.UserProfileApi
-import com.example.challengeonairandroid.model.data.auth.AuthInterceptor
-import com.example.challengeonairandroid.model.data.auth.TokenManager
+import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
+import com.challengeonair.challengeonairandroid.model.api.service.HistoryApi
+import com.challengeonair.challengeonairandroid.model.api.service.UserApi
+import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
+import com.challengeonair.challengeonairandroid.model.data.auth.AuthInterceptor
+import com.challengeonair.challengeonairandroid.model.data.auth.TokenManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

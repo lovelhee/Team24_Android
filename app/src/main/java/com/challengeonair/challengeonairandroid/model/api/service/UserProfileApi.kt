@@ -1,12 +1,9 @@
-package com.example.challengeonairandroid.model.api.service
+package com.challengeonair.challengeonairandroid.model.api.service
 
-import com.example.challengeonairandroid.model.api.response.ApiResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateRequest
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateResponse
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header

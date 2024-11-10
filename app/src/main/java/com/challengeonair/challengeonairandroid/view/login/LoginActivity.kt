@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.login
+package com.challengeonair.challengeonairandroid.view.login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.ActivityLoginBinding
-import com.example.challengeonairandroid.viewmodel.UserViewModel
+import com.challengeonair.challengeonairandroid.R
+import com.challengeonair.challengeonairandroid.databinding.ActivityLoginBinding
+import com.challengeonair.challengeonairandroid.viewmodel.UserViewModel
 import kotlinx.coroutines.launch
 
 

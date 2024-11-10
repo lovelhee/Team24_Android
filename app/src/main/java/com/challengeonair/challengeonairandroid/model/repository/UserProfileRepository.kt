@@ -1,11 +1,10 @@
-package com.example.challengeonairandroid.model.repository
+package com.challengeonair.challengeonairandroid.model.repository
 
 import android.util.Log
-import com.example.challengeonairandroid.model.api.response.UserProfileResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateRequest
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateResponse
-import com.example.challengeonairandroid.model.api.service.HistoryApi
-import com.example.challengeonairandroid.model.api.service.UserProfileApi
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
+import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

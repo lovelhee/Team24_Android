@@ -1,8 +1,8 @@
-package com.example.challengeonairandroid.model.api.service
+package com.challengeonair.challengeonairandroid.model.api.service
 
-import com.example.challengeonairandroid.model.api.response.ApiResponse
-import com.example.challengeonairandroid.model.api.response.AllHistoriesResponse
-import com.example.challengeonairandroid.model.api.response.HistoryResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.HistoryResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path

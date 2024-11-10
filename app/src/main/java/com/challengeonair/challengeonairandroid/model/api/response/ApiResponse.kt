@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.model.api.response
+package com.challengeonair.challengeonairandroid.model.api.response
 
 enum class ApiStatus {
     SUCCESS,
