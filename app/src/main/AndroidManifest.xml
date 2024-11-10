@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.challengeonair.challengeonairandroid">
 
@@ -64,6 +65,9 @@
             android:name=".view.challenge.ChallengeOngoingActivity"
             android:exported="true"
             android:theme="@style/Theme.ChallengeOnAirAndroid" />
+        <activity
+            android:name=".view.alarm.AlarmActivity"
+            android:exported="false" />
 
         <!-- 카카오 로그인 웹뷰 액티비티 추가 -->
         <activity

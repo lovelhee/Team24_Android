@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.challengeonair.challengeonairandroid.databinding.ActivityHomeBinding
 import com.challengeonair.challengeonairandroid.model.data.Category
 import com.challengeonair.challengeonairandroid.model.data.Challenge
+import com.challengeonair.challengeonairandroid.view.alarm.AlarmActivity
 import com.challengeonair.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.challengeonair.challengeonairandroid.view.mypage.MyPageActivity
 import com.challengeonair.challengeonairandroid.view.search.SearchActivity
@@ -32,6 +33,10 @@ class HomeActivity : AppCompatActivity() {
 
         binding.ibSearch.setOnClickListener {
             startActivity(SearchActivity.intent(this))
+        }
+
+        binding.ibAlarm.setOnClickListener {
+            startActivity(AlarmActivity.intent(this))
         }
 
         binding.ibMyPage.setOnClickListener {

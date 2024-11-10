@@ -71,6 +71,9 @@ dependencies {
     implementation (libs.glide)
     kapt (libs.compiler)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 }
 
 kapt {

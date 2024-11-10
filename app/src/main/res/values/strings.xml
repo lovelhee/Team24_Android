@@ -83,6 +83,13 @@
     <string name="go_to_home">홈으로</string>
     <string name="wave">~</string>
     <string name="date">날짜</string>
+    <string name="alarm">알람</string>
+    <string name="read_alarm">확인완료</string>
+    <string name="unread_alarm">확인</string>
+    <string name="error_minimum_people_less_than_maximum">최소 인원은 최대 인원보다 작아야 합니다.</string>
+    <string name="error_maximum_people_must_be_greater_than_minimum">최대 인원은 최소 인원보다 커야 합니다.</string>
+    <string name="error_maximum_people_allowed">인원은 최대 4명입니다.</string>
+    <string name="error_minimum_people_required">인원은 최소 2명입니다.</string>
     <string name="delete_challenge">챌린지가 삭제되었습니다.</string>
     <string name="sample_event_img">이벤트 배너 사진</string>
     <string name="event">이벤트</string>
