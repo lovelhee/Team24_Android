@@ -5,7 +5,6 @@ import com.example.challengeonairandroid.model.api.response.LogInResponse
 import com.example.challengeonairandroid.model.api.response.LogoutResponse
 import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
 import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
-import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -29,8 +28,8 @@ interface UserApi {
     ): ApiResponse<UserDeletionResponse>
 
     // 4. 토큰 재발행
-    @POST("api/auth/reissue")
+    @POST("api/reissue")
     suspend fun reIssueToken(
-        @Header("reIssueToken") reIssueToken: String
+        @Header("Cookie") refreshToken: String
     ): ApiResponse<ReIssueTokenResponse>
 }

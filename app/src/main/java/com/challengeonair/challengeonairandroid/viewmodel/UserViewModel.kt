@@ -1,12 +1,10 @@
 package com.example.challengeonairandroid.viewmodel
 
 import android.app.Activity
-import android.net.Uri
 import android.util.Log
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengeonairandroid.model.data.auth.TokenManager
@@ -26,24 +24,20 @@ class UserViewModel @Inject constructor(
     val tokenManager: TokenManager
 ) : ViewModel() {
     data class UserUiState(
-        val accessToken: String = "",
-        val refreshToken: String = "",
         val loginState: LoginState = LoginState.NOT_LOGGED_IN,
         val isLoading: Boolean = false,
-        val error: String? = null
     )
 
     sealed class LoginState {
         data object NOT_LOGGED_IN : LoginState()
         data object LOGGED_IN : LoginState()
-        data object ACCESS_TOKEN_EXPIRED : LoginState()
-        data object ALL_TOKENS_EXPIRED : LoginState()
+        data object TOKEN_EXPIRED : LoginState()
     }
 
     private val _uiState = MutableStateFlow(UserUiState())
     val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
 
-    private fun updateUiState(update: (UserUiState) -> UserUiState) {
+    fun updateUiState(update: (UserUiState) -> UserUiState) {
         _uiState.update(update)
     }
 
@@ -89,54 +83,44 @@ class UserViewModel @Inject constructor(
 
         activity.setContentView(webView)
         webView.loadUrl("http://52.79.51.86:8080/oauth2/authorization/kakao")
+
     }
 
     suspend fun reissueToken() {
-        Log.d("UserViewModel", "토큰 재발급 시작")
         updateUiState { it.copy(isLoading = true) }
 
         try {
-            val currentRefreshToken = tokenManager.getRefreshToken()
-            Log.d("UserViewModel", "현재 Refresh Token: $currentRefreshToken")
+            val reIssueToken = tokenManager.getReIssueToken()
+            Log.d("UserViewModel", "현재 Refresh Token: $reIssueToken")
 
-            if (currentRefreshToken.isNullOrEmpty()) {
+            if (reIssueToken.isNullOrEmpty()) {
                 Log.d("UserViewModel", "Refresh Token이 없음, 토큰 만료 처리")
-                handleAllTokensExpired()
+                updateUiState { currentState -> currentState.copy(loginState = LoginState.TOKEN_EXPIRED) }
                 return
             }
 
-            userRepository.reIssueToken(currentRefreshToken).fold(
+            // TokenManager에서 가져온 refresh token을 쿠키 형식으로 포맷팅
+            val cookieValue = "refreshToken=$reIssueToken"
+            Log.d("UserViewModel", "쿠키 값: $cookieValue")
+
+            userRepository.reIssueToken(cookieValue).fold(
                 onSuccess = { response ->
                     Log.d("UserViewModel", "토큰 재발급 성공: Access Token: ${response.accessToken}, Refresh Token: ${response.reIssueToken}")
                     updateTokens(
                         accessToken = response.accessToken,
                         refreshToken = response.reIssueToken
                     )
-                    updateUiState { it.copy(isLoading = false, error = null) }
+                    updateUiState { it.copy(isLoading = false) }
                 },
                 onFailure = { exception ->
                     Log.e("UserViewModel", "토큰 재발급 실패", exception)
                     when {
-                        isRefreshTokenExpired(exception) -> handleAllTokensExpired()
-//                        else -> handleError(exception.message ?: "Unknown error occurred")
+                        isRefreshTokenExpired(exception) -> updateUiState { currentState -> currentState.copy(loginState = LoginState.TOKEN_EXPIRED,) }
                     }
                 }
             )
         } catch (e: Exception) {
             Log.e("UserViewModel", "토큰 재발급 중 예외 발생", e)
-//            handleError(e.message ?: "Unknown error occurred")
-        }
-    }
-
-    private fun handleAllTokensExpired() {
-        Log.d("UserViewModel", "모든 토큰 만료됨")
-        updateUiState { currentState ->
-            currentState.copy(
-                accessToken = "",
-                refreshToken = "",
-                loginState = LoginState.ALL_TOKENS_EXPIRED,
-                error = "모든 토큰이 만료되었습니다. 다시 로그인해주세요."
-            )
         }
     }
 
@@ -146,7 +130,6 @@ class UserViewModel @Inject constructor(
         updateUiState { currentState ->
             currentState.copy(
                 loginState = LoginState.LOGGED_IN,
-                error = null
             )
         }
         Log.d("UserViewModel", "토큰 저장 완료")
@@ -165,36 +148,6 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    suspend fun <T> callWithToken(
-        apiCall: suspend (String) -> T
-    ): T {
-        try {
-            val currentToken = _uiState.value.accessToken
-            Log.d("UserViewModel", "API 호출 시도 (현재 토큰: $currentToken)")
-            return apiCall(currentToken)
-        } catch (e: Exception) {
-            when {
-                isUnauthorizedError(e) -> {
-                    Log.d("UserViewModel", "Access Token 만료, 재발급 시도")
-                    updateUiState { it.copy(loginState = LoginState.ACCESS_TOKEN_EXPIRED) }
-                    reissueToken()
-                    val newToken = _uiState.value.accessToken
-                    Log.d("UserViewModel", "새로운 토큰으로 API 재시도: $newToken")
-                    return apiCall(newToken)
-                }
-                isRefreshTokenExpired(e) -> {
-                    Log.d("UserViewModel", "Refresh Token 만료")
-                    handleAllTokensExpired()
-                    throw e
-                }
-                else -> {
-                    Log.e("UserViewModel", "API 호출 중 오류 발생", e)
-                    throw e
-                }
-            }
-        }
-    }
-
     private fun isUnauthorizedError(e: Exception): Boolean {
         return e is HttpException && e.code() == 401
     }
@@ -202,4 +155,34 @@ class UserViewModel @Inject constructor(
     private fun isRefreshTokenExpired(e: Throwable): Boolean {
         return e is HttpException && e.code() == 401 && e.response()?.errorBody()?.string()?.contains("refresh_token_expired") == true
     }
+
+//    suspend fun <T> callWithToken(
+//        apiCall: suspend (String) -> T
+//    ): T {
+//        try {
+//            val currentToken = tokenManager.getAccessToken()
+//            Log.d("UserViewModel", "API 호출 시도 (현재 토큰: $currentToken)")
+//            return apiCall(currentToken)
+//        } catch (e: Exception) {
+//            when {
+//                isUnauthorizedError(e) -> {
+//                    Log.d("UserViewModel", "Access Token 만료, 재발급 시도")
+//                    updateUiState { it.copy(loginState = LoginState.TOKEN_EXPIRED) }
+//                    reissueToken()
+//                    val newToken = _uiState.value.accessToken
+//                    Log.d("UserViewModel", "새로운 토큰으로 API 재시도: $newToken")
+//                    return apiCall(newToken)
+//                }
+//                isRefreshTokenExpired(e) -> {
+//                    Log.d("UserViewModel", "Refresh Token 만료")
+//                    handleAllTokensExpired()
+//                    throw e
+//                }
+//                else -> {
+//                    Log.e("UserViewModel", "API 호출 중 오류 발생", e)
+//                    throw e
+//                }
+//            }
+//        }
+//    }
 }
