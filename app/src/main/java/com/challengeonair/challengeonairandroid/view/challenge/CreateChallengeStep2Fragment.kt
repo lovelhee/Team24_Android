@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -16,6 +17,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.challengeonair.challengeonairandroid.R
 import com.challengeonair.challengeonairandroid.viewmodel.CreateChallengeViewModel
 import com.challengeonair.challengeonairandroid.databinding.FragmentCreateChallengeStep2Binding
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge_step2) {
@@ -38,27 +40,38 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Toast.makeText(context, "오류 발생: ${exception.localizedMessage}", Toast.LENGTH_SHORT).show()
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    createChallengeViewModel.isDateSet.collect { isSet ->
-                        binding.btnDate.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
-                    }
+                createChallengeViewModel.isDateSet.collect { isSet ->
+                    binding.btnDate.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
                 }
-                launch {
-                    createChallengeViewModel.isStartTimeSet.collect { isSet ->
-                        binding.btnStartTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
-                    }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                createChallengeViewModel.isStartTimeSet.collect { isSet ->
+                    binding.btnStartTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
                 }
-                launch {
-                    createChallengeViewModel.isEndTimeSet.collect { isSet ->
-                        binding.btnEndTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
-                    }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                createChallengeViewModel.isEndTimeSet.collect { isSet ->
+                    binding.btnEndTime.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
                 }
-                launch {
-                    createChallengeViewModel.isPointSet.collect { isSet ->
-                        binding.btnSetChallengePoint.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
-                    }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                createChallengeViewModel.isPointSet.collect { isSet ->
+                    binding.btnSetChallengePoint.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (isSet) R.drawable.ic_check else 0, 0)
                 }
             }
         }
