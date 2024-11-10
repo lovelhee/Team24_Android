@@ -3,9 +3,9 @@ package com.challengeonair.challengeonairandroid.model.data.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "alarm")
-data class Alarm(
+@Entity(tableName = "search_history")
+data class SearchHistory(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val message: String,
-    var isConfirmed: Boolean = false
+    val query: String,
+    val timestamp: Long
 )

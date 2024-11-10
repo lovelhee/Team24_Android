@@ -9,18 +9,6 @@ data class History(
     val isHost: Boolean
 )
 
-data class User(
-    val userId: Long,
-    val userName: String,
-)
-
-data class UserProfile(
-    val userNickName: String,
-    val userBody: String,
-    val imageUrl: String,
-    val point: Int
-)
-
 data class Category(
     val categoryId: Long,
     val categoryName: String,

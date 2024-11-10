@@ -10,7 +10,7 @@ import com.challengeonair.challengeonairandroid.model.api.response.HistoryRespon
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
 import com.challengeonair.challengeonairandroid.model.data.Challenge
 import com.challengeonair.challengeonairandroid.model.data.History
-import com.challengeonair.challengeonairandroid.model.data.UserProfile
+import com.challengeonair.challengeonairandroid.model.data.entity.UserProfile
 import com.challengeonair.challengeonairandroid.model.repository.HistoryRepository
 import com.challengeonair.challengeonairandroid.model.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -298,8 +298,8 @@ class MyPageViewModel @Inject constructor(
 
     private fun updateUserProfile(response: UserProfileResponse) {
         _userProfile.value = UserProfile(
+            userId = 0,
             userNickName = response.userNickName,
-            userBody = response.userBody,
             imageUrl = response.imageUrl,
             point = response.point
         )
