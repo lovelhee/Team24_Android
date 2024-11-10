@@ -7,9 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.challengeonair.challengeonairandroid.R
-import com.challengeonair.challengeonairandroid.model.data.Category
-import com.challengeonair.challengeonairandroid.model.data.Challenge
 import com.challengeonair.challengeonairandroid.databinding.ItemHomeParentBinding
+import com.challengeonair.challengeonairandroid.model.data.entity.Category
+import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
 
 class ParentAdapter(
     private val categories: List<Category>,
