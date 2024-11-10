@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.challengeonair.challengeonairandroid.R
 import com.challengeonair.challengeonairandroid.databinding.ActivityAlarmBinding
-import com.challengeonair.challengeonairandroid.model.data.Alarm
+import com.challengeonair.challengeonairandroid.model.data.entity.Alarm
 import com.challengeonair.challengeonairandroid.view.mypage.AlarmAdapter
 
 class AlarmActivity : AppCompatActivity() {
