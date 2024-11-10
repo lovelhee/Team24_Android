@@ -35,7 +35,8 @@
             android:scaleType="centerCrop"
             android:clipToOutline="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDate"
+            android:contentDescription="@string/challenge_image_description" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -91,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvTitle"
-                android:hint="챌린지 이름입니다"
+                android:hint="@string/challenge_title"
                 android:text="@{String.valueOf(myPageHistoryData.challenges[0].challengeName)}"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -118,7 +119,7 @@
                 android:id="@+id/tvStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="10:00"
+                android:hint="@string/example_start_time"
                 android:text="@{String.valueOf(myPageHistoryData.histories[0].challengeStartTime)}"
                 android:layout_gravity="center_vertical"
                 android:textSize="13sp"
@@ -136,7 +137,7 @@
                 android:id="@+id/tvEndTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="11:00"
+                android:hint="@string/example_end_time"
                 android:text="@{String.valueOf(myPageHistoryData.histories[0].challengeEndTime)}"
                 android:layout_gravity="center_vertical"
                 android:textSize="13sp"

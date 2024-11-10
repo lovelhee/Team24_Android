@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,9 +23,9 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sample_event"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/sample_event_img" />
         </androidx.cardview.widget.CardView>
-
 
         <TextView
             android:id="@+id/tvEvent"
@@ -38,7 +38,7 @@
             android:paddingTop="4dp"
             android:paddingEnd="10dp"
             android:paddingBottom="4dp"
-            android:text="이벤트"
+            android:text="@string/event"
             android:textColor="@color/black"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgBtnEvent"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="신규 회원 첫번째 챌린지 예약 시\n1000p 선착순 100명 증정!"
+            android:text="@string/sample_event_banner"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
             android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카테고리"
+            android:text="@string/category"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -97,13 +97,14 @@
                     android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/btn_exercise" />
+                    android:src="@drawable/btn_exercise"
+                    android:contentDescription="@string/img_exercise_category" />
 
                 <TextView
                     android:id="@+id/tvExercise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="운동"
+                    android:text="@string/category_exercise"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -111,7 +112,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="러닝 · 등산"
+                    android:text="@string/running_and_hiking"
                     android:textSize="8sp"
                     android:textColor="#9E9E9E"/>
 
@@ -132,13 +133,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/btn_develop"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_development_category" />
 
                 <TextView
                     android:id="@+id/tvDevelop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="자기 계발"
+                    android:text="@string/category_development"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -146,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="악기 · 독서"
+                    android:text="@string/development_example"
                     android:textSize="8sp"
                     android:textColor="#9E9E9E"/>
 
@@ -167,13 +169,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/btn_hobby"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_hobby_category" />
 
                 <TextView
                     android:id="@+id/tvHobby"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="취미"
+                    android:text="@string/category_hobby"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -181,7 +184,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="요리 · 뜨개질"
+                    android:text="@string/hobby_example"
                     android:textSize="8sp"
                     android:textColor="#9E9E9E"/>
 
@@ -202,12 +205,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/btn_study"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/img_study_category" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공부"
+                    android:text="@string/category_study"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -216,12 +220,11 @@
                     android:id="@+id/tvStudy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="스터디 · 모각코"
+                    android:text="@string/study_example"
                     android:textSize="8sp"
                     android:textColor="#9E9E9E"/>
 
             </LinearLayout>
-
         </GridLayout>
 
         <androidx.recyclerview.widget.RecyclerView
