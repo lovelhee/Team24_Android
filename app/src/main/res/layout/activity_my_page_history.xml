@@ -52,5 +52,4 @@
             tools:listitem="@layout/item_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -31,15 +31,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sample_exercise" />
+                android:src="@drawable/sample_exercise"
+                android:contentDescription="@string/challenge_image_description" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2024-10-12"
-            android:textColor="#9E9E9E"
+            android:text="@string/example_challenge_date"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
@@ -49,8 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvStartTime"
-            android:text="11:00"
-            android:textColor="#9E9E9E"
+            android:text="@string/example_start_time"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@+id/tvDate"
@@ -60,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvTime"
-            android:text="~"
-            android:textColor="#9E9E9E"
+            android:text="@string/tilde"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="1dp"
             app:layout_constraintStart_toEndOf="@+id/tvStartTime"
@@ -71,8 +72,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvEndTime"
-            android:text="13:00"
-            android:textColor="#9E9E9E"
+            android:text="@string/example_end_time"
+            android:textColor="@color/text_white_gray"
             android:textSize="10sp"
             android:layout_marginStart="1dp"
             app:layout_constraintStart_toEndOf="@+id/tvTime"
@@ -82,7 +83,7 @@
             android:id="@+id/tvChallengeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3대 500을 위하여"
+            android:text="@string/challenge_name"
             android:textColor="@color/black"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
@@ -95,8 +96,8 @@
             android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="운동 · 헬스"
-            android:textColor="#5D5D5D"
+            android:text="@string/exercise_example"
+            android:textColor="@color/text_gray"
             android:layout_marginStart="8dp"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/cvChallengeCover"
@@ -117,19 +118,18 @@
                 android:id="@+id/tvCurrentNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3"
-                android:textColor="#FF3B30"
+                android:text="@string/current_num"
+                android:textColor="@color/main_red"
                 android:textSize="8sp" />
 
             <TextView
                 android:id="@+id/tvPeople"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="명 예약중"
-                android:textColor="#FF3B30"
+                android:text="@string/reservation_people"
+                android:textColor="@color/main_red"
                 android:textSize="8sp" />
 
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

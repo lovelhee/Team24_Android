@@ -15,13 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_canclebox"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:contentDescription="@string/img_cancle" />
 
     <TextView
         android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="챌린지를 삭제하시겠습니까?"
+        android:text="@string/challenge_delete_answer"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:textColor="@color/black"
@@ -31,7 +32,7 @@
         android:id="@+id/tvReservationDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="삭제 후 취소는 불가합니다."
+        android:text="@string/can_not_rollback"
         android:layout_gravity="center"
         android:layout_marginBottom="24dp"
         android:textColor="@color/text_gray"
@@ -59,7 +60,7 @@
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:background="@drawable/rounded_delete_btn"
-                android:text="돌아가기"/>
+                android:text="@string/back"/>
 
             <Button
                 android:id="@+id/btnDelete"
@@ -71,7 +72,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_enter_btn"
-                android:text="챌린지 삭제하기"/>
+                android:text="@string/challenge_delete"/>
 
         </LinearLayout>
     </LinearLayout>
