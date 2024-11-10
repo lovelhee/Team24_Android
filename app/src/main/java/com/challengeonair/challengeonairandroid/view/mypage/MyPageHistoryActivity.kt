@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.challengeonair.challengeonairandroid.R
 import com.challengeonair.challengeonairandroid.databinding.ActivityMyPageHistoryBinding
-import com.challengeonair.challengeonairandroid.model.data.History
+import com.challengeonair.challengeonairandroid.model.data.entity.History
 import com.challengeonair.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

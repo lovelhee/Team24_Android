@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.challengeonair.challengeonairandroid.R
-import com.challengeonair.challengeonairandroid.model.data.History
+import com.challengeonair.challengeonairandroid.model.data.entity.History
 
 class HistoryAdapter(
     private val historyList: List<History>,

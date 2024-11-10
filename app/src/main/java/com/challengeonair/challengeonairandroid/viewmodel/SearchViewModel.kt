@@ -3,7 +3,7 @@ package com.challengeonair.challengeonairandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
-import com.challengeonair.challengeonairandroid.model.data.Challenge
+import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
