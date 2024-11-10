@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.challengeonair.challengeonairandroid.databinding.ItemCategoryChallengeBinding
-import com.challengeonair.challengeonairandroid.model.data.Challenge
+import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
 
 class SearchResultAdapter :
     ListAdapter<Challenge, SearchResultAdapter.ChallengeViewHolder>(ChallengeDiffCallback()) {

@@ -8,9 +8,9 @@ import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesR
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
 import com.challengeonair.challengeonairandroid.model.api.response.HistoryResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
-import com.challengeonair.challengeonairandroid.model.data.Challenge
-import com.challengeonair.challengeonairandroid.model.data.History
-import com.challengeonair.challengeonairandroid.model.data.UserProfile
+import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
+import com.challengeonair.challengeonairandroid.model.data.entity.History
+import com.challengeonair.challengeonairandroid.model.data.entity.UserProfile
 import com.challengeonair.challengeonairandroid.model.repository.HistoryRepository
 import com.challengeonair.challengeonairandroid.model.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
