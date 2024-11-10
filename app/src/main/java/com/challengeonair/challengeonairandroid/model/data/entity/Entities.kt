@@ -1,4 +1,4 @@
-package com.challengeonair.challengeonairandroid.model.data
+package com.challengeonair.challengeonairandroid.model.data.entity
 
 data class History(
     val challengeName: String,
