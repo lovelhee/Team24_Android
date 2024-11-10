@@ -1,10 +1,10 @@
-package com.example.challengeonairandroid.model.repository
+package com.challengeonair.challengeonairandroid.model.repository
 
-import com.example.challengeonairandroid.model.api.response.LogInResponse
-import com.example.challengeonairandroid.model.api.response.LogoutResponse
-import com.example.challengeonairandroid.model.api.response.ReIssueTokenResponse
-import com.example.challengeonairandroid.model.api.response.UserDeletionResponse
-import com.example.challengeonairandroid.model.api.service.UserApi
+import com.challengeonair.challengeonairandroid.model.api.response.LogInResponse
+import com.challengeonair.challengeonairandroid.model.api.response.LogoutResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ReIssueTokenResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserDeletionResponse
+import com.challengeonair.challengeonairandroid.model.api.service.UserApi
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,12 +1,12 @@
-package com.example.challengeonairandroid.view.challenge
+package com.challengeonair.challengeonairandroid.view.challenge
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.challengeonairandroid.R
-import com.example.challengeonairandroid.databinding.ActivityCreateChallengeCompletedBinding
-import com.example.challengeonairandroid.viewmodel.ChallengeCreateViewModel
+import com.challengeonair.challengeonairandroid.R
+import com.challengeonair.challengeonairandroid.databinding.ActivityCreateChallengeCompletedBinding
+import com.challengeonair.challengeonairandroid.viewmodel.ChallengeCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

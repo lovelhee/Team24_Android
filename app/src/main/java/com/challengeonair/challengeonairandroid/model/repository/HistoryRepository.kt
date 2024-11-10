@@ -1,9 +1,9 @@
-package com.example.challengeonairandroid.model.repository
+package com.challengeonair.challengeonairandroid.model.repository
 
 import android.util.Log
-import com.example.challengeonairandroid.model.api.response.AllHistoriesResponse
-import com.example.challengeonairandroid.model.api.response.HistoryResponse
-import com.example.challengeonairandroid.model.api.service.HistoryApi
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.HistoryResponse
+import com.challengeonair.challengeonairandroid.model.api.service.HistoryApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

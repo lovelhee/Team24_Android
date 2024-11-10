@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.login
+package com.challengeonair.challengeonairandroid.view.login
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.challengeonairandroid.viewmodel.UserViewModel
+import com.challengeonair.challengeonairandroid.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 

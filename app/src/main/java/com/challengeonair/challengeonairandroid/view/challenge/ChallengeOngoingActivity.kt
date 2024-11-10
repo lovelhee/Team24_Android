@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.challenge
+package com.challengeonair.challengeonairandroid.view.challenge
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -17,7 +17,7 @@ import org.jitsi.meet.sdk.JitsiMeetActivity
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions
 import java.net.URL
 import java.util.UUID
-import com.example.challengeonairandroid.databinding.ActivityChallengeOngoingBinding
+import com.challengeonair.challengeonairandroid.databinding.ActivityChallengeOngoingBinding
 
 @AndroidEntryPoint
 class ChallengeOngoingActivity : AppCompatActivity() {

@@ -1,14 +1,14 @@
-package com.example.challengeonairandroid.model.repository
+package com.challengeonair.challengeonairandroid.model.repository
 
-import com.example.challengeonairandroid.model.api.response.ChallengeReservationResponse
-import com.example.challengeonairandroid.model.api.response.ChallengeResponse
-import com.example.challengeonairandroid.model.api.response.AllHistoriesResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileResponse
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateRequest
-import com.example.challengeonairandroid.model.api.response.UserProfileUpdateResponse
-import com.example.challengeonairandroid.model.api.service.ChallengeApi
-import com.example.challengeonairandroid.model.api.service.HistoryApi
-import com.example.challengeonairandroid.model.api.service.UserProfileApi
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
+import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
+import com.challengeonair.challengeonairandroid.model.api.service.HistoryApi
+import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
