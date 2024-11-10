@@ -27,7 +27,7 @@ class HistoryAdapter(
         holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover) // 실제 이미지 로드 필요
 
         // 성공/실패 여부
-        if (history.isSucceed) {
+        if (history.isSucceeded) {
             holder.tvSuccess.visibility = View.VISIBLE
             holder.tvFail.visibility = View.GONE
         } else {
