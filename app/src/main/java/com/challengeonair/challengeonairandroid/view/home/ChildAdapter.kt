@@ -26,7 +26,7 @@ class ChildAdapter(
             binding.tvCategory.text = getCategoryName(challenge.categoryId)
 
             Glide.with(binding.ivChallengeCover.context)
-                .load(challenge.imageUrl)
+                .load(challenge.imageExtension)
                 .into(binding.ivChallengeCover)
 
             updateParticipantIcons(challenge.currentParticipantNum, challenge.maxParticipantNum)

@@ -6,36 +6,45 @@ import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCrea
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
-import retrofit2.Response
+import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
 import retrofit2.http.*
 
 interface ChallengeApi {
+    @GET("api/challenges")
+    suspend fun getAllChallenges(
+        @Header("Authorization") accessToken: String
+    ): ApiResponse<AllChallengesResponse>
 
-    @GET("api/challenges/{challenge_id}")
+    @GET("api/challenges/{challengeId}")
     suspend fun getChallengeDetails(
-        @Path("challenge_id") challengeId: Long,
+        @Header("Authorization") accessToken: String,
+        @Path("challengeId") challengeId: Long,
         @Body date: String
-    ): Response<ChallengeResponse>
-    // http 요청을 API 명세에 맞게 보내고 DTO에 맞는 객체가 담긴 Response 객체를 서버로부터 받아옴.
+    ): ApiResponse<ChallengeResponse>
 
-    @GET("api/challenges/{category_id}")
+    @GET("api/challenges/category/{categoryId}")
     suspend fun getChallengesByCategory(
-        @Path("category_id") categoryId: Int,
-        @Body date: String
-    ): Response<ChallengeCategoryResponse>
+        @Header("Authorization") accessToken: String,
+        @Path("categoryId") categoryId: Int,
+        @Query("date") date: String
+    ): ApiResponse<ChallengeCategoryResponse>
 
     @POST("api/challenges")
     suspend fun createChallenge(
-        @Body challengeCreationRequest: ChallengeCreationRequest
-    ): Response<ChallengeCreationResponse>
+        @Header("Authorization") accessToken: String,
+        @Body request: ChallengeCreationRequest
+    ): ApiResponse<ChallengeCreationResponse>
 
-    @DELETE("api/challenges/{challenge_id}")
+    @DELETE("api/challenges/{challengeId}")
     suspend fun deleteChallenge(
-        @Path("challenge_id") challengeId: Long
-    ): Response<ChallengeDeletionResponse>
+        @Header("Authorization") accessToken: String,
+        @Path("challengeId") challengeId: Long
+    ): ApiResponse<ChallengeDeletionResponse>
 
-    @POST("api/challenges/reservation/{challenge_id}")
+    @POST("api/challenges/reservation/{challengeId}")
     suspend fun reserveChallenge(
-        @Path("challenge_id") challengeId: Long
-    ): Response<ChallengeReservationResponse>
+        @Header("Authorization") accessToken: String,
+        @Path("challengeId") challengeId: Long
+    ): ApiResponse<ChallengeReservationResponse>
 }

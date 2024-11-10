@@ -4,14 +4,15 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
-import com.challengeonair.challengeonairandroid.model.api.response.HistoryListResponse
 import com.challengeonair.challengeonairandroid.model.api.response.HistoryResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
 import com.challengeonair.challengeonairandroid.model.data.Challenge
 import com.challengeonair.challengeonairandroid.model.data.History
 import com.challengeonair.challengeonairandroid.model.data.UserProfile
-import com.challengeonair.challengeonairandroid.model.repository.MyPageRepository
+import com.challengeonair.challengeonairandroid.model.repository.HistoryRepository
+import com.challengeonair.challengeonairandroid.model.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-private val dummyHistoryListResponse = HistoryListResponse(
+private val dummyHistoryListResponse = AllHistoriesResponse(
     histories = listOf(
         HistoryResponse(
             challenge = ChallengeResponse(
@@ -30,14 +31,16 @@ private val dummyHistoryListResponse = HistoryListResponse(
                 challengeDate = "2024-03-01",
                 startTime = "06:00",
                 endTime = "07:00",
-                imageUrl = "https://example.com/morning_exercise.jpg",
+                imageExtension = "https://example.com/morning_exercise.jpg",
                 minParticipantNum = 5,
                 maxParticipantNum = 20,
                 currentParticipantNum = 12,
-                hostId = 2L
+                hostId = 2L,
+                challengeId = 1
             ),
-            isSucceed = true,
-            isHost = false
+            isSucceeded = true,
+            isHost = false,
+            point = 100
         ),
         HistoryResponse(
             challenge = ChallengeResponse(
@@ -48,14 +51,16 @@ private val dummyHistoryListResponse = HistoryListResponse(
                 challengeDate = "2024-03-15",
                 startTime = "00:00",
                 endTime = "23:59",
-                imageUrl = "https://example.com/reading_challenge.jpg",
+                imageExtension = "https://example.com/reading_challenge.jpg",
                 minParticipantNum = 10,
                 maxParticipantNum = 50,
                 currentParticipantNum = 25,
-                hostId = 2L
+                hostId = 2L,
+                challengeId = 1
             ),
-            isSucceed = false,
-            isHost = true
+            isSucceeded = false,
+            isHost = true,
+            point = 100
         )
     )
 )
@@ -67,6 +72,21 @@ private val dummyUserProfileResponse = UserProfileResponse(
     point = 1000
 )
 
+//data class ChallengeResponse(
+//    @SerializedName("challengeId") val challengeId: Long,
+//    @SerializedName("challengeName") val challengeName: String,
+//    @SerializedName("challengeBody") val challengeBody: String,
+//    @SerializedName("point") val point: Int,
+//    @SerializedName("challengeDate") val challengeDate: String,
+//    @SerializedName("startTime") val startTime: String,
+//    @SerializedName("endTime") val endTime: String,
+//    @SerializedName("imageExtension") val imageExtension: String,
+//    @SerializedName("minParticipantNum") val minParticipantNum: Int,
+//    @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
+//    @SerializedName("currentParticipantNum") val currentParticipantNum: Int,
+//    @SerializedName("hostId") val hostId: Long,
+//    @SerializedName("categoryId") val categoryId: Int
+//)
 private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
     ChallengeResponse(
         categoryId = 1,
@@ -76,11 +96,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-03-01",
         startTime = "06:00",
         endTime = "07:00",
-        imageUrl = "https://picsum.photos/200/300",
+        imageExtension = "https://picsum.photos/200/300",
         minParticipantNum = 5,
         maxParticipantNum = 20,
         currentParticipantNum = 12,
-        hostId = 2L
+        hostId = 2L,
+        challengeId = 1
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -90,11 +111,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-03-15",
         startTime = "00:00",
         endTime = "23:59",
-        imageUrl = "https://picsum.photos/200/300",
+        imageExtension = "https://picsum.photos/200/300",
         minParticipantNum = 10,
         maxParticipantNum = 50,
         currentParticipantNum = 25,
-        hostId = 3L
+        hostId = 3L,
+        challengeId = 1
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -104,11 +126,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-04-01",
         startTime = "08:00",
         endTime = "22:00",
-        imageUrl = "https://picsum.photos/200/300",
+        imageExtension = "https://picsum.photos/200/300",
         minParticipantNum = 3,
         maxParticipantNum = 100,
         currentParticipantNum = 75,
-        hostId = 4L
+        hostId = 4L,
+        challengeId = 0
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -118,11 +141,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-04-15",
         startTime = "19:00",
         endTime = "21:00",
-        imageUrl = "https://picsum.photos/200/300",
+        imageExtension = "https://picsum.photos/200/300",
         minParticipantNum = 5,
         maxParticipantNum = 15,
         currentParticipantNum = 8,
-        hostId = 5L
+        hostId = 5L,
+        challengeId = 0
     ),
     ChallengeResponse(
         categoryId = 1,
@@ -132,39 +156,42 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-05-01",
         startTime = "00:00",
         endTime = "23:59",
-        imageUrl = "https://picsum.photos/200/300",
+        imageExtension = "https://picsum.photos/200/300",
         minParticipantNum = 20,
         maxParticipantNum = 200,
         currentParticipantNum = 150,
-        hostId = 2L
+        hostId = 2L,
+        challengeId = 0
     ),
     ChallengeResponse(
         challengeName = "취미 요리",
         challengeDate = "2024-10-16",
         startTime = "15:00",
         endTime = "17:00",
-        imageUrl = "https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_1280.jpg",
         currentParticipantNum = 2,
         maxParticipantNum = 4,
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
         hostId = 3L,
-        categoryId = 3
+        challengeId = 3,
+        categoryId = 1
     ),
     ChallengeResponse(
         challengeName = "뜨개질로 목도리 만들기",
         challengeDate = "2024-10-16",
         startTime = "15:00",
         endTime = "17:00",
-        imageUrl = "https://cdn.pixabay.com/photo/2020/06/08/23/52/tissue-5276453_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2020/06/08/23/52/tissue-5276453_1280.jpg",
         currentParticipantNum = 2,
         maxParticipantNum = 4,
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
         hostId = 3L,
-        categoryId = 3
+        categoryId = 3,
+        challengeId = 1
     )
 )
 
@@ -172,7 +199,8 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
 //TODO: accessToken을 뷰모델 생성자를 통해 주입
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val myPageRepository: MyPageRepository
+    private val historyRepository: HistoryRepository,
+    private val userProfileRepository: UserProfileRepository
 ) : ViewModel() {
     private val _histories = MutableStateFlow<List<History>>(emptyList())
     val histories: StateFlow<List<History>> = _histories.asStateFlow()
@@ -211,12 +239,15 @@ class MyPageViewModel @Inject constructor(
 
     private fun loadAllHistories() {
         viewModelScope.launch {
-            val historyListResponse = dummyHistoryListResponse
-//            val historyListResponse = myPageRepository.getAllHistory(accessToken)
-            historyListResponse?.let { response ->
-                updateHistories(response.histories)
+            try {
+                val response = historyRepository.getAllHistories()
+                response?.let { historyListResponse ->
+                    updateHistories(historyListResponse.histories)
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading histories", e)
+                // TODO: Error handling
             }
-            Log.d("histories", "loadAllHistories: ${_histories.value}")
         }
     }
 
@@ -227,44 +258,41 @@ class MyPageViewModel @Inject constructor(
                 challengeStartTime = historyResponse.challenge.startTime,
                 challengeEndTime = historyResponse.challenge.endTime,
                 historyDate = historyResponse.challenge.challengeDate,
-                isSucceed = historyResponse.isSucceed,
+                isSucceeded = historyResponse.isSucceeded,
                 isHost = historyResponse.isHost
             )
         }
-        val successCount = histories.count { it.isSucceed }
+
+        val successCount = histories.count { it.isSucceeded }
         _successChallengeNum.value = successCount
+
         val tryCount = histories.size
         _tryChallengeNum.value = tryCount
+
         val myCreateCount = histories.count { it.isHost }
         _myCreatedChallengeNum.value = myCreateCount
-        val hostFlag = histories[0].isHost
-        if (hostFlag) {
-            _myCreatedMarked.value = View.VISIBLE
-        }
-        else {
-            _myCreatedMarked.value = View.GONE
-        }
-        val successFlag = histories[0].isSucceed
-        if (successFlag) {
-            _successMarked.value = View.VISIBLE
-            _failMarked.value = View.GONE
-        }
-        else {
-            _successMarked.value = View.GONE
-            _failMarked.value = View.VISIBLE
-        }
 
+        if (histories.isNotEmpty()) {
+            val hostFlag = histories[0].isHost
+            _myCreatedMarked.value = if (hostFlag) View.VISIBLE else View.GONE
 
+            val successFlag = histories[0].isSucceeded
+            _successMarked.value = if (successFlag) View.VISIBLE else View.GONE
+            _failMarked.value = if (successFlag) View.GONE else View.VISIBLE
+        }
     }
 
     private fun loadUserData() {
         viewModelScope.launch {
-            val userProfileResponse = dummyUserProfileResponse
-//            val userProfileResponse = myPageRepository.getUserProfile(accessToken)
-            userProfileResponse?.let { response ->
-                updateUserProfile(response)
+            try {
+                val response = userProfileRepository.getUserProfile()
+                response?.let { userProfileResponse ->
+                    updateUserProfile(userProfileResponse)
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading user profile", e)
+                // TODO: Error handling
             }
-            Log.d("userProfiles", "loadUserData: ${_userProfile.value}")
         }
     }
 
@@ -279,6 +307,14 @@ class MyPageViewModel @Inject constructor(
 
     private fun loadWaitingChallenges() {
         viewModelScope.launch {
+            try {
+                // TODO: Implement API call for waiting challenges once available
+                // For now, keeping the challenges empty
+                _challenges.value = emptyList()
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel", "Error loading waiting challenges", e)
+                // TODO: Error handling
+            }
             val challengeResponses = dummyChallengeResponses // TODO: API 만들어지면 교체
 //            val challengeResponse = myPageRepository.
             updateChallenges(challengeResponses)
@@ -298,8 +334,9 @@ class MyPageViewModel @Inject constructor(
                 point = response.point,
                 startTime = response.startTime,
                 endTime = response.endTime,
-                imageUrl = response.imageUrl,
-                hostId = response.hostId
+                imageExtension = response.imageExtension,
+                hostId = response.hostId,
+                challengeId = 1
             )
         }
     }

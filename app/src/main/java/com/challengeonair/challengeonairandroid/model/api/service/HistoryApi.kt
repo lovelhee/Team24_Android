@@ -1,8 +1,8 @@
 package com.challengeonair.challengeonairandroid.model.api.service
 
-import com.challengeonair.challengeonairandroid.model.api.response.HistoryListResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
 import com.challengeonair.challengeonairandroid.model.api.response.HistoryResponse
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -10,15 +10,15 @@ import retrofit2.http.Path
 interface HistoryApi {
 
     // 1. 회원 챌린지 History 단건 조회
-    @GET("api/history/{history_id}")
+    @GET("api/history/{historyId}")
     suspend fun getHistoryById(
         @Header("Authorization") accessToken: String,
-        @Path("history_id") historyId: Long
-    ): Response<HistoryResponse>
+        @Path("historyId") historyId: Long
+    ): ApiResponse<HistoryResponse>
 
     // 2. 회원 챌린지 History 전체 조회
-    @GET("api/history")
-    suspend fun getAllHistory(
+    @GET("api/histories")
+    suspend fun getAllHistories(
         @Header("Authorization") accessToken: String
-    ): Response<HistoryListResponse>
+    ): ApiResponse<AllHistoriesResponse>
 }

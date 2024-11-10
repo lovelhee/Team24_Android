@@ -3,9 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.challengeonair.challengeonairandroid">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".ChallengeOnAir"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,28 +28,25 @@
 
         <activity
             android:name=".view.home.HomeActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ChallengeOnAirAndroid">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.challenge.DeleteChallengeActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".view.challenge.OngoingChallengeActivity"
-            android:exported="false" />
-        <activity android:name=".view.challenge.ParticipateChallengeActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".view.challenge.ChallengeRoomInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.mypage.MyPageActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.login.LoginActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".view.challenge.DeleteChallengeActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".view.challenge.ParticipateChallengeActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".view.mypage.MyPageActivity"
             android:exported="false" />
         <activity
             android:name=".view.challenge.CreateChallengeActivity"
@@ -52,6 +60,27 @@
         <activity
             android:name=".view.search.SearchActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.challenge.ChallengeOngoingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ChallengeOnAirAndroid" />
+
+        <!-- 카카오 로그인 웹뷰 액티비티 추가 -->
+        <activity
+            android:name=".view.login.KakaoWebViewActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize" />
+
+        <!-- jitsi -->
+        <receiver
+            android:name="org.jitsi.meet.sdk.BroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.jitsi.meet.CONFERENCE_JOINED" />
+                <action android:name="org.jitsi.meet.CONFERENCE_TERMINATED" />
+                <action android:name="org.jitsi.meet.CONFERENCE_WILL_JOIN" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

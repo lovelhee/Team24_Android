@@ -3,12 +3,13 @@ package com.challengeonair.challengeonairandroid.model.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
 import com.challengeonair.challengeonairandroid.model.api.service.HistoryApi
+import com.challengeonair.challengeonairandroid.model.api.service.UserApi
 import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
 import com.challengeonair.challengeonairandroid.model.data.auth.AuthInterceptor
 import com.challengeonair.challengeonairandroid.model.data.auth.TokenManager
-import com.challengeonair.challengeonairandroid.model.data.auth.encryptedDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,16 +20,23 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+//    @Provides
+//    @Singleton
+//    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+//        return context.encryptedDataStore
+//    }
+
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
-        return context.encryptedDataStore
+        return context.dataStore
     }
-
     @Provides
     @Singleton
     fun provideTokenManager(dataStore: DataStore<Preferences>): TokenManager {
@@ -45,7 +53,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideBaseUrl() = "https://api.example.com/"
+    fun provideBaseUrl() = "http://52.79.130.181:8080/"
 
     @Provides
     @Singleton
@@ -67,6 +75,12 @@ object NetworkModule {
     @Singleton
     fun provideHistoryApi(retrofit: Retrofit): HistoryApi {
         return retrofit.create(HistoryApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
     @Provides

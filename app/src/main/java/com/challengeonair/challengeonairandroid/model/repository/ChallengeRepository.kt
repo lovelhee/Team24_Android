@@ -1,5 +1,7 @@
 package com.challengeonair.challengeonairandroid.model.repository
 
+import android.util.Log
+import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
 import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCategoryResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationRequest
@@ -11,87 +13,112 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Singleton
 class ChallengeRepository @Inject constructor(
     private val challengeApi: ChallengeApi
 ) {
-    suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
-        val date = getCurrentDateTime()
+    suspend fun getAllChallenges(): AllChallengesResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.getChallengeDetails(challengeId, date)
+            val response = challengeApi.getAllChallenges("")  // 임시로 빈 토큰
 
-            if (response.isSuccessful) {
-                response.body()  // 성공 시 ChallengeResponse 반환
+            if (response.isSuccessful()) {
+                response.data
             } else {
+                Log.e("ChallengeRepository", "getAllChallenges API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("ChallengeRepository", "getAllChallenges Exception: ${e.message}")
+            null
+        }
+    }
+
+    suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
+        try {
+            val date = getCurrentDateTime()
+            val response = challengeApi.getChallengeDetails("", challengeId, date)
+
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                Log.e("ChallengeRepository", "getChallengeDetails API Error: ${response.message}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ChallengeRepository", "getChallengeDetails Exception: ${e.message}")
             null
         }
     }
 
     suspend fun getChallengesByCategory(categoryId: Int): ChallengeCategoryResponse? = withContext(Dispatchers.IO) {
-        val date = getCurrentDateTime()
         try {
-            val response = challengeApi.getChallengesByCategory(categoryId, date)
-            if (response.isSuccessful) {
-                response.body() // 성공 시 ChallengeCategoryResponse 반환
+            val date = getCurrentDateTime()
+            val response = challengeApi.getChallengesByCategory("", categoryId, date)
+
+            if (response.isSuccessful()) {
+                response.data
             } else {
+                Log.e("ChallengeRepository", "getChallengesByCategory API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("ChallengeRepository", "getChallengesByCategory Exception: ${e.message}")
             null
         }
     }
 
-
     suspend fun createChallenge(challenge: ChallengeCreationRequest): ChallengeCreationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.createChallenge(challenge)
+            val response = challengeApi.createChallenge("", challenge)
 
-            if (response.isSuccessful) {
-                response.body() // 성공 시 ChallengeCreationResponse 반환
+            if (response.isSuccessful()) {
+                response.data
             } else {
+                Log.e("ChallengeRepository", "createChallenge API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("ChallengeRepository", "createChallenge Exception: ${e.message}")
             null
         }
     }
 
     suspend fun deleteChallenge(challengeId: Long): ChallengeDeletionResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.deleteChallenge(challengeId)
+            val response = challengeApi.deleteChallenge("", challengeId)
 
-            if (response.isSuccessful) {
-                response.body() // 성공 시 ChallengeDeletionResponse 반환
+            if (response.isSuccessful()) {
+                response.data
             } else {
+                Log.e("ChallengeRepository", "deleteChallenge API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("ChallengeRepository", "deleteChallenge Exception: ${e.message}")
             null
         }
     }
-
 
     suspend fun reserveChallenge(challengeId: Long): ChallengeReservationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.reserveChallenge(challengeId)
+            val response = challengeApi.reserveChallenge("", challengeId)
 
-            if (response.isSuccessful) {
-                response.body() // 성공 시 ChallengeReservationResponse 반환
+            if (response.isSuccessful()) {
+                response.data
             } else {
+                Log.e("ChallengeRepository", "reserveChallenge API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("ChallengeRepository", "reserveChallenge Exception: ${e.message}")
             null
         }
     }
 
-
     private fun getCurrentDateTime(): String {
-        //TODO: 나중에 이거 적당한 위치에 잚 만들어놓기
-        return "2024-09-05:07:25"
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH:mm"))
     }
 }

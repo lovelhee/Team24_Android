@@ -2,16 +2,62 @@ package com.challengeonair.challengeonairandroid.view.login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.challengeonair.challengeonairandroid.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import com.challengeonair.challengeonairandroid.R
+import com.challengeonair.challengeonairandroid.databinding.ActivityLoginBinding
+import com.challengeonair.challengeonairandroid.viewmodel.UserViewModel
+import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // viewModel 사용
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        setupStateObserver()
+        setupKakaoLoginButton()
+    }
+
+    private fun setupStateObserver() {
+        lifecycleScope.launch {
+            try {
+                userViewModel.uiState.collect { state ->
+                    when (state.loginState) {
+                        is UserViewModel.LoginState.LOGGED_IN -> {
+                            // 로그인 성공 처리
+                        }
+                        is UserViewModel.LoginState.NOT_LOGGED_IN -> {
+                            // 로그인 필요
+                        }
+                        is UserViewModel.LoginState.TOKEN_EXPIRED -> {
+                            userViewModel.reissueToken()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                // 에러 처리
+            }
+        }
+    }
+
+    private fun setupKakaoLoginButton() {
+        binding.kakaoLoginButton.setOnClickListener {
+            userViewModel.loginWithKakao(this@LoginActivity)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

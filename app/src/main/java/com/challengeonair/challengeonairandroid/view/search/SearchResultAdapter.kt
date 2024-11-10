@@ -33,7 +33,7 @@ class SearchResultAdapter :
 //            binding.tvEndTime.text = challenge.endTime
 //            binding.tvCurrentNum.text = challenge.currentParticipantNum.toString()
             Glide.with(binding.ivChallengeCover.context)
-                .load(challenge.imageUrl)
+                .load(challenge.imageExtension)
                 .into(binding.ivChallengeCover)
 
         }

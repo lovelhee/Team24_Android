@@ -28,8 +28,8 @@ class MyPageHistoryActivity : AppCompatActivity() {
         val rvHistory = myPageHistoryBinding.rvHistory
 
         val dummyHistoryList = listOf(
-            History("하루 30분 모각독", "11:00", "11:30", "08.24", isSucceed = true, isHost = true),
-            History("방 처음 파본다", "10:30", "11:00", "08.25", isSucceed = true, isHost = true)
+            History("하루 30분 모각독", "11:00", "11:30", "08.24", isSucceeded = true, isHost = true),
+            History("방 처음 파본다", "10:30", "11:00", "08.25", isSucceeded = true, isHost = true)
         )
 
         val btnBack = myPageHistoryBinding.btnBack

@@ -1,36 +1,25 @@
 package com.challengeonair.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
-data class UserResponse(
-    @SerializedName("email") val email: String? = null,
-    @SerializedName("msg") val message: String? = null,
-    @SerializedName("user_id") val userId: Long? = null
-)
-
-data class UserErrorResponse(
+data class LogInResponse(
+    @SerializedName("status") val status: String,
     @SerializedName("code") val code: Int,
-    @SerializedName("msg") val message: String? = null,
-    @SerializedName("validation") val validation: ValidationErrors? = null
+    @SerializedName("message") val message: String,
+    @SerializedName("data") val data: Nothing? = null
 )
 
-data class ValidationErrors(
-    @SerializedName("user_name") val userName: String? = null,
-    @SerializedName("user_nick_name") val userNickName: String? = null,
-    @SerializedName("password") val password: String? = null,
-    @SerializedName("email") val email: String? = null
+data class LogoutResponse(
+    @SerializedName("msg") val message: String
 )
 
-// 회원가입 요청 모델
-data class RegisterRequest(
-    @SerializedName("user_name") val userName: String,
-    @SerializedName("user_nick_name") val userNickName: String,
-    @SerializedName("password") val password: String,
-    @SerializedName("email") val email: String
+data class UserDeletionResponse(
+    @SerializedName("userId") val userId: Long
 )
 
-// 로그인 응답 모델 (토큰 정보를 포함할 경우)
-data class LoginResponse(
-    @SerializedName("access_token") val accessToken: String,
-    @SerializedName("refresh_token") val refreshToken: String
+@Serializable
+data class ReIssueTokenResponse(
+    @SerializedName("Authorization") val accessToken: String, // 새로운 access Token
+    @SerializedName("reIssueToken") val reIssueToken: String // 새로운 reissue 토큰
 )
