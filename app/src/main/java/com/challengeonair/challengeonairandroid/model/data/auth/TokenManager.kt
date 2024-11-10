@@ -43,7 +43,7 @@ class TokenManager @Inject constructor(
         }.first()
     }
 
-    suspend fun getRefreshToken(): String? {
+    suspend fun getReIssueToken(): String? {
         return dataStore.data.map { preferences ->
             preferences[REFRESH_TOKEN]
         }.first()

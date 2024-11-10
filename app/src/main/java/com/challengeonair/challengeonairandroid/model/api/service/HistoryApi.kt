@@ -1,11 +1,8 @@
 package com.example.challengeonairandroid.model.api.service
 
 import com.example.challengeonairandroid.model.api.response.ApiResponse
-import com.example.challengeonairandroid.model.api.response.HistoryListResponse
+import com.example.challengeonairandroid.model.api.response.AllHistoriesResponse
 import com.example.challengeonairandroid.model.api.response.HistoryResponse
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -21,7 +18,7 @@ interface HistoryApi {
 
     // 2. 회원 챌린지 History 전체 조회
     @GET("api/histories")
-    suspend fun getAllHistory(
+    suspend fun getAllHistories(
         @Header("Authorization") accessToken: String
-    ): ApiResponse<HistoryListResponse>
+    ): ApiResponse<AllHistoriesResponse>
 }

@@ -59,7 +59,7 @@ class AuthInterceptor @Inject constructor(
     }
 
     private suspend fun handleTokenRefresh(chain: Interceptor.Chain, originalRequest: Request): Response {
-        val refreshToken = tokenManager.getRefreshToken() ?:
+        val refreshToken = tokenManager.getReIssueToken() ?:
         throw IllegalStateException("Refresh token not found")
 
         // 토큰 재발급 요청

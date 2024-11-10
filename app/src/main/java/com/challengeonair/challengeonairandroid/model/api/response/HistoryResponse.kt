@@ -18,6 +18,6 @@ data class HistoryResponse(
     @SerializedName("point") val point: Int
 )
 
-data class HistoryListResponse(
+data class AllHistoriesResponse(
     @SerializedName("histories") val histories: List<HistoryResponse>
 )

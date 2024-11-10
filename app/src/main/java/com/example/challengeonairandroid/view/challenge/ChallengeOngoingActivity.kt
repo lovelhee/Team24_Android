@@ -195,6 +195,7 @@ class ChallengeOngoingActivity : AppCompatActivity() {
                 .setRoom(roomName)
                 .setAudioMuted(false)
                 .setVideoMuted(false)
+                .setFeatureFlag("lobby.enabled", false) // 대기실 기능 비활성화
                 .setFeatureFlag("chat.enabled", true)
                 .setFeatureFlag("invite.enabled", false)
                 .setFeatureFlag("meeting-name.enabled", false)
