@@ -6,9 +6,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.challengeonair.challengeonairandroid.R
-import com.challengeonair.challengeonairandroid.model.data.Category
-import com.challengeonair.challengeonairandroid.model.data.Challenge
+import com.challengeonair.challengeonairandroid.model.data.entity.Category
+import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
 import com.challengeonair.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.challengeonair.challengeonairandroid.view.mypage.MyPageActivity
 import com.challengeonair.challengeonairandroid.view.search.SearchActivity

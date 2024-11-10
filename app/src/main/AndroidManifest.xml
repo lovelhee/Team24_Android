@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.challengeonair.challengeonairandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -46,9 +47,6 @@
             android:exported="false" />
         <activity
             android:name=".view.search.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.challenge.CreateChallengeCompletedDialog"
             android:exported="false" />
         <activity
             android:name=".view.alarm.AlarmActivity"
