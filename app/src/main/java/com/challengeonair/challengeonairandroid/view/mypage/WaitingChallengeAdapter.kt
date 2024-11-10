@@ -30,7 +30,7 @@ class WaitingChallengeAdapter(
         holder.binding.challenge = currentChallenge
 
         Glide.with(holder.itemView.context)
-            .load(currentChallenge.imageUrl)
+            .load(currentChallenge.imageExtension)
             .placeholder(R.drawable.sample_challenge_thumbnail)
             .error(R.drawable.sample_challenge_thumbnail)
             .into(holder.binding.ivChallengeImg)

@@ -5,7 +5,7 @@ data class History(
     val challengeStartTime: String,
     val challengeEndTime: String,
     val historyDate: String,
-    val isSucceed: Boolean,
+    val isSucceeded: Boolean,
     val isHost: Boolean
 )
 
@@ -28,13 +28,14 @@ data class Category(
 ) // 카테고리 아이디를 받으면 enum으로
 
 data class Challenge(
+    val challengeId: Long,
     val challengeName: String,
     val challengeBody: String,
     val point: Int,
     val challengeDate: String,
     val startTime: String,
     val endTime: String,
-    val imageUrl: String,
+    val imageExtension: String,
     val minParticipantNum: Int,
     val maxParticipantNum: Int,
     val currentParticipantNum: Int,

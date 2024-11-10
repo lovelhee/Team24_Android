@@ -17,12 +17,13 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeDate = "2024-10-12",
         startTime = "06:00",
         endTime = "07:00",
-        imageUrl = "https://media.istockphoto.com/id/1704187857/ko/%EC%82%AC%EC%A7%84/%EC%84%A0%EB%91%90-%EC%A3%BC%EC%9E%90-%EB%94%B0%EB%9D%BC%EC%9E%A1%EA%B8%B0.jpg?s=1024x1024&w=is&k=20&c=G09WByt9tu2ry6nUOpPiWFfxMTNsJpHVRM3D8oxdzmE=",
+        imageExtension = "https://media.istockphoto.com/id/1704187857/ko/%EC%82%AC%EC%A7%84/%EC%84%A0%EB%91%90-%EC%A3%BC%EC%9E%90-%EB%94%B0%EB%9D%BC%EC%9E%A1%EA%B8%B0.jpg?s=1024x1024&w=is&k=20&c=G09WByt9tu2ry6nUOpPiWFfxMTNsJpHVRM3D8oxdzmE=",
         currentParticipantNum = 3,
         maxParticipantNum = 4,
         minParticipantNum = 2,
         hostId = 1L,
-        categoryId = 0
+        categoryId = 0,
+        challengeId = 1
     ),
     ChallengeResponse(
         challengeName = "3대 500을 위하여",
@@ -32,11 +33,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 2,
         startTime = "08:00",
         endTime = "09:00",
-        imageUrl = "https://cdn.pixabay.com/photo/2016/03/27/23/00/weight-lifting-1284616_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2016/03/27/23/00/weight-lifting-1284616_1280.jpg",
         currentParticipantNum = 2,
         maxParticipantNum = 4,
         hostId = 1L,
-        categoryId = 1
+        categoryId = 1,
+        challengeId = 2
     ),
     ChallengeResponse(
         challengeName = "자기 계발 독서",
@@ -46,11 +48,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
-        imageUrl = "https://cdn.pixabay.com/photo/2017/08/09/10/32/reading-2614105_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2017/08/09/10/32/reading-2614105_1280.jpg",
         currentParticipantNum = 4,
         maxParticipantNum = 4,
         hostId = 2,
-        categoryId = 1
+        categoryId = 1,
+        challengeId = 2
     ),
     ChallengeResponse(
         challengeName = "악기 연습",
@@ -60,11 +63,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
-        imageUrl = "https://cdn.pixabay.com/photo/2017/06/24/04/31/piano-2436664_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2017/06/24/04/31/piano-2436664_1280.jpg",
         currentParticipantNum = 1,
         maxParticipantNum = 4,
         hostId = 2L,
-        categoryId = 2
+        categoryId = 2,
+        challengeId = 7
     ),
     ChallengeResponse(
         challengeName = "수학 공부",
@@ -74,11 +78,12 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
-        imageUrl = "https://cdn.pixabay.com/photo/2020/09/23/03/54/background-5594879_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2020/09/23/03/54/background-5594879_1280.jpg",
         currentParticipantNum = 3,
         maxParticipantNum = 4,
         hostId = 4L,
-        categoryId = 3
+        categoryId = 3,
+        challengeId = 22
     ),
     ChallengeResponse(
         challengeName = "토익 D-2",
@@ -90,9 +95,10 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 2,
         maxParticipantNum = 4,
         currentParticipantNum = 2,
-        imageUrl = "https://cdn.pixabay.com/photo/2018/09/26/09/07/education-3704026_1280.jpg",
+        imageExtension = "https://cdn.pixabay.com/photo/2018/09/26/09/07/education-3704026_1280.jpg",
         hostId = 4L,
-        categoryId = 3
+        categoryId = 3,
+        challengeId = 23
     )
 
 )
@@ -138,8 +144,9 @@ class SearchViewModel : ViewModel() {
                 point = response.point,
                 startTime = response.startTime,
                 endTime = response.endTime,
-                imageUrl = response.imageUrl,
-                hostId = response.hostId
+                imageExtension = response.imageExtension,
+                hostId = response.hostId,
+                challengeId = response.challengeId
             )
         }
         filterChallenges()

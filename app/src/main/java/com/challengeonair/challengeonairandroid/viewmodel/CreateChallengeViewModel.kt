@@ -27,6 +27,7 @@ class CreateChallengeViewModel @Inject constructor(
         _challengeCreationStatus.value = false
     }
 
+
     fun createChallenge() {
         _challengeData.value = ChallengeCreationRequest(
             categoryId = categoryId.value,
@@ -35,11 +36,10 @@ class CreateChallengeViewModel @Inject constructor(
             challengeDate = challengeDate.value,
             maxParticipantNum = maxParticipantNum.value,
             minParticipantNum = minParticipantNum.value,
-            currentParticipantNum = 1,
             startTime = startTime.value,
             endTime = endTime.value,
             point = point.value.toInt(),
-            imageUrl = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
+            imageExtension = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             hostId = 1L // TODO: 실제 사용자 정보로 설정
         )
     }
@@ -171,10 +171,9 @@ class CreateChallengeViewModel @Inject constructor(
             challengeDate = "",
             startTime = "",
             endTime = "",
-            imageUrl = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
+            imageExtension = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             minParticipantNum = 2,
             maxParticipantNum = 4,
-            currentParticipantNum = 1,
             hostId = 1L // TODO: 실제 사용자 정보로 설정
         )
         updateChallenges(defaultResponse)
@@ -183,14 +182,14 @@ class CreateChallengeViewModel @Inject constructor(
     private fun updateChallenges(request: ChallengeCreationRequest) {
         _categoryId.value = request.categoryId
         _challengeName.value = request.challengeName
-        _challengeBody.value = request.challengeBody
+        _challengeBody.value = request.challengeBody ?: ""
         _point.value = request.point.toString()
         _challengeDate.value = request.challengeDate
         _startTime.value = request.startTime
         _endTime.value = request.endTime
         _minParticipantNum.value = request.minParticipantNum
         _maxParticipantNum.value = request.maxParticipantNum
-        _challengeImage.value = request.imageUrl
+        _challengeImage.value = request.imageExtension
     }
 
     fun isStep1Valid(): Boolean {
