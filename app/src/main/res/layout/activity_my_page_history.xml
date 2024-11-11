@@ -7,7 +7,7 @@
     <data>
         <variable
             name="myPageHistoryData"
-            type="com.example.challengeonairandroid.viewmodel.MyPageViewModel" />
+            type="com.challengeonair.challengeonairandroid.viewmodel.MyPageViewModel" />
     </data>
 
 
@@ -52,5 +52,4 @@
             tools:listitem="@layout/item_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

@@ -1,0 +1,107 @@
+package com.challengeonair.challengeonairandroid.model.repository
+
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
+import com.challengeonair.challengeonairandroid.model.api.response.AllHistoriesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
+import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
+import com.challengeonair.challengeonairandroid.model.api.service.HistoryApi
+import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+@Singleton
+class MyPageRepository @Inject constructor(
+    private val userProfileApi: UserProfileApi,
+    private val historyApi: HistoryApi,
+    private val challengeApi: ChallengeApi
+) {
+    // 사용자 프로필 조회
+    suspend fun getUserProfile(accessToken: String): UserProfileResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = userProfileApi.getUserProfile(accessToken)
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    // 사용자 프로필 수정
+    suspend fun updateUserProfile(
+        userProfileUpdateRequest: UserProfileUpdateRequest,
+        accessToken: String
+    ): UserProfileUpdateResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = userProfileApi.updateUserProfile(accessToken, userProfileUpdateRequest)
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    // 회원 챌린지 History 전체 조회
+    suspend fun getAllHistory(accessToken: String): AllHistoriesResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = historyApi.getAllHistories(accessToken)
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    // 챌린지 단건 조회
+    suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
+        try {
+            val date = getCurrentDateTime()
+            val response = challengeApi.getChallengeDetails("", challengeId, date)
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    // 챌린지 예약
+    suspend fun reserveChallenge(challengeId: Long): ChallengeReservationResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = challengeApi.reserveChallenge("", challengeId)
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private fun getCurrentDateTime(): String {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH:mm"))
+    }
+}

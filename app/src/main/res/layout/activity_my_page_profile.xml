@@ -7,7 +7,7 @@
     <data>
         <variable
             name="myPageProfileData"
-            type="com.example.challengeonairandroid.viewmodel.MyPageViewModel" />
+            type="com.challengeonair.challengeonairandroid.viewmodel.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvToolBarTitle"
                 android:layout_gravity="center"
-                android:text="회원 정보 수정"
+                android:text="@string/profile_modify"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -54,7 +54,8 @@
             android:clipToOutline="true"
             android:layout_marginTop="36dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolBar"
+            android:contentDescription="@string/img_profile" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,7 +70,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="닉네임"
+                android:text="@string/user_nickname"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -79,7 +80,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_profile_name_background"
-                android:hint="홍길동"
+                android:hint="@string/user_name"
                 android:text="@{String.valueOf(myPageProfileData.userProfile.userNickName)}"
                 android:paddingStart="16dp"
                 android:textSize="14sp" />
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnComplete"
             android:padding="24dp"
-            android:text="변경 완료"
+            android:text="@string/change_complete"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"

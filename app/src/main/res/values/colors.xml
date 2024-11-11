@@ -5,7 +5,15 @@
     <color name="main_red">#FF3B30</color>
     <color name="sub_red">#FFE3E1</color>
     <color name="background_gray">#F6F6F6</color>
+    <color name="gray">#C8C8C8</color>
     <color name="text_black">#333333</color>
     <color name="text_gray">#5D5D5D</color>
     <color name="gray_transparent">#55000000</color>
+    <color name="background_red">#FFE3E1</color>
+    <color name="text_white_gray">#9E9E9E</color>
+    <color name="deep_red">#9A0B03</color>
+    <color name="white_gray">#F4F4F4</color>
+    <color name="deep_gray">#CACACA</color>
+    <color name="text_green">#2C8E50</color>
+    <color name="background_green">#B2F1A4</color>
 </resources>

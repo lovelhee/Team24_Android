@@ -6,7 +6,7 @@
     <data>
         <variable
             name="challenge"
-            type="com.example.challengeonairandroid.model.data.Challenge" />
+            type="com.challengeonair.challengeonairandroid.model.data.entity.Challenge" />
 
     </data>
 
@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:src="@drawable/sample_challenge_thumbnail"
-                    android:src="@{challenge.imageUrl}"
+                    android:src="@{challenge.imageExtension}"
                     android:scaleType="centerCrop" />
 
                 <TextView

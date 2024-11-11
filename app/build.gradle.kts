@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.challengeonairandroid"
+    namespace = "com.challengeonair.challengeonairandroid"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.challengeonairandroid"
-        minSdk = 24
+        applicationId = "com.challengeonair.challengeonairandroid"
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.security.crypto)
     implementation(libs.androidx.databinding.runtime)
+    implementation(libs.androidx.browser)
+    implementation(libs.jitsi.meet) { isTransitive = true }
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
     testImplementation(libs.junit)
@@ -68,6 +70,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.glide)
     kapt (libs.compiler)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 }
 
 kapt {

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.challengeonair.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,7 +55,8 @@
                             android:padding="15dp"
                             android:text="@string/category_exercise"
                             android:button="@null"
-                            android:background="@drawable/create_challenge_radio_button" />
+                            android:background="@drawable/create_challenge_radio_button"
+                            android:checked="true" />
 
                         <RadioButton
                             android:id="@+id/rbDevelopment"
@@ -179,7 +188,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="15dp"
                             android:gravity="center"
-                            android:text="@string/min_num" />
+                            android:text="@{String.valueOf(viewModel.minParticipantNum)}" />
 
                         <Button
                             android:id="@+id/btnPlusMinNum"
@@ -213,7 +222,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="15dp"
                             android:gravity="center"
-                            android:text="@string/max_num" />
+                            android:text="@{String.valueOf(viewModel.maxParticipantNum)}" />
 
                         <Button
                             android:id="@+id/btnPlusMaxNum"
