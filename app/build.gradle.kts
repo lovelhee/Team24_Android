@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.challengeonairandroid"
+    namespace = "com.challengeonair.challengeonairandroid"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.challengeonairandroid"
+        applicationId = "com.challengeonair.challengeonairandroid"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
