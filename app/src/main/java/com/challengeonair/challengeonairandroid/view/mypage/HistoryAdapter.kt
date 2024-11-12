@@ -21,12 +21,10 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val history = historyList[position]
 
-        // 날짜 설정
         holder.tvDate.text = history.historyDate
-        // 챌린지 이미지 설정 (Glide/Picasso 등을 사용할 수 있습니다)
+
         holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover) // 실제 이미지 로드 필요
 
-        // 성공/실패 여부
         if (history.isSucceeded) {
             holder.tvSuccess.visibility = View.VISIBLE
             holder.tvFail.visibility = View.GONE
@@ -35,13 +33,10 @@ class HistoryAdapter(
             holder.tvFail.visibility = View.VISIBLE
         }
 
-        // 방장 여부
         holder.tvMade.visibility = if (history.isHost) View.VISIBLE else View.GONE
 
-        // 챌린지 제목 및 설명
         holder.tvTitle.text = history.challengeName
 
-        // 시작 시간 및 종료 시간
         holder.tvStartTime.text = history.challengeStartTime
         holder.tvEndTime.text = history.challengeEndTime
     }

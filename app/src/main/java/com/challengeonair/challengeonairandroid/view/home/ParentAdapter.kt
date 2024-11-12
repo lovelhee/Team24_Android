@@ -35,7 +35,7 @@ class ParentAdapter(
                 adapter = childAdapter
             }
 
-            updateChallengeList(childAdapter, 1L)
+            updateChallengeList(childAdapter)
             setupCategoryClickListeners()
             updateCategoryUI(itemView.context)
         }
@@ -43,27 +43,27 @@ class ParentAdapter(
         private fun setupCategoryClickListeners() {
             binding.layoutExercise.setOnClickListener {
                 selectedCategoryId = CategoryType.EXERCISE.id
-                updateChallengeList(childAdapter, selectedCategoryId)
+                updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutDevelop.setOnClickListener {
                 selectedCategoryId = CategoryType.DEVELOPMENT.id
-                updateChallengeList(childAdapter, selectedCategoryId)
+                updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutHobby.setOnClickListener {
                 selectedCategoryId = CategoryType.HOBBY.id
-                updateChallengeList(childAdapter, selectedCategoryId)
+                updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutStudy.setOnClickListener {
                 selectedCategoryId = CategoryType.STUDY.id
-                updateChallengeList(childAdapter, selectedCategoryId)
+                updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
         }
 
-        private fun updateChallengeList(childAdapter: ChildAdapter, categoryId: Long) {
+        private fun updateChallengeList(childAdapter: ChildAdapter, categoryId: Long = selectedCategoryId) {
             val challenges = challengesByCategory[categoryId] ?: emptyList()
             childAdapter.updateData(challenges)
         }
