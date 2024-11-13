@@ -5,17 +5,19 @@ import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.dummyChallengeResponses
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
+import com.okaka.challengeonairandroid.model.repository.ChallengeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-//@HiltViewModel
-//class SearchViewModel @Inject constructor(
-//    private val searchRepository: SearchRepository
-//) : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val challengeRepository: ChallengeRepository
+): ViewModel() {
 
-class SearchViewModel : ViewModel() {
     private val _categoryId = MutableStateFlow(0) // 초기값 설정
     val categoryId: StateFlow<Int> get() = _categoryId.asStateFlow()
 
