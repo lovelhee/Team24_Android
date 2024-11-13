@@ -7,7 +7,7 @@
     <data>
         <variable
             name="myPageHistoryData"
-            type="com.challengeonair.challengeonairandroid.viewmodel.MyPageViewModel" />
+            type="com.okaka.challengeonairandroid.viewmodel.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="alarm"
-            type="com.challengeonair.challengeonairandroid.model.data.entity.Alarm" />
+            type="com.okaka.challengeonairandroid.model.data.entity.Alarm" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

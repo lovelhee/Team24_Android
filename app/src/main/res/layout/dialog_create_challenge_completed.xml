@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.challengeonair.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
+            type="com.okaka.challengeonairandroid.viewmodel.CreateChallengeViewModel" />
     </data>
 
     <RelativeLayout
