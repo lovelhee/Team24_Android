@@ -37,13 +37,14 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        // 더미 데이터 설정 (API 호출 없이 UI 테스트)
-        val isTestingWithDummyData = true // 더미 데이터 사용 여부를 설정
+        var challengeId = -1L
+        // 더미 데이터 설정
+        val isTestingWithDummyData = true // 더미 데이터 사용 여부
         if (isTestingWithDummyData) {
             setDummyData()
         } else {
             // 실제 데이터 로드
-            val challengeId = intent.getLongExtra("challengeId", -1L)
+            challengeId = intent.getLongExtra("challengeId", -1L)
             if (challengeId != -1L) {
                 viewModel.loadChallengeDetails(challengeId)
             }
@@ -58,6 +59,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         }
 
         binding.btnEnterChallenge.setOnClickListener {
+            viewModel.joinChallenge(challengeId)
             binding.btnEnterChallenge.visibility = View.GONE
             binding.layoutUserEnterBtn.visibility = View.VISIBLE
             showReservationDialog()

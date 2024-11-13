@@ -29,6 +29,16 @@ class ParticipateChallengeViewModel @Inject constructor(
     private val currentUserId = "current_user_id"
     val isHost: StateFlow<Boolean> = MutableStateFlow(false)
 
+    fun joinChallenge(challengeId: Long) {
+        viewModelScope.launch {
+            val response = challengeRepository.reserveChallenge(challengeId)
+
+            if (response != null) {
+                loadChallengeDetails(challengeId)
+            }
+        }
+    }
+
     fun loadChallengeDetails(challengeId: Long) {
         viewModelScope.launch {
             val challengeResponse = challengeRepository.getChallengeDetails(challengeId)
