@@ -1,6 +1,6 @@
 package com.okaka.challengeonairandroid.model.api.response
 
-import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.google.gson.annotations.SerializedName
 
 // 1. 회원 챌린지 History 단건 조회

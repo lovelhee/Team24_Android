@@ -3,6 +3,7 @@ package com.okaka.challengeonairandroid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.data.dummyChallengeResponses
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

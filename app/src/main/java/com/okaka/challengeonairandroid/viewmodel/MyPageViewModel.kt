@@ -4,10 +4,10 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.okaka.challengeonairandroid.model.api.response.AllHistoriesResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.api.response.HistoryResponse
 import com.okaka.challengeonairandroid.model.api.response.UserProfileResponse
+import com.okaka.challengeonairandroid.model.data.dummyChallengeResponses
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.model.data.entity.History
 import com.okaka.challengeonairandroid.model.data.entity.UserProfile

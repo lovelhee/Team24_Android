@@ -1,12 +1,12 @@
-package com.challengeonair.challengeonairandroid.view.vote
+package com.okaka.challengeonairandroid.view.vote
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.challengeonair.challengeonairandroid.R
-import com.challengeonair.challengeonairandroid.databinding.ActivityLoadingBinding
+import com.okaka.challengeonairandroid.R
+import com.okaka.challengeonairandroid.databinding.ActivityLoadingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -68,7 +68,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-       
         val parentAdapter = ParentAdapter(challengesByCategory)
         binding.rvParent.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)

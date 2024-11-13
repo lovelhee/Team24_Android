@@ -23,13 +23,6 @@ interface ChallengeApi {
         @Body date: String
     ): ApiResponse<ChallengeResponse>
 
-    @GET("api/challenges/category/{categoryId}")
-    suspend fun getChallengesByCategory(
-        @Header("Authorization") accessToken: String,
-        @Path("categoryId") categoryId: Int,
-        @Query("date") date: String
-    ): ApiResponse<ChallengeCategoryResponse>
-
     @POST("api/challenges")
     suspend fun createChallenge(
         @Header("Authorization") accessToken: String,
