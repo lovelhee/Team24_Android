@@ -3,10 +3,13 @@ package com.challengeonair.challengeonairandroid.view.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.challengeonair.challengeonairandroid.databinding.ActivityHomeBinding
+import com.challengeonair.challengeonairandroid.model.data.auth.TokenManager
 import com.challengeonair.challengeonairandroid.model.data.entity.Category
 import com.challengeonair.challengeonairandroid.model.data.entity.Challenge
 import com.challengeonair.challengeonairandroid.view.alarm.AlarmActivity
@@ -15,15 +18,19 @@ import com.challengeonair.challengeonairandroid.view.mypage.MyPageActivity
 import com.challengeonair.challengeonairandroid.view.search.SearchActivity
 import com.challengeonair.challengeonairandroid.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: ActivityHomeBinding
+    private val TAG = "HomeActivity"
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -43,6 +50,23 @@ class HomeActivity : AppCompatActivity() {
             startActivity(MyPageActivity.intent(this))
         }
 
+        lifecycleScope.launch {
+            try {
+                val accessToken = tokenManager.getAccessToken()
+                val refreshToken = tokenManager.getReIssueToken()
+
+                Log.d(TAG, "Stored Access Token length: ${accessToken?.length ?: 0}")
+                Log.d(TAG, "Stored Refresh Token length: ${refreshToken?.length ?: 0}")
+
+                if (accessToken.isNullOrEmpty() || refreshToken.isNullOrEmpty()) {
+                    Log.w(TAG, "One or both tokens are missing - Access: ${!accessToken.isNullOrEmpty()}, Refresh: ${!refreshToken.isNullOrEmpty()}")
+                } else {
+                    Log.d(TAG, "Both tokens are present and valid")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error checking tokens", e)
+            }
+        }
 
         // 더미 데이터
         val categories = listOf(

@@ -1,10 +1,6 @@
 package com.challengeonair.challengeonairandroid.viewmodel
 
-import android.app.Activity
 import android.util.Log
-import android.webkit.CookieManager
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challengeonair.challengeonairandroid.model.data.auth.TokenManager
@@ -17,6 +13,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
+
+private const val TAG = "UserViewModel"
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
@@ -37,152 +35,146 @@ class UserViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(UserUiState())
     val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
 
-    fun updateUiState(update: (UserUiState) -> UserUiState) {
-        _uiState.update(update)
+    init {
+        Log.d(TAG, "UserViewModel initialized")
     }
 
-    fun loginWithKakao(activity: Activity) {
-        val webView = WebView(activity).apply {
-            settings.javaScriptEnabled = true
-            webViewClient = object : WebViewClient() {
-                override fun onPageFinished(view: WebView?, url: String?) {
-                    super.onPageFinished(view, url)
-                    val cookieManager = CookieManager.getInstance()
-                    val cookies = cookieManager.getCookie(url)
-
-                    Log.d("UserViewModel", "Received cookies: $cookies")  // 토큰 확인용 로그
-
-                    cookies?.split(";")?.forEach { cookie ->
-                        val trimmedCookie = cookie.trim()
-                        when {
-                            trimmedCookie.startsWith("ACCESS_TOKEN=") -> {
-                                val accessToken = trimmedCookie.substring("ACCESS_TOKEN=".length)
-                                viewModelScope.launch {
-                                    tokenManager.saveAccessToken(accessToken)
-                                    updateUiState { it.copy(loginState = LoginState.LOGGED_IN) }
-                                }
-                                Log.d("UserViewModel", "Access Token saved to DataStore")  // 토큰 저장 확인 로그
-                            }
-                            trimmedCookie.startsWith("REFRESH_TOKEN=") -> {
-                                val refreshToken = trimmedCookie.substring("REFRESH_TOKEN=".length)
-                                viewModelScope.launch {
-                                    tokenManager.saveRefreshToken(refreshToken)
-                                }
-                                Log.d("UserViewModel", "Refresh Token saved to DataStore")  // 토큰 저장 확인 로그
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        CookieManager.getInstance().apply {
-            setAcceptCookie(true)
-            setAcceptThirdPartyCookies(webView, true)
-        }
-
-        activity.setContentView(webView)
-        webView.loadUrl("http://52.79.51.86:8080/oauth2/authorization/kakao")
-
+    fun updateUiState(update: (UserUiState) -> UserUiState) {
+        val previousState = _uiState.value
+        _uiState.update(update)
+        val newState = _uiState.value
+        Log.d(TAG, "UI State Updated - Previous: $previousState, New: $newState")
     }
 
     suspend fun reissueToken() {
+        Log.d(TAG, "Starting token reissue process")
         updateUiState { it.copy(isLoading = true) }
 
         try {
             val reIssueToken = tokenManager.getReIssueToken()
-            Log.d("UserViewModel", "현재 Refresh Token: $reIssueToken")
+            Log.d(TAG, "Current Refresh Token length: ${reIssueToken?.length ?: 0}")
 
             if (reIssueToken.isNullOrEmpty()) {
-                Log.d("UserViewModel", "Refresh Token이 없음, 토큰 만료 처리")
+                Log.w(TAG, "Refresh Token is null or empty, updating state to TOKEN_EXPIRED")
                 updateUiState { currentState -> currentState.copy(loginState = LoginState.TOKEN_EXPIRED) }
                 return
             }
 
-            // TokenManager에서 가져온 refresh token을 쿠키 형식으로 포맷팅
             val cookieValue = "refreshToken=$reIssueToken"
-            Log.d("UserViewModel", "쿠키 값: $cookieValue")
+            Log.d(TAG, "Formatted cookie value length: ${cookieValue.length}")
 
             userRepository.reIssueToken(cookieValue).fold(
                 onSuccess = { response ->
-                    Log.d("UserViewModel", "토큰 재발급 성공: Access Token: ${response.accessToken}, Refresh Token: ${response.reIssueToken}")
+                    Log.d(TAG, "Token reissue successful - New Access Token length: ${response.accessToken.length}, New Refresh Token length: ${response.reIssueToken.length}")
                     updateTokens(
                         accessToken = response.accessToken,
                         refreshToken = response.reIssueToken
                     )
                     updateUiState { it.copy(isLoading = false) }
+                    Log.d(TAG, "Token reissue process completed successfully")
                 },
                 onFailure = { exception ->
-                    Log.e("UserViewModel", "토큰 재발급 실패", exception)
+                    Log.e(TAG, "Token reissue failed", exception)
                     when {
-                        isRefreshTokenExpired(exception) -> updateUiState { currentState -> currentState.copy(loginState = LoginState.TOKEN_EXPIRED,) }
+                        isRefreshTokenExpired(exception) -> {
+                            Log.w(TAG, "Refresh token has expired")
+                            updateUiState { currentState -> currentState.copy(loginState = LoginState.TOKEN_EXPIRED) }
+                        }
+                        else -> {
+                            Log.e(TAG, "Unexpected error during token reissue", exception)
+                        }
                     }
                 }
             )
         } catch (e: Exception) {
-            Log.e("UserViewModel", "토큰 재발급 중 예외 발생", e)
+            Log.e(TAG, "Exception during token reissue process", e)
+            updateUiState { it.copy(isLoading = false) }
+        }
+    }
+
+    fun processCookies(cookies: String) {
+        Log.d(TAG, "Processing cookies")
+
+        var accessToken: String? = null
+        var refreshToken: String? = null
+
+        // 먼저 쿠키에서 토큰들을 추출
+        cookies.split(";").forEach { cookie ->
+            val trimmedCookie = cookie.trim()
+            when {
+                trimmedCookie.startsWith("access_token=") -> {
+                    accessToken = trimmedCookie.substring("ACCESS_TOKEN=".length)
+                    Log.d(TAG, "Found ACCESS_TOKEN: $accessToken")
+                }
+                trimmedCookie.startsWith("refresh_token=") -> {
+                    refreshToken = trimmedCookie.substring("REFRESH_TOKEN=".length)
+                    Log.d(TAG, "Found REFRESH_TOKEN: $refreshToken")
+                }
+            }
+        }
+
+        // 두 토큰이 모두 있을 때만 저장 진행
+        if (accessToken != null && refreshToken != null) {
+            viewModelScope.launch {
+                try {
+                    Log.d(TAG, "Saving both tokens")
+                    tokenManager.saveAccessToken(accessToken!!)
+                    tokenManager.saveRefreshToken(refreshToken!!)
+                    Log.d(TAG, "Both tokens saved successfully")
+
+                    // 두 토큰이 모두 저장된 후에 상태 업데이트
+                    updateUiState { it.copy(loginState = LoginState.LOGGED_IN) }
+                    Log.d(TAG, "Login state updated to LOGGED_IN")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to save tokens", e)
+                }
+            }
+        } else {
+            Log.w(TAG, "Missing tokens - Access Token: ${accessToken != null}, Refresh Token: ${refreshToken != null}")
         }
     }
 
     suspend fun updateTokens(accessToken: String, refreshToken: String) {
-        Log.d("UserViewModel", "토큰 업데이트: Access Token: $accessToken, Refresh Token: $refreshToken")
-        tokenManager.saveTokens(accessToken, refreshToken)
-        updateUiState { currentState ->
-            currentState.copy(
-                loginState = LoginState.LOGGED_IN,
-            )
+        Log.d(TAG, "Updating tokens - Access Token length: ${accessToken.length}, Refresh Token length: ${refreshToken.length}")
+        try {
+            tokenManager.saveTokens(accessToken, refreshToken)
+            Log.d(TAG, "Tokens successfully saved to TokenManager")
+            updateUiState { currentState ->
+                currentState.copy(loginState = LoginState.LOGGED_IN)
+            }
+            Log.d(TAG, "UI state updated to LOGGED_IN after token update")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to update tokens", e)
+            throw e
         }
-        Log.d("UserViewModel", "토큰 저장 완료")
     }
 
     fun logout() {
-        Log.d("UserViewModel", "로그아웃 시작")
+        Log.d(TAG, "Starting logout process")
         viewModelScope.launch {
-            tokenManager.clearTokens()
-            updateUiState { currentState ->
-                currentState.copy(
-                    loginState = LoginState.NOT_LOGGED_IN
-                )
+            try {
+                tokenManager.clearTokens()
+                Log.d(TAG, "Tokens cleared successfully")
+                updateUiState { currentState ->
+                    currentState.copy(loginState = LoginState.NOT_LOGGED_IN)
+                }
+                Log.d(TAG, "Logout completed successfully")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error during logout process", e)
             }
-            Log.d("UserViewModel", "로그아웃 완료")
         }
     }
 
     private fun isUnauthorizedError(e: Exception): Boolean {
-        return e is HttpException && e.code() == 401
+        val isUnauthorized = e is HttpException && e.code() == 401
+        Log.d(TAG, "Checking unauthorized error: $isUnauthorized (${e.javaClass.simpleName}: ${e.message})")
+        return isUnauthorized
     }
 
     private fun isRefreshTokenExpired(e: Throwable): Boolean {
-        return e is HttpException && e.code() == 401 && e.response()?.errorBody()?.string()?.contains("refresh_token_expired") == true
+        val isExpired = e is HttpException && e.code() == 401 &&
+                e.response()?.errorBody()?.string()?.contains("refresh_token_expired") == true
+        Log.d(TAG, "Checking refresh token expiration: $isExpired (${e.javaClass.simpleName}: ${e.message})")
+        return isExpired
     }
-
-//    suspend fun <T> callWithToken(
-//        apiCall: suspend (String) -> T
-//    ): T {
-//        try {
-//            val currentToken = tokenManager.getAccessToken()
-//            Log.d("UserViewModel", "API 호출 시도 (현재 토큰: $currentToken)")
-//            return apiCall(currentToken)
-//        } catch (e: Exception) {
-//            when {
-//                isUnauthorizedError(e) -> {
-//                    Log.d("UserViewModel", "Access Token 만료, 재발급 시도")
-//                    updateUiState { it.copy(loginState = LoginState.TOKEN_EXPIRED) }
-//                    reissueToken()
-//                    val newToken = _uiState.value.accessToken
-//                    Log.d("UserViewModel", "새로운 토큰으로 API 재시도: $newToken")
-//                    return apiCall(newToken)
-//                }
-//                isRefreshTokenExpired(e) -> {
-//                    Log.d("UserViewModel", "Refresh Token 만료")
-//                    handleAllTokensExpired()
-//                    throw e
-//                }
-//                else -> {
-//                    Log.e("UserViewModel", "API 호출 중 오류 발생", e)
-//                    throw e
-//                }
-//            }
-//        }
-//    }
 }

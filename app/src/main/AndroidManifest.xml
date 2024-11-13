@@ -28,7 +28,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".view.home.HomeActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
         </activity>
 
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".view.home.HomeActivity"
             android:exported="false">
         </activity>
         <activity
@@ -68,23 +68,10 @@
         <activity
             android:name=".view.alarm.AlarmActivity"
             android:exported="false" />
-
-        <!-- 카카오 로그인 웹뷰 액티비티 추가 -->
         <activity
             android:name=".view.login.KakaoWebViewActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize" />
-
-        <!-- jitsi -->
-        <receiver
-            android:name="org.jitsi.meet.sdk.BroadcastReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="org.jitsi.meet.CONFERENCE_JOINED" />
-                <action android:name="org.jitsi.meet.CONFERENCE_TERMINATED" />
-                <action android:name="org.jitsi.meet.CONFERENCE_WILL_JOIN" />
-            </intent-filter>
-        </receiver>
+            android:configChanges="orientation|screenSize|keyboardHidden" />
 
     </application>
 
