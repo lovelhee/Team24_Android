@@ -16,5 +16,5 @@ data class UserProfileUpdateRequest(
 )
 
 data class UserProfileUpdateResponse(
-    @SerializedName("user_id") val userId: Long
+    @SerializedName("user_id") val userId: String
 )
