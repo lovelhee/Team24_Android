@@ -10,7 +10,7 @@ enum class ApiStatus {
 data class ApiResponse<T>(
     val status: ApiStatus,
     val code: Int,
-    val message: String?,
+    val message: String,
     val data: T?
 ) {
     fun isSuccessful() = status == ApiStatus.SUCCESS

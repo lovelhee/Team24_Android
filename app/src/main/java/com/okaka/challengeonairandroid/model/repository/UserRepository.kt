@@ -42,9 +42,9 @@ class UserRepository @Inject constructor(
         }
     }
 
-    suspend fun deleteUser(accessToken: String): Result<UserDeletionResponse> {
+    suspend fun deleteUser(accessToken: String, userId: String): Result<UserDeletionResponse> {
         return try {
-            val response = userApi.deleteUser(accessToken)
+            val response = userApi.deleteUser(accessToken, userId)
             if (response.isSuccessful()) {
                 response.data?.let {
                     Result.success(it)

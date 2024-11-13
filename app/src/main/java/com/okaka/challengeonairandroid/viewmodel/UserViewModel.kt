@@ -65,10 +65,10 @@ class UserViewModel @Inject constructor(
 
             userRepository.reIssueToken(cookieValue).fold(
                 onSuccess = { response ->
-                    Log.d(TAG, "Token reissue successful - New Access Token length: ${response.accessToken.length}, New Refresh Token length: ${response.reIssueToken.length}")
+                    Log.d(TAG, "Token reissue successful - New Access Token length: ${response.accessToken.length}, New Refresh Token length: ${response.refreshToken.length}")
                     updateTokens(
                         accessToken = response.accessToken,
-                        refreshToken = response.reIssueToken
+                        refreshToken = response.refreshToken
                     )
                     updateUiState { it.copy(isLoading = false) }
                     Log.d(TAG, "Token reissue process completed successfully")

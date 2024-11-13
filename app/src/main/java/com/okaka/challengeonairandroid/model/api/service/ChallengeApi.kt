@@ -1,6 +1,5 @@
 package com.okaka.challengeonairandroid.model.api.service
 
-import com.okaka.challengeonairandroid.model.api.response.ChallengeCategoryResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
@@ -22,13 +21,6 @@ interface ChallengeApi {
         @Path("challengeId") challengeId: Long,
         @Body date: String
     ): ApiResponse<ChallengeResponse>
-
-    @GET("api/challenges/category/{categoryId}")
-    suspend fun getChallengesByCategory(
-        @Header("Authorization") accessToken: String,
-        @Path("categoryId") categoryId: Int,
-        @Query("date") date: String
-    ): ApiResponse<ChallengeCategoryResponse>
 
     @POST("api/challenges")
     suspend fun createChallenge(

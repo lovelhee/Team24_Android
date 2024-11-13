@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,15 +14,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivitySearchBinding
+import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import com.okaka.challengeonairandroid.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var searchBinding: ActivitySearchBinding
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private val TAG = "SearchActivity"
+    @Inject
+    lateinit var tokenManager: TokenManager
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         searchBinding = ActivitySearchBinding.inflate(layoutInflater)
@@ -36,6 +44,24 @@ class SearchActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             searchViewModel.challenges.collect { challenges ->
                 searchResultAdapter.submitList(challenges)
+            }
+        }
+
+        lifecycleScope.launch {
+            try {
+                val accessToken = tokenManager.getAccessToken()
+                val refreshToken = tokenManager.getReIssueToken()
+//                val allch = accessToken?.let { homeViewModel.loadAllChallenges(it) }
+                Log.d(TAG, "Stored Access Token length: ${accessToken}")
+                Log.d(TAG, "Stored Refresh Token length: ${refreshToken}")
+
+                if (accessToken.isNullOrEmpty() || refreshToken.isNullOrEmpty()) {
+                    Log.w(TAG, "One or both tokens are missing - Access: ${!accessToken.isNullOrEmpty()}, Refresh: ${!refreshToken.isNullOrEmpty()}")
+                } else {
+                    Log.d(TAG, "Both tokens are present and valid")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error checking tokens", e)
             }
         }
 

@@ -18,7 +18,7 @@
     <application
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:name="com.okaka.challengeonairandroid.ChallengeOnAir"
+        android:name=".ChallengeOnAir"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -69,9 +69,28 @@
             android:name="com.okaka.challengeonairandroid.view.alarm.AlarmActivity"
             android:exported="false" />
         <activity
+            android:name=".view.vote.LoadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.vote.VoteActivity"
+            android:exported="false" />
+
+        <!-- 카카오 로그인 웹뷰 액티비티 추가 -->
+        <activity
             android:name="com.okaka.challengeonairandroid.view.login.KakaoWebViewActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize|keyboardHidden" />
+
+<!--        &lt;!&ndash; jitsi &ndash;&gt;-->
+<!--        <receiver-->
+<!--            android:name="org.jitsi.meet.sdk.BroadcastReceiver"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="org.jitsi.meet.CONFERENCE_JOINED" />-->
+<!--                <action android:name="org.jitsi.meet.CONFERENCE_TERMINATED" />-->
+<!--                <action android:name="org.jitsi.meet.CONFERENCE_WILL_JOIN" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
     </application>
 

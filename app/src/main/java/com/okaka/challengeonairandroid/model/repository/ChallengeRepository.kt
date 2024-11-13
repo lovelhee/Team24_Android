@@ -3,7 +3,6 @@ package com.okaka.challengeonairandroid.model.repository
 import android.util.Log
 import com.okaka.challengeonairandroid.model.api.response.AllChallengesResponse
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
-import com.okaka.challengeonairandroid.model.api.response.ChallengeCategoryResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
@@ -49,23 +48,6 @@ class ChallengeRepository @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e("ChallengeRepository", "getChallengeDetails Exception: ${e.message}")
-            null
-        }
-    }
-
-    suspend fun getChallengesByCategory(categoryId: Int): ChallengeCategoryResponse? = withContext(Dispatchers.IO) {
-        try {
-            val date = getCurrentDateTime()
-            val response = challengeApi.getChallengesByCategory("", categoryId, date)
-
-            if (response.isSuccessful()) {
-                response.data
-            } else {
-                Log.e("ChallengeRepository", "getChallengesByCategory API Error: ${response.message}")
-                null
-            }
-        } catch (e: Exception) {
-            Log.e("ChallengeRepository", "getChallengesByCategory Exception: ${e.message}")
             null
         }
     }

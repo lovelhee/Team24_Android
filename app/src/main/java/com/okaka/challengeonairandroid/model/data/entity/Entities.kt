@@ -1,31 +1,24 @@
 package com.okaka.challengeonairandroid.model.data.entity
 
 data class History(
-    val challengeName: String,
-    val challengeStartTime: String,
-    val challengeEndTime: String,
-    val historyDate: String,
+    val challenge: Challenge,
     val isSucceeded: Boolean,
-    val isHost: Boolean
+    val isHost: Boolean,
+    val point: Int
 )
 
 data class User(
     val userId: String,
-    val userName: String,
-)
-
-data class UserProfile(
     val userNickName: String,
-    val userBody: String,
     val imageUrl: String,
     val point: Int
 )
 
-data class Category(
-    val categoryId: Long,
-    val categoryName: String,
-    val categoryDescription: String
-) // 카테고리 아이디를 받으면 enum으로
+data class UserProfile(
+    val userNickName: String,
+    val imageUrl: String,
+    val point: Int
+)
 
 data class Challenge(
     val challengeId: Long,
@@ -41,12 +34,6 @@ data class Challenge(
     val currentParticipantNum: Int,
     val hostId: String,
     val categoryId: Int
-)
-
-data class Participant(
-    val participantId: String,
-    val userId: String,
-    val challengeId: Long
 )
 
 data class Alarm(

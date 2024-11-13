@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityMyPageHistoryBinding
-import com.okaka.challengeonairandroid.model.data.entity.History
+import com.okaka.challengeonairandroid.model.data.dummyHistoryList
 import com.okaka.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,11 +26,6 @@ class MyPageHistoryActivity : AppCompatActivity() {
         myPageHistoryBinding.lifecycleOwner = this
 
         val rvHistory = myPageHistoryBinding.rvHistory
-
-        val dummyHistoryList = listOf(
-            History("하루 30분 모각독", "11:00", "11:30", "08.24", isSucceeded = true, isHost = true),
-            History("방 처음 파본다", "10:30", "11:00", "08.25", isSucceeded = true, isHost = true)
-        )
 
         val btnBack = myPageHistoryBinding.btnBack
         btnBack.setOnClickListener {

@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/example_start_time"
-                android:text="@{String.valueOf(myPageHistoryData.histories[0].challengeStartTime)}"
+                android:text="@{String.valueOf(myPageHistoryData.histories[0].challenge.startTime)}"
                 android:layout_gravity="center_vertical"
                 android:textSize="13sp"
                 android:textColor="@color/text_green" />
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/example_end_time"
-                android:text="@{String.valueOf(myPageHistoryData.histories[0].challengeEndTime)}"
+                android:text="@{String.valueOf(myPageHistoryData.histories[0].challenge.endTime)}"
                 android:layout_gravity="center_vertical"
                 android:textSize="13sp"
                 android:textColor="@color/text_gray" />
