@@ -48,3 +48,9 @@ data class Participant(
     val userId: Long,
     val challengeId: Long
 )
+
+data class Alarm(
+    val id: Int = 0,
+    val message: String,
+    var isConfirmed: Boolean = false
+)

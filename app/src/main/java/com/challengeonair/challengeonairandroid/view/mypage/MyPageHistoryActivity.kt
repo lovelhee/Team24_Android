@@ -22,7 +22,7 @@ class MyPageHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val myPageHistoryBinding: ActivityMyPageHistoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_my_page_history)
-        myPageHistoryBinding.myPageHistoryData = myPageViewModel
+        myPageHistoryBinding.myPageData = myPageViewModel
         myPageHistoryBinding.lifecycleOwner = this
 
         val rvHistory = myPageHistoryBinding.rvHistory

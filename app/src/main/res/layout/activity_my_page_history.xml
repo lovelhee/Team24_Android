@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="myPageHistoryData"
+            name="myPageData"
             type="com.challengeonair.challengeonairandroid.viewmodel.MyPageViewModel" />
     </data>
 
@@ -44,11 +44,109 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <GridLayout
+            android:id="@+id/glChallengeList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:rowCount="2"
+            android:columnCount="3"
+            android:background="@color/background_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar"
+            app:layout_constraintBottom_toTopOf="@id/rvHistory">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="도전"
+                android:textSize="13sp"
+                android:layout_gravity="center"
+                android:layout_row="0"
+                android:layout_column="0" />
+
+            <!-- 도전한 챌린지 수 데이터 값 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:layout_marginTop="0dp"
+                android:hint="5"
+                android:text="@{String.valueOf(myPageData.tryChallengeNum)}"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_row="1"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="성공"
+                android:textSize="13sp" />
+
+            <!-- 성공한 챌린지 수 데이터 값 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:layout_marginTop="0dp"
+                android:hint="4"
+                android:text="@{String.valueOf(myPageData.successChallengeNum)}"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_row="1"
+                android:layout_column="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="내가 만든"
+                android:textSize="13sp"
+                android:layout_gravity="center"
+                android:layout_row="0"
+                android:layout_column="2" />
+
+            <!-- 내가 만든 챌린지 수 데이터 값 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:layout_marginTop="0dp"
+                android:hint="1"
+                android:text="@{String.valueOf(myPageData.myCreatedChallengeNum)}"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_row="1"
+                android:layout_column="2" />
+
+        </GridLayout>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar"
+            app:layout_constraintTop_toBottomOf="@+id/glChallengeList"
             tools:listitem="@layout/item_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
