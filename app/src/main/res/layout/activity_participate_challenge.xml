@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:scaleType="centerCrop"
                 android:layout_height="280dp"
-                android:src="@drawable/sample_running"
+                app:imageUrl="@{viewModel.challenge.imageExtension}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -79,8 +79,8 @@
                 android:id="@+id/ivProfile"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/sample_user_profile"
                 android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.user.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRecruit"
                 android:background="@drawable/rounded_host_profile"
@@ -103,7 +103,8 @@
                     android:id="@+id/tvHostName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_name"
+                    android:hint="홍길동"
+                    android:text="@{viewModel.user.userNickName}"
                     android:layout_gravity="center"
                     android:textColor="@color/text_gray"
                     android:textSize="14sp"
@@ -137,7 +138,8 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/challenge_name"
+                    android:hint="@string/challenge_name"
+                    android:text="@{viewModel.challenge.challengeName}"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -146,7 +148,8 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/challenge_body"
+                    android:text="@{viewModel.challenge.challengeBody}"
+                    android:hint="@string/challenge_body"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="6dp"
                     android:textColor="@color/text_gray"
@@ -178,7 +181,8 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:text="@string/current_num_2"
+                    android:hint="@string/current_num_2"
+                    android:text='@{String.valueOf(viewModel.challenge.currentParticipantNum)}'
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:textSize="13sp"
@@ -205,7 +209,8 @@
                     android:text="@string/slash"/>
 
                 <TextView
-                    android:text="@string/max_num_3"
+                    android:hint="@string/max_num_3"
+                    android:text='@{String.valueOf(viewModel.challenge.maxParticipantNum)}'
                     android:layout_width="wrap_content"
                     android:textSize="13sp"
                     android:textColor="@color/main_red"
@@ -219,20 +224,12 @@
                     android:textSize="13sp"
                     android:textColor="@color/main_red"
                     android:layout_marginEnd="6dp"
-                    android:text="@string/slash"/>
+                    android:text="@string/people_num"/>
 
                 <ImageView
                     android:id="@+id/ivCurrentNum"
                     android:layout_width="14dp"
                     android:layout_gravity="center"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_current_num"
-                    android:contentDescription="@string/ic_current_people" />
-
-                <ImageView
-                    android:id="@+id/ivCurrentNum2"
-                    android:layout_gravity="center"
-                    android:layout_width="14dp"
                     android:layout_height="16dp"
                     android:src="@drawable/ic_current_num"
                     android:contentDescription="@string/ic_current_people" />
@@ -264,7 +261,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvEndTime"
                 app:layout_constraintTop_toBottomOf="@+id/tvRecruitText"
-                android:text="@string/example_start_time"
+                android:hint="@string/example_end_time"
+                android:text="@{viewModel.challenge.endTime}"
                 android:layout_marginTop="24dp"
                 android:textSize="13sp"
                 android:textColor="@color/text_gray"
@@ -285,7 +283,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/example_start_time"
+                android:hint="@string/example_start_time"
+                android:text="@{viewModel.challenge.startTime}"
                 android:id="@+id/tvStartTime"
                 android:layout_marginTop="24dp"
                 android:textSize="13sp"
@@ -296,7 +295,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/today"
+                android:hint="@string/today"
+                android:text="@{viewModel.challenge.challengeDate}"
                 android:id="@+id/tvDate"
                 android:layout_marginTop="24dp"
                 android:textSize="13sp"
@@ -326,7 +326,8 @@
                 android:layout_marginEnd="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/example_reservation_point"
+                android:hint="@string/example_reservation_point"
+                android:text='@{String.valueOf(viewModel.challenge.point)}'
                 android:gravity="end" />
 
             <TextView
@@ -344,7 +345,7 @@
 
             <LinearLayout
                 android:id="@+id/layoutHostBtn"
-                android:visibility="visible"
+                app:isVisibleIfHost="@{viewModel.isHost}"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -387,7 +388,7 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:visibility="gone"
+                app:isVisibleIfNotHost="@{viewModel.isHost}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
