@@ -1,8 +1,8 @@
 package com.okaka.challengeonairandroid.model.data.entity
 
-enum class Category(val id: Long) {
-    EXERCISE(1L),
-    DEVELOPMENT(2L),
-    HOBBY(3L),
-    STUDY(4L)
+enum class Category(val id: Int) {
+    EXERCISE(0),
+    DEVELOPMENT(1),
+    HOBBY(2),
+    STUDY(3)
 }

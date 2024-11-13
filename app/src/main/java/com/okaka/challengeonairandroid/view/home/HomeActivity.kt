@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.databinding.ActivityHomeBinding
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import com.okaka.challengeonairandroid.model.data.dummyChallenge
-import com.okaka.challengeonairandroid.model.data.entity.Category
-import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.view.alarm.AlarmActivity
 import com.okaka.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.okaka.challengeonairandroid.view.mypage.MyPageActivity

@@ -63,7 +63,7 @@ class ChildAdapter(
         }
 
         private fun getCategoryName(categoryId: Int): String {
-            return Category.values().firstOrNull { it.id == categoryId.toLong() }?.name ?: "Unknown"
+            return Category.values().firstOrNull { it.id == categoryId }?.name ?: "Unknown"
         }
     }
 

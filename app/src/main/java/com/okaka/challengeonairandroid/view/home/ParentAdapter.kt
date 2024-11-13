@@ -15,7 +15,7 @@ class ParentAdapter(
     private val challenges: List<Challenge>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
-    private var selectedCategoryId: Long = Category.EXERCISE.id
+    private var selectedCategoryId: Int = Category.EXERCISE.id
 
     inner class ParentViewHolder(val binding: ItemHomeParentBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -27,7 +27,7 @@ class ParentAdapter(
                 adapter = childAdapter
             }
 
-            updateChallengeList(childAdapter)
+            updateChallengeList()
             setupCategoryClickListeners()
             updateCategoryUI(itemView.context)
         }
@@ -35,29 +35,29 @@ class ParentAdapter(
         private fun setupCategoryClickListeners() {
             binding.layoutExercise.setOnClickListener {
                 selectedCategoryId = Category.EXERCISE.id
-                updateChallengeList(childAdapter)
+                updateChallengeList()
                 updateCategoryUI(itemView.context)
             }
             binding.layoutDevelop.setOnClickListener {
                 selectedCategoryId = Category.DEVELOPMENT.id
-                updateChallengeList(childAdapter)
+                updateChallengeList()
                 updateCategoryUI(itemView.context)
             }
             binding.layoutHobby.setOnClickListener {
                 selectedCategoryId = Category.HOBBY.id
-                updateChallengeList(childAdapter)
+                updateChallengeList()
                 updateCategoryUI(itemView.context)
             }
             binding.layoutStudy.setOnClickListener {
                 selectedCategoryId = Category.STUDY.id
-                updateChallengeList(childAdapter)
+                updateChallengeList()
                 updateCategoryUI(itemView.context)
             }
         }
 
-        private fun updateChallengeList(childAdapter: ChildAdapter, categoryId: Long = selectedCategoryId) {
-            val challenges = challenges
-            childAdapter.updateData(challenges)
+        private fun updateChallengeList() {
+            val filteredChallenges = challenges.filter { it.categoryId == selectedCategoryId }
+            childAdapter.updateData(filteredChallenges)
         }
 
         private fun updateCategoryUI(context: Context) {
@@ -66,40 +66,17 @@ class ParentAdapter(
             val defaultImageBackground = ContextCompat.getDrawable(context, android.R.color.transparent)
             val selectedImageBackground = ContextCompat.getDrawable(context, R.drawable.red_border)
 
-            when (selectedCategoryId) {
-                Category.EXERCISE.id -> {
-                    binding.ivExercise.background = selectedImageBackground
-                    binding.tvExercise.setTextColor(selectedTextColor)
-                }
-                Category.DEVELOPMENT.id -> {
-                    binding.ivDevelop.background = selectedImageBackground
-                    binding.tvDevelop.setTextColor(selectedTextColor)
-                }
-                Category.HOBBY.id -> {
-                    binding.ivHobby.background = selectedImageBackground
-                    binding.tvHobby.setTextColor(selectedTextColor)
-                }
-                Category.STUDY.id -> {
-                    binding.ivStudy.background = selectedImageBackground
-                    binding.tvStudy.setTextColor(selectedTextColor)
-                }
-            }
-            if (selectedCategoryId != Category.EXERCISE.id) {
-                binding.ivExercise.background = defaultImageBackground
-                binding.tvExercise.setTextColor(defaultTextColor)
-            }
-            if (selectedCategoryId != Category.DEVELOPMENT.id) {
-                binding.ivDevelop.background = defaultImageBackground
-                binding.tvDevelop.setTextColor(defaultTextColor)
-            }
-            if (selectedCategoryId != Category.HOBBY.id) {
-                binding.ivHobby.background = defaultImageBackground
-                binding.tvHobby.setTextColor(defaultTextColor)
-            }
-            if (selectedCategoryId != Category.STUDY.id) {
-                binding.ivStudy.background = defaultImageBackground
-                binding.tvStudy.setTextColor(defaultTextColor)
-            }
+            binding.ivExercise.background = if (selectedCategoryId == Category.EXERCISE.id) selectedImageBackground else defaultImageBackground
+            binding.tvExercise.setTextColor(if (selectedCategoryId == Category.EXERCISE.id) selectedTextColor else defaultTextColor)
+
+            binding.ivDevelop.background = if (selectedCategoryId == Category.DEVELOPMENT.id) selectedImageBackground else defaultImageBackground
+            binding.tvDevelop.setTextColor(if (selectedCategoryId == Category.DEVELOPMENT.id) selectedTextColor else defaultTextColor)
+
+            binding.ivHobby.background = if (selectedCategoryId == Category.HOBBY.id) selectedImageBackground else defaultImageBackground
+            binding.tvHobby.setTextColor(if (selectedCategoryId == Category.HOBBY.id) selectedTextColor else defaultTextColor)
+
+            binding.ivStudy.background = if (selectedCategoryId == Category.STUDY.id) selectedImageBackground else defaultImageBackground
+            binding.tvStudy.setTextColor(if (selectedCategoryId == Category.STUDY.id) selectedTextColor else defaultTextColor)
         }
     }
 
@@ -109,7 +86,6 @@ class ParentAdapter(
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
-
     }
 
     override fun getItemCount(): Int = 1
