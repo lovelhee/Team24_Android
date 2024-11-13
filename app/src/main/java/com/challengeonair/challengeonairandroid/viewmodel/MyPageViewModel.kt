@@ -35,7 +35,7 @@ private val dummyHistoryListResponse = AllHistoriesResponse(
                 minParticipantNum = 5,
                 maxParticipantNum = 20,
                 currentParticipantNum = 12,
-                hostId = 2L,
+                hostId = "2L",
                 challengeId = 1
             ),
             isSucceeded = true,
@@ -55,7 +55,7 @@ private val dummyHistoryListResponse = AllHistoriesResponse(
                 minParticipantNum = 10,
                 maxParticipantNum = 50,
                 currentParticipantNum = 25,
-                hostId = 2L,
+                hostId = "2L",
                 challengeId = 1
             ),
             isSucceeded = false,
@@ -100,7 +100,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 5,
         maxParticipantNum = 20,
         currentParticipantNum = 12,
-        hostId = 2L,
+        hostId = "2L",
         challengeId = 1
     ),
     ChallengeResponse(
@@ -115,7 +115,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 10,
         maxParticipantNum = 50,
         currentParticipantNum = 25,
-        hostId = 3L,
+        hostId = "3L",
         challengeId = 1
     ),
     ChallengeResponse(
@@ -130,7 +130,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 3,
         maxParticipantNum = 100,
         currentParticipantNum = 75,
-        hostId = 4L,
+        hostId = "4L",
         challengeId = 0
     ),
     ChallengeResponse(
@@ -145,7 +145,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 5,
         maxParticipantNum = 15,
         currentParticipantNum = 8,
-        hostId = 5L,
+        hostId = "5L",
         challengeId = 0
     ),
     ChallengeResponse(
@@ -160,7 +160,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         minParticipantNum = 20,
         maxParticipantNum = 200,
         currentParticipantNum = 150,
-        hostId = 2L,
+        hostId = "2L",
         challengeId = 0
     ),
     ChallengeResponse(
@@ -174,7 +174,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
-        hostId = 3L,
+        hostId = "3L",
         challengeId = 3,
         categoryId = 1
     ),
@@ -189,7 +189,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         challengeBody = "222",
         point = 10,
         minParticipantNum = 2,
-        hostId = 3L,
+        hostId = "3L",
         categoryId = 3,
         challengeId = 1
     )

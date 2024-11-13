@@ -10,7 +10,7 @@ data class History(
 )
 
 data class User(
-    val userId: Long,
+    val userId: String,
     val userName: String,
 )
 
@@ -39,13 +39,13 @@ data class Challenge(
     val minParticipantNum: Int,
     val maxParticipantNum: Int,
     val currentParticipantNum: Int,
-    val hostId: Long,
+    val hostId: String,
     val categoryId: Int
 )
 
 data class Participant(
-    val participantId: Long,
-    val userId: Long,
+    val participantId: String,
+    val userId: String,
     val challengeId: Long
 )
 

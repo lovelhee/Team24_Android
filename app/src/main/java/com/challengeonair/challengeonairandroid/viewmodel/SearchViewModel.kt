@@ -21,7 +21,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         currentParticipantNum = 3,
         maxParticipantNum = 4,
         minParticipantNum = 2,
-        hostId = 1L,
+        hostId = "1L",
         categoryId = 0,
         challengeId = 1
     ),
@@ -36,7 +36,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         imageExtension = "https://cdn.pixabay.com/photo/2016/03/27/23/00/weight-lifting-1284616_1280.jpg",
         currentParticipantNum = 2,
         maxParticipantNum = 4,
-        hostId = 1L,
+        hostId = "1L",
         categoryId = 1,
         challengeId = 2
     ),
@@ -51,7 +51,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         imageExtension = "https://cdn.pixabay.com/photo/2017/08/09/10/32/reading-2614105_1280.jpg",
         currentParticipantNum = 4,
         maxParticipantNum = 4,
-        hostId = 2,
+        hostId = "2L",
         categoryId = 1,
         challengeId = 2
     ),
@@ -66,7 +66,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         imageExtension = "https://cdn.pixabay.com/photo/2017/06/24/04/31/piano-2436664_1280.jpg",
         currentParticipantNum = 1,
         maxParticipantNum = 4,
-        hostId = 2L,
+        hostId = "2L",
         categoryId = 2,
         challengeId = 7
     ),
@@ -81,7 +81,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         imageExtension = "https://cdn.pixabay.com/photo/2020/09/23/03/54/background-5594879_1280.jpg",
         currentParticipantNum = 3,
         maxParticipantNum = 4,
-        hostId = 4L,
+        hostId = "4L",
         categoryId = 3,
         challengeId = 22
     ),
@@ -96,7 +96,7 @@ private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
         maxParticipantNum = 4,
         currentParticipantNum = 2,
         imageExtension = "https://cdn.pixabay.com/photo/2018/09/26/09/07/education-3704026_1280.jpg",
-        hostId = 4L,
+        hostId = "4L",
         categoryId = 3,
         challengeId = 23
     )

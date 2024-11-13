@@ -33,7 +33,7 @@ class ChallengeDetailViewModel @Inject constructor(
         val minParticipantNum: Int = 0,
         val maxParticipantNum: Int = 0,
         val currentParticipantNum: Int = 0,
-        val hostId: Long = 0,
+        val hostId: String = "",
         val categoryId: Int = 0
     )
 

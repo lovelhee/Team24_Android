@@ -15,7 +15,7 @@ data class LogoutResponse(
 )
 
 data class UserDeletionResponse(
-    @SerializedName("userId") val userId: Long
+    @SerializedName("userId") val userId: String
 )
 
 @Serializable

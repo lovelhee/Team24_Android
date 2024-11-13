@@ -39,7 +39,7 @@ class CreateChallengeViewModel @Inject constructor(
             endTime = endTime.value,
             point = point.value.toInt(),
             imageExtension = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
-            hostId = 1L // TODO: 실제 사용자 정보로 설정
+            hostId = "1L" // TODO: 실제 사용자 정보로 설정
         )
         sendChallengeDataToServer()
     }
@@ -174,7 +174,7 @@ class CreateChallengeViewModel @Inject constructor(
             imageExtension = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             minParticipantNum = 2,
             maxParticipantNum = 4,
-            hostId = 1L // TODO: 실제 사용자 정보로 설정
+            hostId = "1L" // TODO: 실제 사용자 정보로 설정
         )
         updateChallenges(defaultResponse)
     }
