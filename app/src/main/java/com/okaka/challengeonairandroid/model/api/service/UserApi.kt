@@ -21,15 +21,16 @@ interface UserApi {
         @Header("Authorization") accessToken: String
     ): ApiResponse<LogoutResponse>
 
-    // 3. 회원 삭제
-    @DELETE("api/users")
-    suspend fun deleteUser(
-        @Header("Authorization") accessToken: String
-    ): ApiResponse<UserDeletionResponse>
-
-    // 4. 토큰 재발행
+    // 3. 토큰 재발행
     @POST("api/reissue")
     suspend fun reIssueToken(
         @Header("Cookie") refreshToken: String
     ): ApiResponse<ReIssueTokenResponse>
+
+    // 4. 회원 삭제
+    @DELETE("api/users")
+    suspend fun deleteUser(
+        @Header("Authorization") accessToken: String,
+        @Header("UserId") userId: String
+    ): ApiResponse<UserDeletionResponse>
 }

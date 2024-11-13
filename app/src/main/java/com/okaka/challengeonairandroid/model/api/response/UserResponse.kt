@@ -3,23 +3,23 @@ package com.okaka.challengeonairandroid.model.api.response
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
-data class LogInResponse(
-    @SerializedName("status") val status: String,
-    @SerializedName("code") val code: Int,
-    @SerializedName("message") val message: String,
-    @SerializedName("data") val data: Nothing? = null
-)
+// 1. 회원 가입, 로그인
+@Serializable
+class LogInResponse()
 
-data class LogoutResponse(
-    @SerializedName("msg") val message: String
-)
+// 2. 로그 아웃
+@Serializable
+class LogoutResponse()
 
-data class UserDeletionResponse(
-    @SerializedName("userId") val userId: String
-)
-
+// 3. 토큰 재발급
 @Serializable
 data class ReIssueTokenResponse(
-    @SerializedName("Authorization") val accessToken: String, // 새로운 access Token
-    @SerializedName("reIssueToken") val reIssueToken: String // 새로운 reissue 토큰
+    @SerializedName("accessToken") val accessToken: String,
+    @SerializedName("refreshToken") val refreshToken: String
+)
+
+// 4. 회원 삭제
+@Serializable
+data class UserDeletionResponse(
+    @SerializedName("userId") val userId: String
 )

@@ -20,181 +20,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-private val dummyHistoryListResponse = AllHistoriesResponse(
-    histories = listOf(
-        HistoryResponse(
-            challenge = ChallengeResponse(
-                categoryId = 0,
-                challengeName = "아침 운동 챌린지",
-                challengeBody = "매일 아침 30분 운동하기",
-                point = 100,
-                challengeDate = "2024-03-01",
-                startTime = "06:00",
-                endTime = "07:00",
-                imageExtension = "https://example.com/morning_exercise.jpg",
-                minParticipantNum = 5,
-                maxParticipantNum = 20,
-                currentParticipantNum = 12,
-                hostId = "2L",
-                challengeId = 1
-            ),
-            isSucceeded = true,
-            isHost = false,
-            point = 100
-        ),
-        HistoryResponse(
-            challenge = ChallengeResponse(
-                categoryId = 1,
-                challengeName = "독서 챌린지",
-                challengeBody = "한 달 동안 5권 책 읽기",
-                point = 150,
-                challengeDate = "2024-03-15",
-                startTime = "00:00",
-                endTime = "23:59",
-                imageExtension = "https://example.com/reading_challenge.jpg",
-                minParticipantNum = 10,
-                maxParticipantNum = 50,
-                currentParticipantNum = 25,
-                hostId = "2L",
-                challengeId = 1
-            ),
-            isSucceeded = false,
-            isHost = true,
-            point = 100
-        )
-    )
-)
-
-private val dummyUserProfileResponse = UserProfileResponse(
-    userNickName = "챌린지마스터",
-    userBody = "건강한 삶을 위해 매일 노력합니다!",
-    imageUrl = "https://example.com/profile_image.jpg",
-    point = 1000
-)
-
-//data class ChallengeResponse(
-//    @SerializedName("challengeId") val challengeId: Long,
-//    @SerializedName("challengeName") val challengeName: String,
-//    @SerializedName("challengeBody") val challengeBody: String,
-//    @SerializedName("point") val point: Int,
-//    @SerializedName("challengeDate") val challengeDate: String,
-//    @SerializedName("startTime") val startTime: String,
-//    @SerializedName("endTime") val endTime: String,
-//    @SerializedName("imageExtension") val imageExtension: String,
-//    @SerializedName("minParticipantNum") val minParticipantNum: Int,
-//    @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
-//    @SerializedName("currentParticipantNum") val currentParticipantNum: Int,
-//    @SerializedName("hostId") val hostId: Long,
-//    @SerializedName("categoryId") val categoryId: Int
-//)
-private val dummyChallengeResponses: List<ChallengeResponse> = listOf(
-    ChallengeResponse(
-        categoryId = 1,
-        challengeName = "아침 운동 챌린지",
-        challengeBody = "매일 아침 30분 운동하기",
-        point = 100,
-        challengeDate = "2024-03-01",
-        startTime = "06:00",
-        endTime = "07:00",
-        imageExtension = "https://picsum.photos/200/300",
-        minParticipantNum = 5,
-        maxParticipantNum = 20,
-        currentParticipantNum = 12,
-        hostId = "2L",
-        challengeId = 1
-    ),
-    ChallengeResponse(
-        categoryId = 1,
-        challengeName = "독서 챌린지",
-        challengeBody = "한 달 동안 5권 책 읽기",
-        point = 150,
-        challengeDate = "2024-03-15",
-        startTime = "00:00",
-        endTime = "23:59",
-        imageExtension = "https://picsum.photos/200/300",
-        minParticipantNum = 10,
-        maxParticipantNum = 50,
-        currentParticipantNum = 25,
-        hostId = "3L",
-        challengeId = 1
-    ),
-    ChallengeResponse(
-        categoryId = 1,
-        challengeName = "물 마시기 챌린지",
-        challengeBody = "하루 2리터 물 마시기",
-        point = 80,
-        challengeDate = "2024-04-01",
-        startTime = "08:00",
-        endTime = "22:00",
-        imageExtension = "https://picsum.photos/200/300",
-        minParticipantNum = 3,
-        maxParticipantNum = 100,
-        currentParticipantNum = 75,
-        hostId = "4L",
-        challengeId = 0
-    ),
-    ChallengeResponse(
-        categoryId = 1,
-        challengeName = "코딩 스터디 챌린지",
-        challengeBody = "매일 2시간 코딩 공부하기",
-        point = 200,
-        challengeDate = "2024-04-15",
-        startTime = "19:00",
-        endTime = "21:00",
-        imageExtension = "https://picsum.photos/200/300",
-        minParticipantNum = 5,
-        maxParticipantNum = 15,
-        currentParticipantNum = 8,
-        hostId = "5L",
-        challengeId = 0
-    ),
-    ChallengeResponse(
-        categoryId = 1,
-        challengeName = "환경 보호 챌린지",
-        challengeBody = "일주일 동안 일회용품 사용 줄이기",
-        point = 120,
-        challengeDate = "2024-05-01",
-        startTime = "00:00",
-        endTime = "23:59",
-        imageExtension = "https://picsum.photos/200/300",
-        minParticipantNum = 20,
-        maxParticipantNum = 200,
-        currentParticipantNum = 150,
-        hostId = "2L",
-        challengeId = 0
-    ),
-    ChallengeResponse(
-        challengeName = "취미 요리",
-        challengeDate = "2024-10-16",
-        startTime = "15:00",
-        endTime = "17:00",
-        imageExtension = "https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_1280.jpg",
-        currentParticipantNum = 2,
-        maxParticipantNum = 4,
-        challengeBody = "222",
-        point = 10,
-        minParticipantNum = 2,
-        hostId = "3L",
-        challengeId = 3,
-        categoryId = 1
-    ),
-    ChallengeResponse(
-        challengeName = "뜨개질로 목도리 만들기",
-        challengeDate = "2024-10-16",
-        startTime = "15:00",
-        endTime = "17:00",
-        imageExtension = "https://cdn.pixabay.com/photo/2020/06/08/23/52/tissue-5276453_1280.jpg",
-        currentParticipantNum = 2,
-        maxParticipantNum = 4,
-        challengeBody = "222",
-        point = 10,
-        minParticipantNum = 2,
-        hostId = "3L",
-        categoryId = 3,
-        challengeId = 1
-    )
-)
-
 //TODO: 에러 처리
 //TODO: accessToken을 뷰모델 생성자를 통해 주입
 @HiltViewModel
@@ -254,12 +79,10 @@ class MyPageViewModel @Inject constructor(
     private fun updateHistories(histories: List<HistoryResponse>) {
         _histories.value = histories.map { historyResponse ->
             History(
-                challengeName = historyResponse.challenge.challengeName,
-                challengeStartTime = historyResponse.challenge.startTime,
-                challengeEndTime = historyResponse.challenge.endTime,
-                historyDate = historyResponse.challenge.challengeDate,
+                challenge = historyResponse.challenge,
                 isSucceeded = historyResponse.isSucceeded,
-                isHost = historyResponse.isHost
+                isHost = historyResponse.isHost,
+                point = historyResponse.point
             )
         }
 
@@ -299,7 +122,6 @@ class MyPageViewModel @Inject constructor(
     private fun updateUserProfile(response: UserProfileResponse) {
         _userProfile.value = UserProfile(
             userNickName = response.userNickName,
-            userBody = response.userBody,
             imageUrl = response.imageUrl,
             point = response.point
         )

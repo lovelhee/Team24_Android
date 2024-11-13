@@ -21,7 +21,7 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val history = historyList[position]
 
-        holder.tvDate.text = history.historyDate
+        holder.tvDate.text = history.challenge.challengeDate
 
         holder.ivChallengeCover.setImageResource(R.drawable.sample_history_cover) // 실제 이미지 로드 필요
 
@@ -35,10 +35,10 @@ class HistoryAdapter(
 
         holder.tvMade.visibility = if (history.isHost) View.VISIBLE else View.GONE
 
-        holder.tvTitle.text = history.challengeName
+        holder.tvTitle.text = history.challenge.challengeName
 
-        holder.tvStartTime.text = history.challengeStartTime
-        holder.tvEndTime.text = history.challengeEndTime
+        holder.tvStartTime.text = history.challenge.startTime
+        holder.tvEndTime.text = history.challenge.endTime
     }
 
     override fun getItemCount(): Int = historyList.size

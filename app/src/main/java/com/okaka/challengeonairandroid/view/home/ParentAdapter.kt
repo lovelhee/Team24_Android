@@ -11,23 +11,15 @@ import com.okaka.challengeonairandroid.model.data.entity.Category
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.databinding.ItemHomeParentBinding
 
-enum class CategoryType(val id: Long) {
-    EXERCISE(1L),
-    DEVELOPMENT(2L),
-    HOBBY(3L),
-    STUDY(4L)
-}
-
 class ParentAdapter(
-    private val categories: List<Category>,
     private val challengesByCategory: Map<Long, List<Challenge>>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
-    private var selectedCategoryId: Long = CategoryType.EXERCISE.id
+    private var selectedCategoryId: Long = Category.EXERCISE.id
 
     inner class ParentViewHolder(val binding: ItemHomeParentBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private val childAdapter = ChildAdapter(emptyList(), categories)
+        private val childAdapter = ChildAdapter(emptyList())
 
         init {
             binding.rvChallenge.apply {
@@ -42,22 +34,22 @@ class ParentAdapter(
 
         private fun setupCategoryClickListeners() {
             binding.layoutExercise.setOnClickListener {
-                selectedCategoryId = CategoryType.EXERCISE.id
+                selectedCategoryId = Category.EXERCISE.id
                 updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutDevelop.setOnClickListener {
-                selectedCategoryId = CategoryType.DEVELOPMENT.id
+                selectedCategoryId = Category.DEVELOPMENT.id
                 updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutHobby.setOnClickListener {
-                selectedCategoryId = CategoryType.HOBBY.id
+                selectedCategoryId = Category.HOBBY.id
                 updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
             binding.layoutStudy.setOnClickListener {
-                selectedCategoryId = CategoryType.STUDY.id
+                selectedCategoryId = Category.STUDY.id
                 updateChallengeList(childAdapter)
                 updateCategoryUI(itemView.context)
             }
@@ -75,36 +67,36 @@ class ParentAdapter(
             val selectedImageBackground = ContextCompat.getDrawable(context, R.drawable.red_border)
 
             when (selectedCategoryId) {
-                CategoryType.EXERCISE.id -> {
+                Category.EXERCISE.id -> {
                     binding.ivExercise.background = selectedImageBackground
                     binding.tvExercise.setTextColor(selectedTextColor)
                 }
-                CategoryType.DEVELOPMENT.id -> {
+                Category.DEVELOPMENT.id -> {
                     binding.ivDevelop.background = selectedImageBackground
                     binding.tvDevelop.setTextColor(selectedTextColor)
                 }
-                CategoryType.HOBBY.id -> {
+                Category.HOBBY.id -> {
                     binding.ivHobby.background = selectedImageBackground
                     binding.tvHobby.setTextColor(selectedTextColor)
                 }
-                CategoryType.STUDY.id -> {
+                Category.STUDY.id -> {
                     binding.ivStudy.background = selectedImageBackground
                     binding.tvStudy.setTextColor(selectedTextColor)
                 }
             }
-            if (selectedCategoryId != CategoryType.EXERCISE.id) {
+            if (selectedCategoryId != Category.EXERCISE.id) {
                 binding.ivExercise.background = defaultImageBackground
                 binding.tvExercise.setTextColor(defaultTextColor)
             }
-            if (selectedCategoryId != CategoryType.DEVELOPMENT.id) {
+            if (selectedCategoryId != Category.DEVELOPMENT.id) {
                 binding.ivDevelop.background = defaultImageBackground
                 binding.tvDevelop.setTextColor(defaultTextColor)
             }
-            if (selectedCategoryId != CategoryType.HOBBY.id) {
+            if (selectedCategoryId != Category.HOBBY.id) {
                 binding.ivHobby.background = defaultImageBackground
                 binding.tvHobby.setTextColor(defaultTextColor)
             }
-            if (selectedCategoryId != CategoryType.STUDY.id) {
+            if (selectedCategoryId != Category.STUDY.id) {
                 binding.ivStudy.background = defaultImageBackground
                 binding.tvStudy.setTextColor(defaultTextColor)
             }

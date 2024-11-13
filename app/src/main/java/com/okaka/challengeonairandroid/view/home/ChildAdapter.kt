@@ -11,8 +11,7 @@ import com.okaka.challengeonairandroid.model.data.entity.Category
 import com.okaka.challengeonairandroid.databinding.ItemCategoryChallengeBinding
 
 class ChildAdapter(
-    private var challenges: List<Challenge>,
-    private val categories: List<Category>
+    private var challenges: List<Challenge>
 ) : RecyclerView.Adapter<ChildAdapter.ChildViewHolder>() {
 
     inner class ChildViewHolder(private val binding: ItemCategoryChallengeBinding) : RecyclerView.ViewHolder(binding.root) {
