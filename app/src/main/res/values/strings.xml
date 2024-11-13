@@ -141,4 +141,14 @@
     <string name="img_profile">프로필 이미지</string>
     <string name="user_nickname">닉네임</string>
     <string name="change_complete">변경 완료</string>
+    <string name="text_challenge_result_vote">챌린지 결과 투표</string>
+    <string name="text_select_no_challenger">미참여자를 선택해주세요</string>
+    <string name="text_select_no_challenger_description">과반수 이상이 미참여자로 선택할 경우,\n그 참여자의 포인트는 분할되어\n다른 참여자에게 돌아갑니다.</string>
+    <string name="example_user1">운동을 사랑하는 남자</string>
+    <string name="example_user2">해운대 김종국</string>
+    <string name="example_user3">부산대 장원영</string>
+    <string name="example_user4">카카오 취직시켜줘</string>
+    <string name="text_vote_submit">투표 제출</string>
+    <string name="count">10</string>
+    <string name="text_vote_result_loading">투표 결과를 수집 중입니다</string>
 </resources>
