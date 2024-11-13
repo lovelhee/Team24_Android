@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.databinding.ActivityHomeBinding
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
+import com.okaka.challengeonairandroid.model.data.dummyChallenge
 import com.okaka.challengeonairandroid.model.data.entity.Category
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.view.alarm.AlarmActivity
@@ -68,7 +69,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        val parentAdapter = ParentAdapter(challengesByCategory)
+        val parentAdapter = ParentAdapter(dummyChallenge)
         binding.rvParent.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = parentAdapter

@@ -11,10 +11,6 @@ import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityMyPageHistoryBinding
 import com.okaka.challengeonairandroid.model.data.dummyHistoryList
 import com.okaka.challengeonairandroid.viewmodel.MyPageViewModel
-import com.okaka.challengeonairandroid.R
-import com.okaka.challengeonairandroid.databinding.ActivityMyPageHistoryBinding
-import com.okaka.challengeonairandroid.model.data.entity.History
-import com.okaka.challengeonairandroid.viewmodel.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

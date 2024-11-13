@@ -1,6 +1,5 @@
 package com.okaka.challengeonairandroid.model.api.service
 
-import com.okaka.challengeonairandroid.model.api.response.ChallengeCategoryResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse

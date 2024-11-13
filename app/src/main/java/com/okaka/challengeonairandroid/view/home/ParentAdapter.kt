@@ -12,7 +12,7 @@ import com.okaka.challengeonairandroid.databinding.ItemHomeParentBinding
 import com.okaka.challengeonairandroid.model.data.entity.Category
 
 class ParentAdapter(
-    private val challengesByCategory: Map<Long, List<Challenge>>
+    private val challenges: List<Challenge>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
     private var selectedCategoryId: Long = Category.EXERCISE.id
@@ -56,7 +56,7 @@ class ParentAdapter(
         }
 
         private fun updateChallengeList(childAdapter: ChildAdapter, categoryId: Long = selectedCategoryId) {
-            val challenges = challengesByCategory[categoryId] ?: emptyList()
+            val challenges = challenges
             childAdapter.updateData(challenges)
         }
 
