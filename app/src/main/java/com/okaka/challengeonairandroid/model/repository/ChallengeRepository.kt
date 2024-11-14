@@ -1,6 +1,7 @@
 package com.okaka.challengeonairandroid.model.repository
 
 import android.util.Log
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse

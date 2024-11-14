@@ -10,13 +10,18 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityParticipateChallengeBinding
-import com.okaka.challengeonairandroid.databinding.DialogCancleBinding
 import com.okaka.challengeonairandroid.databinding.DialogDeleteChallengeBinding
 import com.okaka.challengeonairandroid.databinding.DialogReservationBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.okaka.challengeonairandroid.databinding.DialogCancelBinding
+import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.api.response.UserProfileResponse
+import com.okaka.challengeonairandroid.model.api.response.UserProfileSpecificResponse
+import com.okaka.challengeonairandroid.view.home.HomeActivity
+import com.okaka.challengeonairandroid.viewmodel.ParticipateChallengeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -102,7 +107,6 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         viewModel.setUserData(
             UserProfileResponse(
                 userNickName = "정히공쥬호스트아님당",
-                userBody = "공쥬입니당",
                 imageUrl = "https://images.pexels.com/photos/2963409/pexels-photo-2963409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
                 point = 200
             )

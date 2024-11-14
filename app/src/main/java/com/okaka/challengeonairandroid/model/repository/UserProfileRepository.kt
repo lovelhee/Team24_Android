@@ -2,6 +2,7 @@ package com.okaka.challengeonairandroid.model.repository
 
 import android.util.Log
 import com.okaka.challengeonairandroid.model.api.response.UserProfileResponse
+import com.okaka.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.okaka.challengeonairandroid.model.api.response.UserProfileUpdateRequest
 import com.okaka.challengeonairandroid.model.api.response.UserProfileUpdateResponse
 import com.okaka.challengeonairandroid.model.api.service.UserProfileApi

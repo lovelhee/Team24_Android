@@ -6,6 +6,7 @@ import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionRespo
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.api.response.ApiResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import retrofit2.http.*
 
 interface ChallengeApi {
@@ -38,4 +39,11 @@ interface ChallengeApi {
         @Header("Authorization") accessToken: String,
         @Path("challengeId") challengeId: Long
     ): ApiResponse<ChallengeReservationResponse>
+
+    @POST("api/challenges/{challengeId}/cancel")
+    suspend fun cancelChallenge(
+        @Header("Authorization") accessToken: String,
+        @Path("challengeId") challengeId: Long
+    ): ApiResponse<ChallengeCancellationResponse>
+
 }
