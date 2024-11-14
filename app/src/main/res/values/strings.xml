@@ -111,13 +111,13 @@
     <string name="img_checkbox">체크박스 이미지</string>
     <string name="challenge_reservation_complete">챌린지 예약이 완료되었습니다.</string>
     <string name="check">확인</string>
-    <string name="img_cancle">취소 이미지</string>
+    <string name="img_cancel">취소 이미지</string>
     <string name="challenge_delete_answer">챌린지를 삭제하시겠습니까?</string>
     <string name="can_not_rollback">삭제 후 취소는 불가합니다.</string>
     <string name="back">돌아가기</string>
     <string name="challenge_delete">챌린지 삭제하기</string>
-    <string name="challenge_cancle_answer">챌린지를 취소하시겠습니까?</string>
-    <string name="challenge_cancle">챌린지 취소하기</string>
+    <string name="challenge_cancel_answer">챌린지를 취소하시겠습니까?</string>
+    <string name="challenge_cancel">챌린지 취소하기</string>
     <string name="challenge_recruit">모집중</string>
     <string name="challenge_recruit_complete">모집 완료</string>
     <string name="host">방장</string>

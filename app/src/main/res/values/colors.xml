@@ -16,4 +16,6 @@
     <color name="deep_gray">#CACACA</color>
     <color name="text_green">#2C8E50</color>
     <color name="background_green">#B2F1A4</color>
+    <color name="btn_background_gray">#D9D9D9</color>
+    <color name="btn_text_gray">#A4A4A4</color>
 </resources>
