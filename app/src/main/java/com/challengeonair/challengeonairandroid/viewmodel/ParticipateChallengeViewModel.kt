@@ -27,7 +27,8 @@ class ParticipateChallengeViewModel @Inject constructor(
 
     // 로직 구현 후엔 sharedPreference에서 가져오게 해야함
     private val currentUserId = "current_user_id"
-    val isHost: StateFlow<Boolean> = MutableStateFlow(false)
+    private val _isHost = MutableStateFlow(false)
+    val isHost: StateFlow<Boolean> = _isHost
 
     fun joinChallenge(challengeId: Long) {
         viewModelScope.launch {
@@ -46,7 +47,7 @@ class ParticipateChallengeViewModel @Inject constructor(
 
             challengeResponse?.let {
                 loadUserProfile(it.hostId)
-                (isHost as MutableStateFlow).value = it.hostId == currentUserId
+                _isHost.value = it.hostId == currentUserId
             }
         }
     }
@@ -62,6 +63,7 @@ class ParticipateChallengeViewModel @Inject constructor(
     // 더미 데이터용
     fun setChallengeData(challenge: ChallengeResponse) {
         _challenge.value = challenge
+        _isHost.value = challenge.hostId == currentUserId
     }
 
     fun setUserData(user: UserProfileResponse) {

@@ -29,6 +29,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityParticipateChallengeBinding
     private val viewModel: ParticipateChallengeViewModel by viewModels()
+    private var challengeId: Long = -1L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,11 @@ class ParticipateChallengeActivity : AppCompatActivity() {
             viewModel.joinChallenge(challengeId)
             binding.btnEnterChallenge.visibility = View.GONE
             binding.layoutUserEnterBtn.visibility = View.VISIBLE
-            showReservationDialog()
+            showReservationDialog(
+                viewModel.challenge.value?.challengeDate ?: "",
+                viewModel.challenge.value?.startTime ?: "",
+                viewModel.challenge.value?.endTime ?: ""
+            )
         }
 
         binding.ibBack.setOnClickListener {
@@ -75,6 +80,8 @@ class ParticipateChallengeActivity : AppCompatActivity() {
     }
 
     private fun setDummyData() {
+
+        val hostId = "current_user_id"
 
         viewModel.setChallengeData(
             challenge = ChallengeResponse(
@@ -89,7 +96,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
                 minParticipantNum = 2,
                 maxParticipantNum = 4,
                 currentParticipantNum = 3,
-                hostId = "host_dummy_id",
+                hostId = hostId,
                 categoryId = 1
             )
         )
@@ -135,6 +142,18 @@ class ParticipateChallengeActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                launch {
+                    viewModel.isHost.collectLatest { isHost ->
+                        if (isHost) {
+                            binding.layoutHostBtn.visibility = View.VISIBLE
+                            binding.layoutUserBtn.visibility = View.GONE
+                        } else {
+                            binding.layoutHostBtn.visibility = View.GONE
+                            binding.layoutUserBtn.visibility = View.VISIBLE
+                        }
+                    }
+                }
             }
         }
     }
@@ -164,10 +183,11 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showReservationDialog() {
-        val dialogBinding = DataBindingUtil.inflate<DialogReservationBinding>(
-            layoutInflater, R.layout.dialog_reservation, null, false
-        )
+    private fun showReservationDialog(challengeDate: String, startTime: String, endTime: String) {
+        val dialogBinding = DialogReservationBinding.inflate(layoutInflater)
+        dialogBinding.tvReservationDate.text = challengeDate
+        dialogBinding.tvReservationStartTime.text = startTime
+        dialogBinding.tvReservationEndTime.text = endTime
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
