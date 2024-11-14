@@ -29,13 +29,8 @@
 
         <activity
             android:name=".view.login.FBLoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".view.challenge.ChallengeOngoingActivity"
             android:exported="true"
@@ -45,7 +40,12 @@
             android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="false" />
@@ -67,9 +67,7 @@
         <activity
             android:name=".view.mypage.MyPageProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.search.SearchActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.alarm.AlarmActivity"
             android:exported="false" />
@@ -79,8 +77,6 @@
         <activity
             android:name=".view.vote.VoteActivity"
             android:exported="false" />
-
-        <!-- 카카오 로그인 웹뷰 액티비티 추가 -->
         <activity
             android:name=".view.login.KakaoWebViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

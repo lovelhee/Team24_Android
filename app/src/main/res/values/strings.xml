@@ -153,4 +153,5 @@
     <string name="text_vote_submit">투표 제출</string>
     <string name="count">10</string>
     <string name="text_vote_result_loading">투표 결과를 수집 중입니다</string>
+    <string name="set_profile">프로필 수정</string>
 </resources>

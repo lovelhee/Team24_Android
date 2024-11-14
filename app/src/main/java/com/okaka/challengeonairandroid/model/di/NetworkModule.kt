@@ -2,6 +2,7 @@ package com.okaka.challengeonairandroid.model.di
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -94,5 +95,11 @@ object NetworkModule {
             FirebaseApp.initializeApp(application)
         }
         return FirebaseAuth.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
     }
 }

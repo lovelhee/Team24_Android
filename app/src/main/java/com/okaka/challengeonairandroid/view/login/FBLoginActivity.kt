@@ -92,9 +92,9 @@ class FBLoginActivity : AppCompatActivity() {
                         putExtra("user_email", user?.email)
                         putExtra("user_name", user?.displayName)
                         putExtra("user_id", user?.uid)
-                        // 필요한 경우 프로필 사진 URL도 전달
                         putExtra("user_photo", user?.photoUrl?.toString())
                     }
+
                     startActivity(intent)
                     finish()
                 } else {

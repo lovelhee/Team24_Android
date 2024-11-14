@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.api.response.HistoryResponse
 import com.okaka.challengeonairandroid.model.api.response.UserProfileResponse
+import com.okaka.challengeonairandroid.model.data.SharedPreferenceManager
 import com.okaka.challengeonairandroid.model.data.dummyChallengeResponses
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.model.data.entity.History
@@ -25,7 +26,8 @@ import kotlinx.coroutines.flow.asStateFlow
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
-    private val userProfileRepository: UserProfileRepository
+    private val userProfileRepository: UserProfileRepository,
+    private val sharedPreferenceManager: SharedPreferenceManager
 ) : ViewModel() {
     private val _histories = MutableStateFlow<List<History>>(emptyList())
     val histories: StateFlow<List<History>> = _histories.asStateFlow()

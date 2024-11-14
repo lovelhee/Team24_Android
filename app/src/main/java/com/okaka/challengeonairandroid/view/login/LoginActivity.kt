@@ -10,13 +10,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityLoginBinding
+import com.okaka.challengeonairandroid.model.data.SharedPreferenceManager
+import com.okaka.challengeonairandroid.view.home.HomeActivity
 import com.okaka.challengeonairandroid.viewmodel.UserViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
+    @Inject
+    lateinit var sharedPreferenceManager: SharedPreferenceManager
     private lateinit var binding: ActivityLoginBinding
 
     companion object {
@@ -28,10 +33,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         Log.d(TAG, "onCreate")
-
         setupStateObserver()
         setupKakaoLoginButton()
     }
+
 
     private fun setupStateObserver() {
         lifecycleScope.launch {
@@ -41,7 +46,13 @@ class LoginActivity : AppCompatActivity() {
                     when (state.loginState) {
                         is UserViewModel.LoginState.LOGGED_IN -> {
                             Log.d(TAG, "User logged in successfully")
-                            // 로그인 성공 처리
+                            // 프로필 설정 여부에 따라 분기
+                            if (sharedPreferenceManager.getUserNickname() != null) {
+                                startActivity(HomeActivity.intent(this@LoginActivity))
+                            } else {
+                                startActivity(SetProfileActivity.intent(this@LoginActivity))
+                            }
+                            finish()
                         }
                         is UserViewModel.LoginState.NOT_LOGGED_IN -> {
                             Log.d(TAG, "User not logged in")
