@@ -1,9 +1,9 @@
 package com.okaka.challengeonairandroid.model.api.response
 
 enum class ApiStatus {
-    SUCCESS,
-    ERROR,
-    FAIL
+    success,
+    error,
+    fail
 }
 
 // 공통 응답 형식
@@ -13,9 +13,9 @@ data class ApiResponse<T>(
     val message: String,
     val data: T?
 ) {
-    fun isSuccessful() = status == ApiStatus.SUCCESS
-    fun isError() = status == ApiStatus.ERROR
-    fun isFail() = status == ApiStatus.FAIL
+    fun isSuccessful() = status == ApiStatus.success
+    fun isError() = status == ApiStatus.error
+    fun isFail() = status == ApiStatus.fail
 }
 
 // API 결과를 처리하기 위한 sealed class
@@ -49,12 +49,12 @@ object ErrorUtils {
 // ApiResponse 확장 함수
 fun <T> ApiResponse<T>.toResult(): Result<T> {
     return when (status) {
-        ApiStatus.SUCCESS -> {
+        ApiStatus.success -> {
             data?.let {
                 Result.Success(it)
             } ?: Result.Error("데이터가 없습니다")
         }
-        ApiStatus.ERROR -> Result.Error(message ?: ErrorUtils.getErrorMessage(code))
-        ApiStatus.FAIL -> Result.ValidationFail(message ?: ErrorUtils.getErrorMessage(code))
+        ApiStatus.error -> Result.Error(message ?: ErrorUtils.getErrorMessage(code))
+        ApiStatus.fail -> Result.ValidationFail(message ?: ErrorUtils.getErrorMessage(code))
     }
 }

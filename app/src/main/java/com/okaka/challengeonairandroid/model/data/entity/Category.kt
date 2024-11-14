@@ -4,5 +4,5 @@ enum class Category(val id: Int) {
     EXERCISE(0),
     DEVELOPMENT(1),
     HOBBY(2),
-    STUDY(3)
+    STUDY(3);
 }

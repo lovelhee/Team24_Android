@@ -5,7 +5,6 @@ import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRespo
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
-import com.okaka.challengeonairandroid.model.api.response.AllChallengesResponse
 import com.okaka.challengeonairandroid.model.api.response.ApiResponse
 import retrofit2.http.*
 
@@ -13,7 +12,7 @@ interface ChallengeApi {
     @GET("api/challenges")
     suspend fun getAllChallenges(
         @Header("Authorization") accessToken: String
-    ): ApiResponse<AllChallengesResponse>
+    ): ApiResponse<List<ChallengeResponse>>
 
     @GET("api/challenges/{challengeId}")
     suspend fun getChallengeDetails(
