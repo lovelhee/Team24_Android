@@ -14,15 +14,15 @@
             android:layout_marginTop="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_canclebox"
+            android:src="@drawable/ic_cancelbox"
             android:layout_gravity="center"
-            android:contentDescription="@string/img_cancle" />
+            android:contentDescription="@string/img_cancel" />
 
         <TextView
             android:layout_marginTop="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/challenge_cancle_answer"
+            android:text="@string/challenge_cancel_answer"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/black"
@@ -53,7 +53,7 @@
                 android:text="@string/back"/>
 
             <Button
-                android:id="@+id/btnCancle"
+                android:id="@+id/btnCancel"
                 android:layout_margin="4dp"
                 android:layout_width="match_parent"
                 android:textColor="@color/white"
@@ -62,7 +62,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_enter_btn"
-                android:text="@string/challenge_cancle"/>
+                android:text="@string/challenge_cancel"/>
 
         </LinearLayout>
     </LinearLayout>

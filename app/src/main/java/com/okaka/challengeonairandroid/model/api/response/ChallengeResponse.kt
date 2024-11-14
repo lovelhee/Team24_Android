@@ -67,8 +67,13 @@ data class ChallengeDeletionResponse(
 
 // 5. 챌린지 예약
 data class ChallengeReservationResponse(
-    @SerializedName("challengeId") val challengeId: Long,
-    @SerializedName("userId") val userId: Long
+    @SerializedName("challenge_id") val challengeId: Long,
+    @SerializedName("user_id") val userId: String
+)
+
+data class ChallengeCancellationResponse(
+    @SerializedName("challenge_id") val challengeId: Long,
+    @SerializedName("user_id") val userId: String
 )
 
 // 6. 대기 중인 챌린지 조회

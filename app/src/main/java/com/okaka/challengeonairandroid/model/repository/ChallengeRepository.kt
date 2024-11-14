@@ -1,6 +1,7 @@
 package com.okaka.challengeonairandroid.model.repository
 
 import android.util.Log
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
@@ -110,6 +111,23 @@ class ChallengeRepository @Inject constructor(
             null
         }
     }
+
+    suspend fun cancelChallenge(challengeId: Long): ChallengeCancellationResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = challengeApi.cancelChallenge("", challengeId)
+
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                Log.e("ChallengeRepository", "cancelChallenge API Error: ${response.message}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ChallengeRepository", "cancelChallenge Exception: ${e.message}")
+            null
+        }
+    }
+
 
     private fun getCurrentDateTime(): String {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH:mm"))
