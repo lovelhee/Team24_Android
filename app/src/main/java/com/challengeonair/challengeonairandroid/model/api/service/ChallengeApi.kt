@@ -1,14 +1,14 @@
-package com.challengeonair.challengeonairandroid.model.api.service
+package com.okaka.challengeonairandroid.model.api.service
 
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCategoryResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationRequest
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeDeletionResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeReservationResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
-import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
-import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCancellationResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCategoryResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.okaka.challengeonairandroid.model.api.response.ApiResponse
+import com.okaka.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import retrofit2.http.*
 
 interface ChallengeApi {

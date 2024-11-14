@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.challengeonair.challengeonairandroid.viewmodel.ParticipateChallengeViewModel" />
+            type="com.okaka.challengeonairandroid.viewmodel.ParticipateChallengeViewModel" />
     </data>
 
     <ScrollView
