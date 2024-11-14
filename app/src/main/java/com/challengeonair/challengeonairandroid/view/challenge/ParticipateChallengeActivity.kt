@@ -81,7 +81,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
 
     private fun setDummyData() {
 
-        val hostId = "current_user_id"
+        val hostId = "current_user_id11"
 
         viewModel.setChallengeData(
             challenge = ChallengeResponse(
@@ -203,9 +203,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
     }
 
     private fun showDeleteChallengeDialog() {
-        val dialogBinding = DataBindingUtil.inflate<DialogDeleteChallengeBinding>(
-            layoutInflater, R.layout.dialog_delete_challenge, null, false
-        )
+        val dialogBinding = DialogDeleteChallengeBinding.inflate(layoutInflater)
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
@@ -218,9 +216,11 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         }
 
         dialogBinding.btnDelete.setOnClickListener {
+            viewModel.deleteChallenge(challengeId)
             val intent = Intent(this, DeleteChallengeActivity::class.java)
             startActivity(intent)
             dialog.dismiss()
+            finish()
         }
 
         dialog.show()

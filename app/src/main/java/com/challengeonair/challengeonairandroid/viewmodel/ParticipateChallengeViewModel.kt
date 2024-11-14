@@ -59,6 +59,12 @@ class ParticipateChallengeViewModel @Inject constructor(
         }
     }
 
+    fun deleteChallenge(challengeId: Long) {
+        viewModelScope.launch {
+            challengeRepository.deleteChallenge(challengeId)
+        }
+    }
+
 
     // 더미 데이터용
     fun setChallengeData(challenge: ChallengeResponse) {
