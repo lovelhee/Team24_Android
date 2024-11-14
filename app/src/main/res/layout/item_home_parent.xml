@@ -242,14 +242,6 @@
             tools:itemCount="5"
             tools:listitem="@layout/item_category_challenge"/>
 
-        <TextView
-            android:id="@+id/tvEmptyMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="데이터가 없습니다."
-            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

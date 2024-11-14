@@ -1,9 +1,7 @@
 package com.okaka.challengeonairandroid.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.model.repository.ChallengeRepository
 import com.okaka.challengeonairandroid.model.repository.HomeRepository
@@ -26,6 +24,15 @@ class HomeViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
+    private val _categoryId = MutableStateFlow(0) // 초기값 설정
+    val categoryId: StateFlow<Int> get() = _categoryId.asStateFlow()
+
+    private val _searchQuery = MutableStateFlow("") // 검색어 상태 추가
+    val searchQuery: StateFlow<String> get() = _searchQuery.asStateFlow()
+
+    private val _filteredChallenges = MutableStateFlow<List<Challenge>>(emptyList())
+    val filteredChallenges: StateFlow<List<Challenge>> = _filteredChallenges.asStateFlow()
+
     fun loadAllChallenges() {
         viewModelScope.launch {
             _isLoading.value = true
@@ -33,6 +40,7 @@ class HomeViewModel @Inject constructor(
                 val response = challengeRepository.getAllChallenges()
                 if (response != null) {
                     _challengesList.value = response
+                    observeCategoryChanges()
                 }
             } catch (e: Exception) {
                 // 에러 처리
@@ -42,19 +50,32 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getChallengeDetails(accessToken: String, challengeId: Long, date: String) {
+    fun setCategoryId(id: Int) {
+        _categoryId.value = id
+    }
+
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
+
+    private fun observeCategoryChanges() {
         viewModelScope.launch {
-            _isLoading.value = true
-            try {
-                val response = challengeRepository.getChallengeDetails(challengeId)
-                if (response != null) {
-                    // 상세 정보 처리
-                }
-            } catch (e: Exception) {
-                // 에러 처리
-            } finally {
-                _isLoading.value = false
+            categoryId.collect {
+                filterChallenges()
             }
         }
+        viewModelScope.launch {
+            searchQuery.collect {
+                filterChallenges()
+            }
+        }
+    }
+
+    private fun filterChallenges() {
+        val filteredList = challengesList.value.filter { challenge ->
+            challenge.categoryId == categoryId.value &&
+                    challenge.challengeName.contains(searchQuery.value, ignoreCase = true)
+        }
+        _filteredChallenges.value = filteredList
     }
 }

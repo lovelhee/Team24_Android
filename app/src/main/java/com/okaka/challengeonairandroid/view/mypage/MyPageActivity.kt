@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.view.home.HomeActivity
-import com.okaka.challengeonairandroid.view.search.SearchActivity
 import com.okaka.challengeonairandroid.viewmodel.MyPageViewModel
 import com.okaka.challengeonairandroid.databinding.ActivityMyPageBinding
+import com.okaka.challengeonairandroid.view.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +44,10 @@ class MyPageActivity : AppCompatActivity() {
 
         val challengeSearch = myPageBinding.ibSearch
         challengeSearch.setOnClickListener {
-            startActivity(SearchActivity.intent(this))
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, SearchFragment()) // fragmentContainer에 SearchFragment 추가
+                .addToBackStack(null) // 뒤로 가기 스택에 추가
+                .commit()
         }
 
         val challengeHome = myPageBinding.ibHome

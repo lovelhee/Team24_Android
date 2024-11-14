@@ -62,10 +62,8 @@ class ParentAdapter(
 
         private fun updateEmptyMessageVisibility() {
             if (challenges.isEmpty()) {
-                binding.tvEmptyMessage.visibility = View.VISIBLE
                 binding.rvChallenge.visibility = View.GONE
             } else {
-                binding.tvEmptyMessage.visibility = View.GONE
                 binding.rvChallenge.visibility = View.VISIBLE
             }
         }

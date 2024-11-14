@@ -9,18 +9,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityHomeBinding
-import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.view.alarm.AlarmActivity
 import com.okaka.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.okaka.challengeonairandroid.view.mypage.MyPageActivity
-import com.okaka.challengeonairandroid.view.search.SearchActivity
+import com.okaka.challengeonairandroid.view.search.SearchFragment
 import com.okaka.challengeonairandroid.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -45,6 +43,13 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.loadAllChallenges()
     }
 
+    private fun openSearchFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, SearchFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
     private fun setupUI() {
         // Button 클릭 리스너 설정
         binding.btnComplete.setOnClickListener {
@@ -52,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.ibSearch.setOnClickListener {
-            startActivity(SearchActivity.intent(this))
+            openSearchFragment()
         }
 
         binding.ibAlarm.setOnClickListener {
