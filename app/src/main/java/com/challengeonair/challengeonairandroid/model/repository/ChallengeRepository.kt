@@ -2,6 +2,7 @@ package com.challengeonair.challengeonairandroid.model.repository
 
 import android.util.Log
 import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import com.challengeonair.challengeonairandroid.model.api.service.ChallengeApi
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCategoryResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCreationRequest
@@ -117,6 +118,23 @@ class ChallengeRepository @Inject constructor(
             null
         }
     }
+
+    suspend fun cancelChallenge(challengeId: Long): ChallengeCancellationResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = challengeApi.cancelChallenge("", challengeId)
+
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                Log.e("ChallengeRepository", "cancelChallenge API Error: ${response.message}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ChallengeRepository", "cancelChallenge Exception: ${e.message}")
+            null
+        }
+    }
+
 
     private fun getCurrentDateTime(): String {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd:HH:mm"))

@@ -8,6 +8,7 @@ import com.challengeonair.challengeonairandroid.model.api.response.ChallengeRese
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
 import com.challengeonair.challengeonairandroid.model.api.response.AllChallengesResponse
 import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
+import com.challengeonair.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import retrofit2.http.*
 
 interface ChallengeApi {
@@ -47,4 +48,11 @@ interface ChallengeApi {
         @Header("Authorization") accessToken: String,
         @Path("challengeId") challengeId: Long
     ): ApiResponse<ChallengeReservationResponse>
+
+    @POST("api/challenges/{challengeId}/cancel")
+    suspend fun cancelChallenge(
+        @Header("Authorization") accessToken: String,
+        @Path("challengeId") challengeId: Long
+    ): ApiResponse<ChallengeCancellationResponse>
+
 }

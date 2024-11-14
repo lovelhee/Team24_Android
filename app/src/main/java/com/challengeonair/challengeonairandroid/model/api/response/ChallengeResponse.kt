@@ -50,5 +50,10 @@ data class ChallengeDeletionResponse(
 
 data class ChallengeReservationResponse(
     @SerializedName("challenge_id") val challengeId: Long,
-    @SerializedName("user_id") val userId: Long
+    @SerializedName("user_id") val userId: String
+)
+
+data class ChallengeCancellationResponse(
+    @SerializedName("challenge_id") val challengeId: Long,
+    @SerializedName("user_id") val userId: String
 )
