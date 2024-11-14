@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.challengeonair.challengeonairandroid.databinding.DialogDeleteChalleng
 import com.challengeonair.challengeonairandroid.databinding.DialogReservationBinding
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.challengeonair.challengeonairandroid.view.home.HomeActivity
 import com.challengeonair.challengeonairandroid.viewmodel.ParticipateChallengeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,16 +40,16 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        var challengeId = -1L
+        challengeId = intent.getLongExtra("challengeId", -1L)
+
         // 더미 데이터 설정
         val isTestingWithDummyData = true // 더미 데이터 사용 여부
         if (isTestingWithDummyData) {
             setDummyData()
         } else {
             // 실제 데이터 로드
-            challengeId = intent.getLongExtra("challengeId", -1L)
-            if (challengeId != -1L) {
-                viewModel.loadChallengeDetails(challengeId)
+           if (challengeId != -1L) {
+               viewModel.loadChallengeDetails(challengeId)
             }
         }
 
@@ -82,9 +84,10 @@ class ParticipateChallengeActivity : AppCompatActivity() {
     private fun setDummyData() {
 
         val hostId = "current_user_id11"
+        val currentUserId = "current_user_id"
 
         viewModel.setChallengeData(
-            challenge = ChallengeResponse(
+            ChallengeResponse(
                 challengeId = 1L,
                 challengeName = "달리기 챌린지",
                 challengeBody = "우리 같이 달려용",
@@ -102,11 +105,18 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         )
 
         viewModel.setUserData(
-            user = UserProfileResponse(
-                userNickName = "정히공쥬",
+            UserProfileResponse(
+                userNickName = "정히공쥬호스트아님당",
                 userBody = "공쥬입니당",
                 imageUrl = "https://images.pexels.com/photos/2963409/pexels-photo-2963409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
                 point = 200
+            )
+        )
+
+        viewModel.setSpecificUserData(
+            UserProfileSpecificResponse(
+                userNickName = "정히공쥬호스트",
+                imageUrl = "https://images.pexels.com/photos/2963409/pexels-photo-2963409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             )
         )
     }
@@ -128,6 +138,24 @@ class ParticipateChallengeActivity : AppCompatActivity() {
                             Glide.with(this@ParticipateChallengeActivity)
                                 .load(it.imageExtension)
                                 .into(binding.ivChallengeCover)
+                            if (it.currentParticipantNum >= it.maxParticipantNum) {
+                                binding.tvRecruit.visibility = View.INVISIBLE
+                                binding.tvRecruitComplete.visibility = View.VISIBLE
+                                binding.btnEnterChallenge.apply {
+                                    isEnabled = false
+                                    text = "방이 가득 찼어요"
+                                    setTextColor(ContextCompat.getColor(context, R.color.btn_text_gray))
+                                    setBackgroundColor(ContextCompat.getColor(context, R.color.btn_background_gray))
+                                }
+                            } else {
+                                binding.tvRecruit.visibility = View.VISIBLE
+                                binding.tvRecruitComplete.visibility = View.INVISIBLE
+                                binding.btnEnterChallenge.apply {
+                                    isEnabled = true
+                                    text = "참여하기"
+                                    setBackgroundColor(ContextCompat.getColor(context, R.color.main_red))
+                                }
+                            }
                         }
                     }
                 }

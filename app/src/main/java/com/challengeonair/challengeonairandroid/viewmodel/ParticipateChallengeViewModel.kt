@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.challengeonair.challengeonairandroid.model.repository.ChallengeRepository
 import com.challengeonair.challengeonairandroid.model.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,9 @@ class ParticipateChallengeViewModel @Inject constructor(
 
     private val _user = MutableStateFlow<UserProfileResponse?>(null)
     val user: StateFlow<UserProfileResponse?> = _user
+
+    private val _specificUser = MutableStateFlow<UserProfileSpecificResponse?>(null)
+    val specificUser: StateFlow<UserProfileSpecificResponse?> = _specificUser
 
     // 로직 구현 후엔 sharedPreference에서 가져오게 해야함
     private val currentUserId = "current_user_id"
@@ -54,8 +58,8 @@ class ParticipateChallengeViewModel @Inject constructor(
 
     private fun loadUserProfile(hostId: String) {
         viewModelScope.launch {
-            val userProfileResponse = userProfileRepository.getUserProfile()
-            _user.value = userProfileResponse
+            val userProfileResponse = userProfileRepository.getSpecificUserProfile(hostId)
+            _specificUser.value = userProfileResponse
         }
     }
 
@@ -82,4 +86,9 @@ class ParticipateChallengeViewModel @Inject constructor(
     fun setUserData(user: UserProfileResponse) {
         _user.value = user
     }
+
+    fun setSpecificUserData(user: UserProfileSpecificResponse) {
+        _specificUser.value = user
+    }
+
 }

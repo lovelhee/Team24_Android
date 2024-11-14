@@ -80,7 +80,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.user.imageUrl}"
+                app:imageUrl="@{viewModel.specificUser.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRecruit"
                 android:background="@drawable/rounded_host_profile"
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="홍길동"
-                    android:text="@{viewModel.user.userNickName}"
+                    android:text="@{viewModel.specificUser.userNickName}"
                     android:layout_gravity="center"
                     android:textColor="@color/text_gray"
                     android:textSize="14sp"
@@ -226,22 +226,6 @@
                     android:layout_marginEnd="6dp"
                     android:text="@string/people_num"/>
 
-                <ImageView
-                    android:id="@+id/ivCurrentNum"
-                    android:layout_width="14dp"
-                    android:layout_gravity="center"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_current_num"
-                    android:contentDescription="@string/ic_current_people" />
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_gravity="center"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_max_num"
-                    android:id="@+id/ivMaxNum"
-                    android:contentDescription="@string/ic_max_people" />
-
             </LinearLayout>
 
             <TextView
@@ -345,7 +329,7 @@
 
             <LinearLayout
                 android:id="@+id/layoutHostBtn"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -388,7 +372,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPoint">
