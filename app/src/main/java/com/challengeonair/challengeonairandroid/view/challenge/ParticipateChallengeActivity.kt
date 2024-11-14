@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.challengeonair.challengeonairandroid.R
 import com.challengeonair.challengeonairandroid.databinding.ActivityParticipateChallengeBinding
-import com.challengeonair.challengeonairandroid.databinding.DialogCancleBinding
+import com.challengeonair.challengeonairandroid.databinding.DialogCancelBinding
 import com.challengeonair.challengeonairandroid.databinding.DialogDeleteChallengeBinding
 import com.challengeonair.challengeonairandroid.databinding.DialogReservationBinding
 import com.challengeonair.challengeonairandroid.model.api.response.ChallengeResponse
@@ -55,7 +55,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
             showDeleteChallengeDialog()
         }
 
-        binding.btnCancle.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             showCancleDialog()
         }
 
@@ -160,8 +160,8 @@ class ParticipateChallengeActivity : AppCompatActivity() {
 
     private fun showCancleDialog() {
 
-        val dialogBinding = DataBindingUtil.inflate<DialogCancleBinding>(
-            layoutInflater, R.layout.dialog_cancle, null, false
+        val dialogBinding = DataBindingUtil.inflate<DialogCancelBinding>(
+            layoutInflater, R.layout.dialog_cancel, null, false
         )
 
         val dialog = AlertDialog.Builder(this)
@@ -174,7 +174,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        dialogBinding.btnCancle.setOnClickListener {
+        dialogBinding.btnCancel.setOnClickListener {
             binding.btnEnterChallenge.visibility = View.VISIBLE
             binding.layoutUserEnterBtn.visibility = View.GONE
             dialog.dismiss()

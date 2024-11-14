@@ -454,13 +454,13 @@
                     app:layout_constraintEnd_toEndOf="parent">
 
                     <Button
-                        android:id="@+id/btnCancle"
+                        android:id="@+id/btnCancel"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="4dp"
                         android:layout_weight="1"
                         android:background="@drawable/rounded_delete_btn"
-                        android:text="@string/challenge_cancle"
+                        android:text="@string/challenge_cancel"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />

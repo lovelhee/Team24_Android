@@ -14,9 +14,9 @@
         android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_canclebox"
+        android:src="@drawable/ic_cancelbox"
         android:layout_gravity="center"
-        android:contentDescription="@string/img_cancle" />
+        android:contentDescription="@string/img_cancel" />
 
     <TextView
         android:layout_marginTop="12dp"
