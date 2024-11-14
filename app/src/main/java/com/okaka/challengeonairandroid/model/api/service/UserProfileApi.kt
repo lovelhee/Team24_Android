@@ -29,6 +29,6 @@ interface UserProfileApi {
     @GET("api/userprofile/host/{uuid}")
     suspend fun getSpecificUserProfile(
         @Header("Authorization") accessToken: String,
-        @Path("userId") userId: String
+        @Path("uuid") userId: String
     ): ApiResponse<UserProfileSpecificResponse>
 }
