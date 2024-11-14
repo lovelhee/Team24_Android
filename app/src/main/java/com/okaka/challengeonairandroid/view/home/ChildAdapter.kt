@@ -1,5 +1,6 @@
 package com.okaka.challengeonairandroid.view.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.model.data.entity.Category
 import com.okaka.challengeonairandroid.databinding.ItemCategoryChallengeBinding
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.view.challenge.ParticipateChallengeActivity
 
 class ChildAdapter(
     private var challenges: List<ChallengeResponse>
@@ -30,6 +32,13 @@ class ChildAdapter(
                 .into(binding.ivChallengeCover)
 
             updateParticipantIcons(challenge.currentParticipantNum, challenge.maxParticipantNum)
+
+            binding.root.setOnClickListener {
+                val context = binding.root.context
+                val intent = Intent(context, ParticipateChallengeActivity::class.java)
+                intent.putExtra("challengeId", challenge.challengeId)
+                context.startActivity(intent)
+            }
         }
 
         private fun updateParticipantIcons(currentNum: Int, maxNum: Int) {
