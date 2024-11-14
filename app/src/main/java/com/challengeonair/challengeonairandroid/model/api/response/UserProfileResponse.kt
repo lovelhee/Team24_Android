@@ -18,3 +18,8 @@ data class UserProfileUpdateRequest(
 data class UserProfileUpdateResponse(
     @SerializedName("user_id") val userId: String
 )
+
+data class UserProfileSpecificResponse(
+    @SerializedName("user_nick_name") val userNickName: String,
+    @SerializedName("image_url") val imageUrl: String
+)

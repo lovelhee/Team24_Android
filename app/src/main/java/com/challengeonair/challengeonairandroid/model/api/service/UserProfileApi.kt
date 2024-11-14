@@ -2,12 +2,14 @@ package com.challengeonair.challengeonairandroid.model.api.service
 
 import com.challengeonair.challengeonairandroid.model.api.response.ApiResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface UserProfileApi {
 
@@ -23,4 +25,10 @@ interface UserProfileApi {
         @Header("Authorization") accessToken: String,
         @Body userProfileUpdateRequest: UserProfileUpdateRequest
     ): ApiResponse<UserProfileUpdateResponse>
+
+    @GET("api/userprofile/host/{uuid}")
+    suspend fun getSpecificUserProfile(
+        @Header("Authorization") accessToken: String,
+        @Path("userId") userId: String
+    ): ApiResponse<UserProfileSpecificResponse>
 }

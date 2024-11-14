@@ -2,6 +2,7 @@ package com.challengeonair.challengeonairandroid.model.repository
 
 import android.util.Log
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileResponse
+import com.challengeonair.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateRequest
 import com.challengeonair.challengeonairandroid.model.api.response.UserProfileUpdateResponse
 import com.challengeonair.challengeonairandroid.model.api.service.UserProfileApi
@@ -42,6 +43,22 @@ class UserProfileRepository @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e("UserProfileRepository", "updateUserProfile Exception: ${e.message}")
+            null
+        }
+    }
+
+    suspend fun getSpecificUserProfile(accessToken: String, userId: String): UserProfileSpecificResponse? = withContext(Dispatchers.IO) {
+        try {
+            val response = userProfileApi.getSpecificUserProfile("", userId)  // 실제로는 토큰이 주입됨
+
+            if (response.isSuccessful()) {
+                response.data
+            } else {
+                Log.e("UserProfileSpecificRepository", "getSpecificUserProfile API Error: ${response.message}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("UserProfileSpecificRepository", "getSpecificUserProfile Exception: ${e.message}")
             null
         }
     }
