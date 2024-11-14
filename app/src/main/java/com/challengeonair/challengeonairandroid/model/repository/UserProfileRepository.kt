@@ -47,18 +47,18 @@ class UserProfileRepository @Inject constructor(
         }
     }
 
-    suspend fun getSpecificUserProfile(accessToken: String, userId: String): UserProfileSpecificResponse? = withContext(Dispatchers.IO) {
+    suspend fun getSpecificUserProfile(userId: String): UserProfileSpecificResponse? = withContext(Dispatchers.IO) {
         try {
             val response = userProfileApi.getSpecificUserProfile("", userId)  // 실제로는 토큰이 주입됨
 
             if (response.isSuccessful()) {
                 response.data
             } else {
-                Log.e("UserProfileSpecificRepository", "getSpecificUserProfile API Error: ${response.message}")
+                Log.e("UserProfileRepository", "getSpecificUserProfile API Error: ${response.message}")
                 null
             }
         } catch (e: Exception) {
-            Log.e("UserProfileSpecificRepository", "getSpecificUserProfile Exception: ${e.message}")
+            Log.e("UserProfileRepository", "getSpecificUserProfile Exception: ${e.message}")
             null
         }
     }
