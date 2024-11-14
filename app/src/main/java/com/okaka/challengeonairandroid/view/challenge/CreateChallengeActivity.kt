@@ -13,6 +13,7 @@ import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityCreateChallengeBinding
 import com.okaka.challengeonairandroid.viewmodel.CreateChallengeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import com.okaka.challengeonairandroid.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -53,6 +54,7 @@ class CreateChallengeActivity : AppCompatActivity() {
 
         createChallengeBinding.btnNext.setOnClickListener {
             val currentItem = createChallengeBinding.viewPager.currentItem
+            Log.d("challengeRepo#$", "2단계로 옴")
             Log.d("createChallnege!!!!", "$currentItem")
             Log.d(":createChallnege!!!!", "${TabKind.STEP1.ordinal}")
             if (currentItem == TabKind.STEP1.ordinal) {
@@ -65,9 +67,10 @@ class CreateChallengeActivity : AppCompatActivity() {
                 }
             }
             else {
+                Log.d("challengeRepo#$", "완료단계로 옴")
                 if (createChallengeViewModel.isStep2Valid()) {
                     createChallengeViewModel.createChallenge()
-                    createChallengeViewModel.sendChallengeDataToServer()
+                    createChallengeViewModel.sendChallengeDataToServer(this)
                 }
                 else {
                     Toast.makeText(this, "모든 정보를 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -79,6 +82,7 @@ class CreateChallengeActivity : AppCompatActivity() {
         lifecycleScope.launch {
             createChallengeViewModel.challengeCreationStatus.collectLatest { isCreated ->
                 if (isCreated) {
+                    Log.d("challengeRepo#$", "완료단계로 옴")
                     val dialog = CreateChallengeCompletedDialog()
                     dialog.show(supportFragmentManager, "ChallengeCreatedDialog")
                     createChallengeViewModel.resetStatus()

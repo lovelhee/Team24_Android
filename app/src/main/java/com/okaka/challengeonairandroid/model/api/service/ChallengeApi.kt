@@ -1,11 +1,12 @@
 package com.okaka.challengeonairandroid.model.api.service
 
-import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.api.response.ApiResponse
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
+import okhttp3.MultipartBody
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCancellationResponse
 import retrofit2.http.*
 
@@ -21,10 +22,12 @@ interface ChallengeApi {
         @Path("challengeId") challengeId: Long
     ): ApiResponse<ChallengeResponse>
 
+    @Multipart
     @POST("api/challenges")
     suspend fun createChallenge(
         @Header("Authorization") accessToken: String,
-        @Body request: ChallengeCreationRequest
+        @Part("upload") image: MultipartBody.Part,
+        @Part("dto") request: Challenge
     ): ApiResponse<ChallengeCreationResponse>
 
     @DELETE("api/challenges/{challengeId}")
