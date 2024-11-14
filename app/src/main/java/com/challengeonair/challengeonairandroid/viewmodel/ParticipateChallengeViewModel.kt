@@ -64,7 +64,14 @@ class ParticipateChallengeViewModel @Inject constructor(
             challengeRepository.deleteChallenge(challengeId)
         }
     }
-
+    fun cancelChallenge(challengeId: Long) {
+        viewModelScope.launch {
+            val response = challengeRepository.cancelChallenge(challengeId)
+            if (response != null) {
+                _challenge.value = _challenge.value?.copy(currentParticipantNum = 0)
+            }
+        }
+    }
 
     // 더미 데이터용
     fun setChallengeData(challenge: ChallengeResponse) {

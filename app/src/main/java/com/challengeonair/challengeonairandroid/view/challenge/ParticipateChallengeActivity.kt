@@ -56,7 +56,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         }
 
         binding.btnCancel.setOnClickListener {
-            showCancleDialog()
+            showCancelDialog()
         }
 
         binding.btnEnterChallenge.setOnClickListener {
@@ -158,11 +158,9 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCancleDialog() {
+    private fun showCancelDialog() {
 
-        val dialogBinding = DataBindingUtil.inflate<DialogCancelBinding>(
-            layoutInflater, R.layout.dialog_cancel, null, false
-        )
+        val dialogBinding = DialogCancelBinding.inflate(layoutInflater)
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
@@ -175,9 +173,10 @@ class ParticipateChallengeActivity : AppCompatActivity() {
         }
 
         dialogBinding.btnCancel.setOnClickListener {
+            viewModel.cancelChallenge(challengeId)
+            dialog.dismiss()
             binding.btnEnterChallenge.visibility = View.VISIBLE
             binding.layoutUserEnterBtn.visibility = View.GONE
-            dialog.dismiss()
         }
 
         dialog.show()
