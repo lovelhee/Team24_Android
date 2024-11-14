@@ -13,11 +13,11 @@ import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.view.challenge.ParticipateChallengeActivity
 
 class ChildAdapter(
-    private var challenges: List<Challenge>
+    private var challenges: List<ChallengeResponse>
 ) : RecyclerView.Adapter<ChildAdapter.ChildViewHolder>() {
 
     inner class ChildViewHolder(private val binding: ItemCategoryChallengeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(challenge: Challenge) {
+        fun bind(challenge: ChallengeResponse) {
             binding.tvChallengeName.text = challenge.challengeName
             binding.tvDate.text = challenge.challengeDate
             binding.tvStartTime.text = challenge.startTime
@@ -27,7 +27,7 @@ class ChildAdapter(
             binding.tvCategory.text = getCategoryName(challenge.categoryId)
 
             Glide.with(binding.ivChallengeCover.context)
-                .load(challenge.imageUrl)
+                .load(challenge.imageExtension)
                 .fallback(R.drawable.sample_challenge_thumbnail)
                 .into(binding.ivChallengeCover)
 
@@ -94,7 +94,7 @@ class ChildAdapter(
 
     override fun getItemCount(): Int = challenges.size
 
-    fun updateData(newChallenges: List<Challenge>) {
+    fun updateData(newChallenges: List<ChallengeResponse>) {
         challenges = newChallenges
         notifyDataSetChanged()
     }
