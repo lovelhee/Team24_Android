@@ -28,7 +28,7 @@ data class Challenge(
     val challengeDate: String,
     val startTime: String,
     val endTime: String,
-    val imageExtension: String,
+    val imageUrl: String,
     val minParticipantNum: Int,
     val maxParticipantNum: Int,
     val currentParticipantNum: Int,

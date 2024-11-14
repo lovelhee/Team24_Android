@@ -12,11 +12,11 @@ data class ChallengeResponse(
     @SerializedName("challengeDate") val challengeDate: String,
     @SerializedName("startTime") val startTime: String,
     @SerializedName("endTime") val endTime: String,
-    @SerializedName("imageExtension") val imageExtension: String,
+    @SerializedName("imageUrl") val imageUrl: String,
     @SerializedName("minParticipantNum") val minParticipantNum: Int,
     @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
     @SerializedName("currentParticipantNum") val currentParticipantNum: Int,
-    @SerializedName("hostId") val hostId: String,
+    @SerializedName("hostUuid") val hostId: String,
     @SerializedName("categoryId") val categoryId: Int
 )
 
@@ -29,7 +29,7 @@ fun ChallengeResponse.toChallenge(): Challenge {
         challengeDate = this.challengeDate,
         startTime = this.startTime,
         endTime = this.endTime,
-        imageExtension = this.imageExtension,
+        imageUrl = this.imageUrl,
         minParticipantNum = this.minParticipantNum,
         maxParticipantNum = this.maxParticipantNum,
         currentParticipantNum = this.currentParticipantNum,
@@ -41,7 +41,7 @@ fun ChallengeResponse.toChallenge(): Challenge {
 
 // 3. 챌린지 생성
 data class ChallengeCreationRequest(
-    @SerializedName("hostId") val hostId: String,
+    @SerializedName("hostUuid") val hostId: String,
     @SerializedName("categoryId") val categoryId: Int,
     @SerializedName("challengeName") val challengeName: String,
     @SerializedName("challengeBody") val challengeBody: String? = null,
@@ -49,14 +49,15 @@ data class ChallengeCreationRequest(
     @SerializedName("challengeDate") val challengeDate: String,
     @SerializedName("startTime") val startTime: String,
     @SerializedName("endTime") val endTime: String,
-    @SerializedName("imageExtension") val imageExtension: String,
+    @SerializedName("imageUrl") val imageUrl: String,
     @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
-    @SerializedName("minParticipantNum") val minParticipantNum: Int
+    @SerializedName("minParticipantNum") val minParticipantNum: Int,
+    @SerializedName("challengeUrl") val challengeUrl: String
 )
 
 data class ChallengeCreationResponse(
     @SerializedName("challengeId") val challengeId: Long,
-    @SerializedName("imgUrl") val imageExtension: String
+    @SerializedName("imageUrl") val imageUrl: String
 )
 
 // 4. 챌린지 삭제
@@ -79,7 +80,7 @@ data class WaitingChallengeResponse(
     @SerializedName("challengeDate") val challengeDate: String,
     @SerializedName("startTime") val startTime: String,
     @SerializedName("endTime") val endTime: String,
-    @SerializedName("imageExtension") val imageExtension: String,
+    @SerializedName("imageUrl") val imageUrl: String,
     @SerializedName("minParticipantNum") val minParticipantNum: Int,
     @SerializedName("maxParticipantNum") val maxParticipantNum: Int,
     @SerializedName("currentParticipantNum") val currentParticipantNum: Int,

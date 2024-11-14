@@ -51,7 +51,7 @@ class CreateChallengeViewModel @Inject constructor(
             startTime = startTime.value,
             endTime = endTime.value,
             point = point.value.toInt(),
-            imageExtension = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
+            imageUrl = challengeImage.value ?: "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             hostId = "1L" // TODO: 실제 사용자 정보로 설정
         )
         Log.d("ChallengeRepo!!", "${challengeData.value}")
@@ -210,10 +210,11 @@ class CreateChallengeViewModel @Inject constructor(
             challengeDate = "",
             startTime = "",
             endTime = "",
-            imageExtension = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
+            imageUrl = "", // TODO: 이미지 선택 X 시, 기본 이미지 url 연결
             minParticipantNum = 2,
             maxParticipantNum = 4,
-            hostId = "1L" // TODO: 실제 사용자 정보로 설정
+            hostId = "1L", // TODO: 실제 사용자 정보로 설정
+            challengeUrl = ""
         )
         updateChallenges(defaultResponse)
     }
@@ -228,7 +229,7 @@ class CreateChallengeViewModel @Inject constructor(
         _endTime.value = request.endTime
         _minParticipantNum.value = request.minParticipantNum
         _maxParticipantNum.value = request.maxParticipantNum
-        _challengeImage.value = request.imageExtension
+        _challengeImage.value = request.imageUrl
     }
 
     fun isStep1Valid(): Boolean {

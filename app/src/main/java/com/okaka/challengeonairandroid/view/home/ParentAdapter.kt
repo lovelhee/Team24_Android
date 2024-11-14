@@ -28,12 +28,12 @@ class ParentAdapter(
                 adapter = childAdapter
             }
 
+            updateCategoryUI(itemView.context)
             updateChallengeList()
         }
 
         fun bind() {
             setupCategoryClickListeners()
-            updateCategoryUI(itemView.context)
             updateEmptyMessageVisibility()
         }
 

@@ -2,7 +2,6 @@ package com.okaka.challengeonairandroid.model.repository
 
 import android.util.Log
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
-import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
@@ -69,7 +68,6 @@ class ChallengeRepository @Inject constructor(
             val response = challengeApi.createChallenge(getAuthorizationHeader(), imagePart, challenge)
 
             if (response.isSuccessful()) {
-                Log.d("ChallengeRepo", "${response}")
                 response.data
             } else {
                 Log.e("ChallengeRepository", "createChallenge API Error: ${response.message}")

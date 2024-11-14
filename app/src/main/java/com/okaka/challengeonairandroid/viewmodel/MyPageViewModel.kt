@@ -156,7 +156,7 @@ class MyPageViewModel @Inject constructor(
                 point = response.point,
                 startTime = response.startTime,
                 endTime = response.endTime,
-                imageExtension = response.imageExtension,
+                imageUrl = response.imageUrl,
                 hostId = response.hostId,
                 challengeId = 1
             )
