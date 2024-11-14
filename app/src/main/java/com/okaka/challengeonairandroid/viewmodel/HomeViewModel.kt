@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.model.repository.ChallengeRepository
 import com.okaka.challengeonairandroid.model.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +20,8 @@ class HomeViewModel @Inject constructor(
     private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
-    private val _challengesList = MutableStateFlow<List<ChallengeResponse>>(emptyList())
-    val challengesList: StateFlow<List<ChallengeResponse>> = _challengesList.asStateFlow()
+    private val _challengesList = MutableStateFlow<List<Challenge>>(emptyList())
+    val challengesList: StateFlow<List<Challenge>> = _challengesList.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -32,7 +33,6 @@ class HomeViewModel @Inject constructor(
                 val response = challengeRepository.getAllChallenges()
                 if (response != null) {
                     _challengesList.value = response
-                    Log.d("challengeRepo", "$response")
                 }
             } catch (e: Exception) {
                 // 에러 처리

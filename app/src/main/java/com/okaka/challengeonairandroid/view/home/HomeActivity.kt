@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.databinding.ActivityHomeBinding
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.view.alarm.AlarmActivity
 import com.okaka.challengeonairandroid.view.challenge.CreateChallengeActivity
 import com.okaka.challengeonairandroid.view.mypage.MyPageActivity
@@ -86,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateRecyclerView(challenges: List<ChallengeResponse>) {
+    private fun updateRecyclerView(challenges: List<Challenge>) {
         // 어댑터의 데이터 업데이트 및 UI 갱신
         parentAdapter.updateData(challenges)
         Log.d(TAG, "Updated challengeList: $challenges")
@@ -94,7 +95,9 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         fun intent(context: Context): Intent {
-            return Intent(context, HomeActivity::class.java)
+            return Intent(context, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         }
     }
 }

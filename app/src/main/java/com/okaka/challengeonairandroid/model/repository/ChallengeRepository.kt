@@ -7,11 +7,14 @@ import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRespo
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.api.response.toChallenge
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.MultipartBody
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -23,15 +26,16 @@ class ChallengeRepository @Inject constructor(
 
     private suspend fun getAuthorizationHeader(): String {
         val accessToken = tokenManager.getAccessToken()
+        Log.d("ChallengeRepository", "${accessToken}")
         return "Authorization : Bearer $accessToken"
     }
 
-    suspend fun getAllChallenges(): List<ChallengeResponse>? = withContext(Dispatchers.IO) {
+    suspend fun getAllChallenges(): List<Challenge>? = withContext(Dispatchers.IO) {
         try {
             val response = challengeApi.getAllChallenges(getAuthorizationHeader())
             if (response.isSuccessful()) {
                 Log.d("ChallengeRepository", "${response}")
-                response.data
+                response.data?.map { it.toChallenge() } ?: emptyList()
             } else {
                 Log.e("ChallengeRepository", "getAllChallenges API Error: ${response.message}")
                 null
@@ -59,11 +63,13 @@ class ChallengeRepository @Inject constructor(
         }
     }
 
-    suspend fun createChallenge(challenge: ChallengeCreationRequest): ChallengeCreationResponse? = withContext(Dispatchers.IO) {
+    suspend fun createChallenge(imagePart: MultipartBody.Part, challenge: Challenge): ChallengeCreationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.createChallenge(getAuthorizationHeader(), challenge)
+
+            val response = challengeApi.createChallenge(getAuthorizationHeader(), imagePart, challenge)
 
             if (response.isSuccessful()) {
+                Log.d("ChallengeRepo", "${response}")
                 response.data
             } else {
                 Log.e("ChallengeRepository", "createChallenge API Error: ${response.message}")

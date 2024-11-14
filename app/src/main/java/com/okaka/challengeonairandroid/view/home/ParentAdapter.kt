@@ -2,17 +2,18 @@ package com.okaka.challengeonairandroid.view.home
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ItemHomeParentBinding
-import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.entity.Category
+import com.okaka.challengeonairandroid.model.data.entity.Challenge
 
 class ParentAdapter(
-    private var challenges: List<ChallengeResponse>
+    private var challenges: List<Challenge>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
     private var selectedCategoryId: Int = Category.EXERCISE.id
@@ -33,6 +34,7 @@ class ParentAdapter(
         fun bind() {
             setupCategoryClickListeners()
             updateCategoryUI(itemView.context)
+            updateEmptyMessageVisibility()
         }
 
         private fun setupCategoryClickListeners() {
@@ -57,6 +59,17 @@ class ParentAdapter(
                 updateCategoryUI(itemView.context)
             }
         }
+
+        private fun updateEmptyMessageVisibility() {
+            if (challenges.isEmpty()) {
+                binding.tvEmptyMessage.visibility = View.VISIBLE
+                binding.rvChallenge.visibility = View.GONE
+            } else {
+                binding.tvEmptyMessage.visibility = View.GONE
+                binding.rvChallenge.visibility = View.VISIBLE
+            }
+        }
+
 
         private fun updateChallengeList() {
             val filteredChallenges = challenges.filter { it.categoryId == selectedCategoryId }
@@ -83,7 +96,7 @@ class ParentAdapter(
         }
     }
 
-    fun updateData(newChallenges: List<ChallengeResponse>) {
+    fun updateData(newChallenges: List<Challenge>) {
         challenges = newChallenges
         notifyDataSetChanged()
     }
@@ -97,5 +110,5 @@ class ParentAdapter(
         holder.bind()
     }
 
-    override fun getItemCount(): Int = challenges.size
+    override fun getItemCount(): Int = 1
 }

@@ -35,13 +35,13 @@ class SearchViewModel @Inject constructor(
 
     private fun loadChallenges() {
         viewModelScope.launch {
-            val challengeResponses = dummyChallengeResponses
-            updateChallenges(challengeResponses)
+            val challengeResponses = ChallengeApi.getAll
+            updateChallenges(challenge = challengeResponses)
         }
     }
 
-    private fun updateChallenges(challengeResponses: List<ChallengeResponse>) {
-        _allChallenges.value = challengeResponses.map { response ->
+    private fun updateChallenges(challenge: List<Challenge>) {
+        _allChallenges.value = challenge.map { response ->
             Challenge(
                 categoryId = response.categoryId,
                 challengeName = response.challengeName,
