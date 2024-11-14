@@ -1,5 +1,6 @@
 package com.okaka.challengeonairandroid.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
@@ -24,13 +25,14 @@ class HomeViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    fun loadAllChallenges(accessToken: String) {
+    fun loadAllChallenges() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
                 val response = challengeRepository.getAllChallenges()
                 if (response != null) {
-                    _challengesList.value = response.challenges
+                    _challengesList.value = response
+                    Log.d("challengeRepo", "$response")
                 }
             } catch (e: Exception) {
                 // 에러 처리

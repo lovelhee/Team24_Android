@@ -26,12 +26,6 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
-//        return context.encryptedDataStore
-//    }
-
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
@@ -53,7 +47,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideBaseUrl() = "http://52.79.130.181:8080/"
+    fun provideBaseUrl() = "http://52.79.51.86:8080/"
 
     @Provides
     @Singleton

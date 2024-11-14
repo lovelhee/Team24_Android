@@ -7,12 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.okaka.challengeonairandroid.R
-import com.okaka.challengeonairandroid.model.data.entity.Challenge
 import com.okaka.challengeonairandroid.databinding.ItemHomeParentBinding
+import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.entity.Category
 
 class ParentAdapter(
-    private val challenges: List<Challenge>
+    private var challenges: List<ChallengeResponse>
 ) : RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
     private var selectedCategoryId: Int = Category.EXERCISE.id
@@ -28,6 +28,9 @@ class ParentAdapter(
             }
 
             updateChallengeList()
+        }
+
+        fun bind() {
             setupCategoryClickListeners()
             updateCategoryUI(itemView.context)
         }
@@ -80,13 +83,19 @@ class ParentAdapter(
         }
     }
 
+    fun updateData(newChallenges: List<ChallengeResponse>) {
+        challenges = newChallenges
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
         val binding = ItemHomeParentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ParentViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
+        holder.bind()
     }
 
-    override fun getItemCount(): Int = 1
+    override fun getItemCount(): Int = challenges.size
 }

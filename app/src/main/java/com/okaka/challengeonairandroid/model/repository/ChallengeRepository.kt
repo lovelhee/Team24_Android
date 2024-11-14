@@ -1,13 +1,13 @@
 package com.okaka.challengeonairandroid.model.repository
 
 import android.util.Log
-import com.okaka.challengeonairandroid.model.api.response.AllChallengesResponse
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeDeletionResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
+import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
@@ -17,13 +17,20 @@ import java.time.format.DateTimeFormatter
 
 @Singleton
 class ChallengeRepository @Inject constructor(
-    private val challengeApi: ChallengeApi
+    private val challengeApi: ChallengeApi,
+    private val tokenManager: TokenManager
 ) {
-    suspend fun getAllChallenges(): AllChallengesResponse? = withContext(Dispatchers.IO) {
-        try {
-            val response = challengeApi.getAllChallenges("")  // 임시로 빈 토큰
 
+    private suspend fun getAuthorizationHeader(): String {
+        val accessToken = tokenManager.getAccessToken()
+        return "Authorization : Bearer $accessToken"
+    }
+
+    suspend fun getAllChallenges(): List<ChallengeResponse>? = withContext(Dispatchers.IO) {
+        try {
+            val response = challengeApi.getAllChallenges(getAuthorizationHeader())
             if (response.isSuccessful()) {
+                Log.d("ChallengeRepository", "${response}")
                 response.data
             } else {
                 Log.e("ChallengeRepository", "getAllChallenges API Error: ${response.message}")
@@ -38,7 +45,7 @@ class ChallengeRepository @Inject constructor(
     suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
         try {
             val date = getCurrentDateTime()
-            val response = challengeApi.getChallengeDetails("", challengeId, date)
+            val response = challengeApi.getChallengeDetails(getAuthorizationHeader(), challengeId, date)
 
             if (response.isSuccessful()) {
                 response.data
@@ -54,7 +61,7 @@ class ChallengeRepository @Inject constructor(
 
     suspend fun createChallenge(challenge: ChallengeCreationRequest): ChallengeCreationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.createChallenge("", challenge)
+            val response = challengeApi.createChallenge(getAuthorizationHeader(), challenge)
 
             if (response.isSuccessful()) {
                 response.data
@@ -70,7 +77,7 @@ class ChallengeRepository @Inject constructor(
 
     suspend fun deleteChallenge(challengeId: Long): ChallengeDeletionResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.deleteChallenge("", challengeId)
+            val response = challengeApi.deleteChallenge(getAuthorizationHeader(), challengeId)
 
             if (response.isSuccessful()) {
                 response.data
@@ -86,7 +93,7 @@ class ChallengeRepository @Inject constructor(
 
     suspend fun reserveChallenge(challengeId: Long): ChallengeReservationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.reserveChallenge("", challengeId)
+            val response = challengeApi.reserveChallenge(getAuthorizationHeader(), challengeId)
 
             if (response.isSuccessful()) {
                 response.data

@@ -2,7 +2,7 @@ package com.okaka.challengeonairandroid.model.api.response
 
 import com.google.gson.annotations.SerializedName
 
-// 1. 챌린지 단건 조회
+// 1. 챌린지 단건 조회 ChallengeResponse + 2. 챌린지 전체 조회 List<ChallengeResponse>
 data class ChallengeResponse(
     @SerializedName("challengeId") val challengeId: Long,
     @SerializedName("challengeName") val challengeName: String,
@@ -17,11 +17,6 @@ data class ChallengeResponse(
     @SerializedName("currentParticipantNum") val currentParticipantNum: Int,
     @SerializedName("hostId") val hostId: String,
     @SerializedName("categoryId") val categoryId: Int
-)
-
-// 2. 챌린지 전체 조회
-data class AllChallengesResponse(
-    @SerializedName("challenges") val challenges: List<ChallengeResponse>
 )
 
 // 3. 챌린지 생성
