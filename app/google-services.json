@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159032551116",
+    "project_id": "challengeonair-90ca7",
+    "storage_bucket": "challengeonair-90ca7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159032551116:android:9e55fd50615caae2628469",
+        "android_client_info": {
+          "package_name": "com.okaka.challengeonairandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159032551116-tsl3sg3dr152lcr0hji2lo2klfn8dnl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByf-eRvcsTroayKDN2IQ0sJeXtlnEfs7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159032551116-tsl3sg3dr152lcr0hji2lo2klfn8dnl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

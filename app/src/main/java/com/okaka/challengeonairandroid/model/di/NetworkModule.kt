@@ -1,9 +1,12 @@
 package com.okaka.challengeonairandroid.model.di
 
+import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
 import com.okaka.challengeonairandroid.model.api.service.HistoryApi
 import com.okaka.challengeonairandroid.model.api.service.UserApi
@@ -81,5 +84,15 @@ object NetworkModule {
     @Singleton
     fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi {
         return retrofit.create(UserProfileApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(application: Application): FirebaseAuth {
+        // Firebase 초기화를 여기서 해줍니다
+        if (FirebaseApp.getApps(application).isEmpty()) {
+            FirebaseApp.initializeApp(application)
+        }
+        return FirebaseAuth.getInstance()
     }
 }

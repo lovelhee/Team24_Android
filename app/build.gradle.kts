@@ -3,7 +3,9 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlinSerialization)
+
     kotlin("kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -63,6 +65,7 @@ dependencies {
     implementation(libs.androidx.databinding.runtime)
     implementation(libs.androidx.browser)
     implementation(libs.jitsi.meet) { isTransitive = true }
+    implementation(libs.firebase.auth)
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
     testImplementation(libs.junit)
@@ -74,6 +77,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.room.compiler)
     implementation(libs.room.ktx)
+
 }
 
 kapt {

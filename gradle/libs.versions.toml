@@ -28,6 +28,8 @@ security-crypto = "1.1.0-alpha06"
 databindingRuntime = "8.6.1"
 browser = "1.8.0"
 jitsi = "8.1.2"
+firebaseAuth = "23.1.0"
+googleServices = "4.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -60,6 +62,10 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCom
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
 jitsi-meet = { group = "org.jitsi.react", name = "jitsi-meet-sdk", version.ref = "jitsi" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+gms-google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
