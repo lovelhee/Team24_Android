@@ -18,8 +18,7 @@ interface ChallengeApi {
     @GET("api/challenges/{challengeId}")
     suspend fun getChallengeDetails(
         @Header("Authorization") accessToken: String,
-        @Path("challengeId") challengeId: Long,
-        @Body date: String
+        @Path("challengeId") challengeId: Long
     ): ApiResponse<ChallengeResponse>
 
     @POST("api/challenges")
