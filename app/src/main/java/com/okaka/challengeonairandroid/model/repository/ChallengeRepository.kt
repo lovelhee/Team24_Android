@@ -49,7 +49,7 @@ class ChallengeRepository @Inject constructor(
     suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
         try {
             val date = getCurrentDateTime()
-            val response = challengeApi.getChallengeDetails(getAuthorizationHeader(), challengeId, date)
+            val response = challengeApi.getChallengeDetails(getAuthorizationHeader(), challengeId)
 
             if (response.isSuccessful()) {
                 response.data
@@ -114,7 +114,7 @@ class ChallengeRepository @Inject constructor(
 
     suspend fun cancelChallenge(challengeId: Long): ChallengeCancellationResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = challengeApi.cancelChallenge("", challengeId)
+            val response = challengeApi.cancelChallenge(getAuthorizationHeader(), challengeId)
 
             if (response.isSuccessful()) {
                 response.data

@@ -74,7 +74,7 @@ class MyPageRepository @Inject constructor(
     suspend fun getChallengeDetails(challengeId: Long): ChallengeResponse? = withContext(Dispatchers.IO) {
         try {
             val date = getCurrentDateTime()
-            val response = challengeApi.getChallengeDetails("", challengeId, date)
+            val response = challengeApi.getChallengeDetails("", challengeId)
             if (response.isSuccessful()) {
                 response.data
             } else {

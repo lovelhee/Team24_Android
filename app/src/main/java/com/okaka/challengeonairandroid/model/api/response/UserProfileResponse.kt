@@ -21,6 +21,6 @@ data class UserProfileUpdateResponse(
 )
 
 data class UserProfileSpecificResponse(
-    @SerializedName("user_nick_name") val userNickName: String,
-    @SerializedName("image_url") val imageUrl: String
+    @SerializedName("useNickName") val userNickName: String,
+    @SerializedName("imageUrl") val imageUrl: String
 )
