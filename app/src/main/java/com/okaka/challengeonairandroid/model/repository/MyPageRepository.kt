@@ -1,5 +1,6 @@
 package com.okaka.challengeonairandroid.model.repository
 
+import android.util.Log
 import com.okaka.challengeonairandroid.model.api.response.ChallengeReservationResponse
 import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.api.response.AllHistoriesResponse
@@ -9,6 +10,7 @@ import com.okaka.challengeonairandroid.model.api.response.UserProfileUpdateRespo
 import com.okaka.challengeonairandroid.model.api.service.ChallengeApi
 import com.okaka.challengeonairandroid.model.api.service.HistoryApi
 import com.okaka.challengeonairandroid.model.api.service.UserProfileApi
+import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
@@ -20,8 +22,15 @@ import java.time.format.DateTimeFormatter
 class MyPageRepository @Inject constructor(
     private val userProfileApi: UserProfileApi,
     private val historyApi: HistoryApi,
-    private val challengeApi: ChallengeApi
+    private val challengeApi: ChallengeApi,
+    private val tokenManager: TokenManager
 ) {
+    private suspend fun getAuthorizationHeader(): String {
+        val accessToken = tokenManager.getAccessToken()
+        Log.d("ChallengeRepository", "${accessToken}")
+        return "Authorization : Bearer $accessToken"
+    }
+
     // 사용자 프로필 조회
     suspend fun getUserProfile(accessToken: String): UserProfileResponse? = withContext(Dispatchers.IO) {
         try {
