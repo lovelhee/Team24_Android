@@ -89,7 +89,7 @@ class ParticipateChallengeActivity : AppCompatActivity() {
                         binding.tvEndTime.text = it.endTime
                         binding.tvPoint.text = it.point.toString()
                         Glide.with(this@ParticipateChallengeActivity)
-                            .load(it.imageExtension)
+                            .load(it.imageUrl)
                             .into(binding.ivChallengeCover)
                         if (it.currentParticipantNum >= it.maxParticipantNum) {
                             binding.tvRecruit.visibility = View.INVISIBLE
