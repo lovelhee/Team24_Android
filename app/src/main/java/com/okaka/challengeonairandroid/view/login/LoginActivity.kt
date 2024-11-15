@@ -16,7 +16,6 @@ import com.okaka.challengeonairandroid.viewmodel.UserViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()

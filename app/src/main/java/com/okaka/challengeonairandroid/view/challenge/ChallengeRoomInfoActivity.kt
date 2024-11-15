@@ -1,4 +1,4 @@
-package com.example.challengeonairandroid.view.challenge
+package com.okaka.challengeonairandroid.view.challenge
 
 import android.content.Context
 import android.content.Intent

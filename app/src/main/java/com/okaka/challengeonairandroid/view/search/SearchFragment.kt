@@ -3,7 +3,6 @@ package com.okaka.challengeonairandroid.view.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -17,7 +16,6 @@ import com.okaka.challengeonairandroid.databinding.FragmentSearchBinding
 import com.okaka.challengeonairandroid.model.data.auth.TokenManager
 import com.okaka.challengeonairandroid.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint

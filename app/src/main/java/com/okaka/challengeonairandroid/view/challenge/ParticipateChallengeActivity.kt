@@ -18,9 +18,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.okaka.challengeonairandroid.databinding.DialogCancelBinding
-import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
-import com.okaka.challengeonairandroid.model.api.response.UserProfileResponse
-import com.okaka.challengeonairandroid.model.api.response.UserProfileSpecificResponse
 import com.okaka.challengeonairandroid.view.home.HomeActivity
 import com.okaka.challengeonairandroid.viewmodel.ParticipateChallengeViewModel
 import dagger.hilt.android.AndroidEntryPoint
