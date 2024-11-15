@@ -115,11 +115,12 @@
   </tr>
 </table>
 
-## 🏢 Architecture
+## 🏢 **Architecture**
 
-'Challenge On Air' 앱의 아키텍처입니다.<br>
-크게 안드로이드에서 권장하는 MVVM 아키텍처를 적용했습니다.<br>
-<img width="764" alt="architecture (1)" src="https://github.com/user-attachments/assets/e3331aad-0d26-4726-a1be-438f57b58032">
+'Challenge On Air' 앱의 아키텍처입니다.  
+크게 안드로이드에서 권장하는 **MVVM 아키텍처**를 적용했습니다.  
+
+<img width="764" alt="architecture" src="https://github.com/user-attachments/assets/9d88d7e7-6589-4a03-8c77-f6034bbce608">
 
 ## 🪧 ERD
 ![erd](https://github.com/user-attachments/assets/d985f18b-e941-4ea8-8a5d-74b3d6a2773c)
