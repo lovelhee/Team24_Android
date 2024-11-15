@@ -68,7 +68,7 @@
                 android:text="@string/category_exercise"
                 android:checked="true"
                 android:button="@null"
-                android:background="@drawable/create_challenge_radio_button" />
+                android:background="@drawable/btn_create_challenge_radio" />
 
             <RadioButton
                 android:id="@+id/rbDevelopment"
@@ -78,7 +78,7 @@
                 android:padding="15dp"
                 android:text="@string/category_development"
                 android:button="@null"
-                android:background="@drawable/create_challenge_radio_button" />
+                android:background="@drawable/btn_create_challenge_radio" />
 
             <RadioButton
                 android:id="@+id/rbHobby"
@@ -88,7 +88,7 @@
                 android:padding="15dp"
                 android:text="@string/category_hobby"
                 android:button="@null"
-                android:background="@drawable/create_challenge_radio_button" />
+                android:background="@drawable/btn_create_challenge_radio" />
 
             <RadioButton
                 android:id="@+id/rbStudy"
@@ -98,7 +98,7 @@
                 android:padding="15dp"
                 android:text="@string/category_study"
                 android:button="@null"
-                android:background="@drawable/create_challenge_radio_button" />
+                android:background="@drawable/btn_create_challenge_radio" />
 
         </RadioGroup>
 

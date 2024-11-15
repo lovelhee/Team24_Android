@@ -2,7 +2,7 @@
 
     <style name="Theme.ChallengeOnAir.Splash" parent="Theme.SplashScreen">
     <item name="windowSplashScreenBackground">#FFF9FAFB</item>
-    <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
     <item name="postSplashScreenTheme">@style/Theme.ChallengeOnAirAndroid</item>
     </style>
 

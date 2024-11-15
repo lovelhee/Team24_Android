@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/rounded_challenge_reservation"
+        android:background="@drawable/back_rounded_challenge_reservation"
         android:padding="16dp">
 
         <ImageView
@@ -49,7 +49,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:background="@drawable/rounded_delete_btn"
+                android:background="@drawable/btn_rounded_delete"
                 android:text="@string/back"/>
 
             <Button
@@ -61,7 +61,7 @@
                 android:textSize="15sp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_enter_btn"
+                android:background="@drawable/btn_rounded_enter"
                 android:text="@string/challenge_cancel"/>
 
         </LinearLayout>

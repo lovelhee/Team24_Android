@@ -148,11 +148,11 @@ class CreateChallengeStep2Fragment : Fragment(R.layout.fragment_create_challenge
 
     private fun toggleVisibility(layout: View, button: View) {
         if (layout.visibility == View.VISIBLE) {
-            button.setBackgroundResource(R.drawable.create_challenge_uncompleted)
+            button.setBackgroundResource(R.drawable.btn_create_challenge_uncompleted)
             layout.visibility = View.GONE
         }
         else {
-            button.setBackgroundResource(R.drawable.create_challenge_completed)
+            button.setBackgroundResource(R.drawable.btn_create_challenge_completed)
             layout.visibility = View.VISIBLE
         }
     }

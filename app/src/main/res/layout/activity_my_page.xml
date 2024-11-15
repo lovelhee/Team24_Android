@@ -279,7 +279,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="자주 묻는 질문"
                         android:textSize="13sp"
                         android:textColor="@color/text_gray" />
@@ -290,7 +290,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="문의하기"
                         android:textSize="13sp"
                         android:textColor="@color/text_gray" />
@@ -327,7 +327,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="탈퇴하기"
                         android:textSize="13sp"/>
 
@@ -337,7 +337,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="로그아웃"
                         android:textSize="13sp"/>
 
