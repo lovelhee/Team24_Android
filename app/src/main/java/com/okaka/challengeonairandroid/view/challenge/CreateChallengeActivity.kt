@@ -13,7 +13,6 @@ import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityCreateChallengeBinding
 import com.okaka.challengeonairandroid.viewmodel.CreateChallengeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import com.okaka.challengeonairandroid.view.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

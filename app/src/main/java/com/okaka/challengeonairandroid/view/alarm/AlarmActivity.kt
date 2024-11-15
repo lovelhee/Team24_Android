@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ActivityAlarmBinding
 import com.okaka.challengeonairandroid.model.data.entity.Alarm
-import com.okaka.challengeonairandroid.view.mypage.AlarmAdapter
 
 class AlarmActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlarmBinding

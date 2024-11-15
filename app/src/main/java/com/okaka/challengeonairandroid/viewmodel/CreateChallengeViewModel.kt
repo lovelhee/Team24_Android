@@ -2,7 +2,6 @@ package com.okaka.challengeonairandroid.viewmodel
 
 import android.content.Context
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okaka.challengeonairandroid.model.api.response.ChallengeCreationRequest

@@ -1,4 +1,4 @@
-package com.okaka.challengeonairandroid.view.mypage
+package com.okaka.challengeonairandroid.view.alarm
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
