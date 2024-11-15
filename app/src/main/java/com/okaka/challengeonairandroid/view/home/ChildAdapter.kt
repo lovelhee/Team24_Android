@@ -27,7 +27,7 @@ class ChildAdapter(
             binding.tvCategory.text = getCategoryName(challenge.categoryId)
 
             Glide.with(binding.ivChallengeCover.context)
-                .load(challenge.imageExtension)
+                .load(challenge.imageUrl)
                 .fallback(R.drawable.sample_challenge_thumbnail)
                 .into(binding.ivChallengeCover)
 

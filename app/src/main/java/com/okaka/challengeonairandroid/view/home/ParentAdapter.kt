@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.databinding.ItemHomeParentBinding
+import com.okaka.challengeonairandroid.model.api.response.ChallengeResponse
 import com.okaka.challengeonairandroid.model.data.entity.Category
 import com.okaka.challengeonairandroid.model.data.entity.Challenge
 
@@ -68,10 +69,26 @@ class ParentAdapter(
             }
         }
 
-
         private fun updateChallengeList() {
             val filteredChallenges = challenges.filter { it.categoryId == selectedCategoryId }
-            childAdapter.updateData(filteredChallenges)
+            val challengeResponses = filteredChallenges.map { challenge ->
+                ChallengeResponse(
+                    challengeId = challenge.challengeId,
+                    challengeName = challenge.challengeName,
+                    challengeBody = challenge.challengeBody,
+                    point = challenge.point,
+                    challengeDate = challenge.challengeDate,
+                    startTime = challenge.startTime,
+                    endTime = challenge.endTime,
+                    imageUrl = challenge.imageUrl,
+                    minParticipantNum = challenge.minParticipantNum,
+                    maxParticipantNum = challenge.maxParticipantNum,
+                    currentParticipantNum = challenge.currentParticipantNum,
+                    categoryId = challenge.categoryId,
+                    hostId = challenge.hostId
+                )
+            }
+            childAdapter.updateData(challengeResponses)
         }
 
         private fun updateCategoryUI(context: Context) {
