@@ -71,7 +71,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/back_rounded_profile_name"
-                android:hint="@string/user_name"
+                android:hint="@string/example_user_name"
                 android:text="@{setProfileData.nickname}"
                 android:paddingStart="16dp"
                 android:textSize="14sp" />

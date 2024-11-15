@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_backward"
                 android:background="@android:color/transparent"
                 android:layout_gravity="start"
-                android:contentDescription="@string/backward" />
+                android:contentDescription="@string/text_backward" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/back_rounded_profile_name"
-                android:hint="@string/user_name"
+                android:hint="@string/example_user_name"
                 android:text="@{String.valueOf(myPageProfileData.userProfile.userNickName)}"
                 android:paddingStart="16dp"
                 android:textSize="14sp" />

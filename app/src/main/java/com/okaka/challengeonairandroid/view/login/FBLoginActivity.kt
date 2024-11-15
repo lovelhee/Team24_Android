@@ -90,7 +90,7 @@ class FBLoginActivity : AppCompatActivity() {
                     val intent = Intent(this, ChallengeOngoingActivity::class.java).apply {
                         putExtra("user_token", idToken)
                         putExtra("user_email", user?.email)
-                        putExtra("user_name", user?.displayName)
+                        putExtra("example_user_name", user?.displayName)
                         putExtra("user_id", user?.uid)
                         putExtra("user_photo", user?.photoUrl?.toString())
                     }

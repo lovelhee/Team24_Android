@@ -31,7 +31,7 @@
                 android:src="@drawable/ic_backward"
                 android:background="@android:color/transparent"
                 android:layout_gravity="start"
-                android:contentDescription="@string/backward" />
+                android:contentDescription="@string/text_backward" />
 
             <EditText
                 android:id="@+id/etSearch"

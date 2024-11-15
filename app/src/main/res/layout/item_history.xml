@@ -19,7 +19,7 @@
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history_date"
+            android:text="@string/example_history_date"
             android:textColor="@color/text_gray"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 android:background="@drawable/back_rounded_badge"
                 android:backgroundTint="#B2F1A4"
                 android:padding="3dp"
-                android:text="@string/success"
+                android:text="@string/text_success"
                 android:textColor="@color/text_green"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -67,7 +67,7 @@
                 android:background="@drawable/back_rounded_badge"
                 android:backgroundTint="#FFE3E1"
                 android:padding="3dp"
-                android:text="@string/fail"
+                android:text="@string/text_fail"
                 android:textColor="@color/main_red"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -81,7 +81,7 @@
                 android:background="@drawable/back_rounded_badge"
                 android:backgroundTint="#CACACA"
                 android:padding="3dp"
-                android:text="@string/made"
+                android:text="@string/text_made"
                 android:textColor="@color/text_gray"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvTitle"
-                android:hint="@string/challenge_title"
+                android:hint="@string/example_challenge_title"
                 android:text="@{String.valueOf(myPageHistoryData.challenges[0].challengeName)}"
                 android:textColor="@color/black"
                 android:textSize="13sp"
@@ -115,7 +115,7 @@
                 android:src="@drawable/ic_clock"
                 android:layout_marginStart="8dp"
                 android:layout_gravity="center_vertical"
-                android:contentDescription="@string/clock_image" />
+                android:contentDescription="@string/description_clock_image" />
 
             <TextView
                 android:id="@+id/tvStartTime"
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tilde"
+                android:text="@string/text_tlide"
                 android:textSize="13sp"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_gray" />
@@ -159,7 +159,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fee"
+                android:text="@string/text_fee"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 android:layout_marginStart="8dp" />
@@ -168,14 +168,14 @@
                 android:id="@+id/tvFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fee_30"
+                android:text="@string/example_fee_30"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/refunds"
+                android:text="@string/text_refund"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
 
@@ -183,14 +183,14 @@
                 android:id="@+id/tvRefunds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/refunds_400"
+                android:text="@string/example_refund_400"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/points"
+                android:text="@string/text_point"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
         </LinearLayout>

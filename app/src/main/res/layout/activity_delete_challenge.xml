@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/backward" />
+            android:contentDescription="@string/text_backward" />
 
         <ImageView
             android:id="@+id/ivEmpty"
