@@ -41,7 +41,7 @@
                 android:background="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/backward" />
+                android:contentDescription="@string/text_backward" />
 
             <TextView
                 android:id="@+id/tvRecruit"
@@ -53,7 +53,7 @@
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="@drawable/rounded_recruit"
+                android:background="@drawable/back_rounded_recruit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivChallengeCover"
                 android:layout_marginTop="24dp"
@@ -65,7 +65,7 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/rounded_recruit_complete"
+                android:background="@drawable/back_rounded_recruit_completed"
                 android:gravity="center"
                 android:text="   모집 완료   "
                 android:textColor="@color/text_green"
@@ -83,11 +83,11 @@
                 app:imageUrl="@{viewModel.specificUser.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRecruit"
-                android:background="@drawable/rounded_host_profile"
+                android:background="@drawable/back_rounded_host_profile"
                 android:layout_marginTop="12dp"
                 android:clipToOutline="true"
                 android:layout_marginStart="24dp"
-                android:contentDescription="@string/user_profile_description" />
+                android:contentDescription="@string/description_user_profile" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/rounded_host"
+                    android:background="@drawable/back_rounded_host"
                     android:layout_gravity="center"
                     android:text="   방장   "
                     android:textColor="@color/text_gray"
@@ -256,7 +256,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tilde"
+                android:text="@string/text_tlide"
                 android:id="@+id/tvTilde"
                 android:textSize="13sp"
                 android:textColor="@color/text_gray"
@@ -347,7 +347,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    android:background="@drawable/rounded_delete_btn"
+                    android:background="@drawable/btn_rounded_delete"
                     android:text="@string/challenge_delete"/>
 
                 <Button
@@ -359,7 +359,7 @@
                     android:textSize="15sp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_enter_btn"
+                    android:background="@drawable/btn_rounded_enter"
                     android:text="@string/enter_room"/>
 
             </LinearLayout>
@@ -420,7 +420,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/rounded_enter_btn"
+                    android:background="@drawable/btn_rounded_enter"
                     android:text="@string/participate_challenge"
                     android:textColor="@color/white"
                     android:textStyle="bold"
@@ -443,7 +443,7 @@
                         android:layout_height="60dp"
                         android:layout_margin="4dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_delete_btn"
+                        android:background="@drawable/btn_rounded_delete"
                         android:text="@string/challenge_cancel"
                         android:textColor="@color/white"
                         android:textSize="15sp"
@@ -456,7 +456,7 @@
                         android:layout_margin="4dp"
                         android:layout_weight="1"
                         android:clickable="false"
-                        android:background="@drawable/rounded_waiting_btn"
+                        android:background="@drawable/btn_rounded_waiting"
                         android:text="@string/enter_room"
                         android:textColor="@color/white"
                         android:textSize="15sp"

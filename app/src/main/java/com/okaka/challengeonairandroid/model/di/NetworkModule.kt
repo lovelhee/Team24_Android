@@ -90,7 +90,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth(application: Application): FirebaseAuth {
-        // Firebase 초기화를 여기서 해줍니다
         if (FirebaseApp.getApps(application).isEmpty()) {
             FirebaseApp.initializeApp(application)
         }

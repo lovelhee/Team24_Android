@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 class UserProfileRepository @Inject constructor(
-    private val userProfileApi: UserProfileApi,  // HistoryApi -> UserProfileApi로 수정
+    private val userProfileApi: UserProfileApi,
     private val tokenManager: TokenManager
 ) {
     private suspend fun getAuthorizationHeader(): String {
@@ -24,7 +24,7 @@ class UserProfileRepository @Inject constructor(
 
     suspend fun getUserProfile(): UserProfileResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = userProfileApi.getUserProfile(getAuthorizationHeader())  // 실제로는 토큰이 주입됨
+            val response = userProfileApi.getUserProfile(getAuthorizationHeader())
 
             if (response.isSuccessful()) {
                 response.data
@@ -56,7 +56,7 @@ class UserProfileRepository @Inject constructor(
 
     suspend fun getSpecificUserProfile(userId: String): UserProfileSpecificResponse? = withContext(Dispatchers.IO) {
         try {
-            val response = userProfileApi.getSpecificUserProfile(getAuthorizationHeader(), userId)  // 실제로는 토큰이 주입됨
+            val response = userProfileApi.getSpecificUserProfile(getAuthorizationHeader(), userId)
 
             if (response.isSuccessful()) {
                 response.data

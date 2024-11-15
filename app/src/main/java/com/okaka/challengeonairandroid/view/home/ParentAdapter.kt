@@ -95,7 +95,7 @@ class ParentAdapter(
             val defaultTextColor = ContextCompat.getColor(context, R.color.black)
             val selectedTextColor = ContextCompat.getColor(context, R.color.main_red)
             val defaultImageBackground = ContextCompat.getDrawable(context, android.R.color.transparent)
-            val selectedImageBackground = ContextCompat.getDrawable(context, R.drawable.red_border)
+            val selectedImageBackground = ContextCompat.getDrawable(context, R.drawable.back_red_border)
 
             binding.ivExercise.background = if (selectedCategoryId == Category.EXERCISE.id) selectedImageBackground else defaultImageBackground
             binding.tvExercise.setTextColor(if (selectedCategoryId == Category.EXERCISE.id) selectedTextColor else defaultTextColor)

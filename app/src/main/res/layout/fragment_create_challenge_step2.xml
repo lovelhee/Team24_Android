@@ -57,7 +57,7 @@
                         android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
-                        android:background="@drawable/create_challenge_radio_button"/>
+                        android:background="@drawable/btn_create_challenge_radio"/>
 
                     <LinearLayout
                         android:id="@+id/llDateLayout"
@@ -82,7 +82,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/complete_setting_button"
                             android:textColor="@color/white"
-                            android:background="@drawable/create_challenge_button"/>
+                            android:background="@drawable/btn_create_challenge"/>
 
                     </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
-                        android:background="@drawable/create_challenge_radio_button"/>
+                        android:background="@drawable/btn_create_challenge_radio"/>
 
                     <LinearLayout
                         android:id="@+id/llStartTimeLayout"
@@ -121,7 +121,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/complete_setting_button"
                             android:textColor="@color/white"
-                            android:background="@drawable/create_challenge_button"/>
+                            android:background="@drawable/btn_create_challenge"/>
 
                     </LinearLayout>
 
@@ -135,7 +135,7 @@
                         android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
-                        android:background="@drawable/create_challenge_radio_button"/>
+                        android:background="@drawable/btn_create_challenge_radio"/>
 
                     <LinearLayout
                         android:id="@+id/llEndTimeLayout"
@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/complete_setting_button"
                             android:textColor="@color/white"
-                            android:background="@drawable/create_challenge_button" />
+                            android:background="@drawable/btn_create_challenge" />
 
                     </LinearLayout>
 
@@ -176,7 +176,7 @@
                         android:textAlignment="textStart"
                         android:button="@null"
                         android:drawableEnd="@drawable/ic_check"
-                        android:background="@drawable/create_challenge_radio_button"/>
+                        android:background="@drawable/btn_create_challenge_radio"/>
 
                     <LinearLayout
                         android:id="@+id/llSetChallengePoint"
@@ -191,7 +191,7 @@
                             android:id="@+id/etSetChallengePoint"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/create_challenge_edittext"
+                            android:background="@drawable/et_create_challenge"
                             android:hint="@string/set_point"
                             android:importantForAutofill="no"
                             android:inputType="number"
@@ -215,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/complete_setting_button"
                             android:textColor="@color/white"
-                            android:background="@drawable/create_challenge_button" />
+                            android:background="@drawable/btn_create_challenge" />
 
                     </LinearLayout>
 

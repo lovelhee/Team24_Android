@@ -21,7 +21,7 @@
                 android:src="@drawable/ic_backward"
                 android:background="@android:color/transparent"
                 android:layout_gravity="start"
-                android:contentDescription="@string/backward" />
+                android:contentDescription="@string/text_backward" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/card_background"
+                android:background="@drawable/back_card_unselected"
                 android:padding="16dp">
 
                 <TextView
@@ -110,7 +110,7 @@
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/card_background"
+                android:background="@drawable/back_card_unselected"
                 android:padding="16dp">
 
                 <TextView
@@ -133,7 +133,7 @@
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/card_background"
+                android:background="@drawable/back_card_unselected"
                 android:padding="16dp">
 
                 <TextView
@@ -155,7 +155,7 @@
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/card_background"
+                android:background="@drawable/back_card_unselected"
                 android:padding="16dp">
 
                 <TextView

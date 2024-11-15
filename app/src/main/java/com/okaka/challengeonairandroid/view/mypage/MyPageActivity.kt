@@ -11,6 +11,7 @@ import com.okaka.challengeonairandroid.R
 import com.okaka.challengeonairandroid.view.home.HomeActivity
 import com.okaka.challengeonairandroid.viewmodel.MyPageViewModel
 import com.okaka.challengeonairandroid.databinding.ActivityMyPageBinding
+import com.okaka.challengeonairandroid.view.alarm.AlarmActivity
 import com.okaka.challengeonairandroid.view.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,6 +54,10 @@ class MyPageActivity : AppCompatActivity() {
         val challengeHome = myPageBinding.ibHome
         challengeHome.setOnClickListener {
             startActivity(HomeActivity.intent(this))
+        }
+
+        myPageBinding.ibAlarm.setOnClickListener {
+            startActivity(AlarmActivity.intent(this))
         }
 
     }

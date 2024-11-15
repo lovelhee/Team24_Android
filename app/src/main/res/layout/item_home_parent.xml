@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/rounded_event_text"
+            android:background="@drawable/back_rounded_event"
             android:paddingStart="10dp"
             android:paddingTop="4dp"
             android:paddingEnd="10dp"

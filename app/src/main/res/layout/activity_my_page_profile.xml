@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_backward"
                 android:background="@android:color/transparent"
                 android:layout_gravity="start"
-                android:contentDescription="@string/backward" />
+                android:contentDescription="@string/text_backward" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:id="@+id/ivProfile"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/rounded_profile"
+            android:background="@drawable/back_rounded_profile"
             android:src="@{String.valueOf(myPageProfileData.userProfile.imageUrl)}"
             app:layout_constraintEnd_toEndOf="parent"
             android:scaleType="centerCrop"
@@ -79,8 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_profile_name_background"
-                android:hint="@string/user_name"
+                android:background="@drawable/back_rounded_profile_name"
+                android:hint="@string/example_user_name"
                 android:text="@{String.valueOf(myPageProfileData.userProfile.userNickName)}"
                 android:paddingStart="16dp"
                 android:textSize="14sp" />

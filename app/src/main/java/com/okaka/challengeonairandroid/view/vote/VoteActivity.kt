@@ -62,11 +62,11 @@ class VoteActivity : AppCompatActivity() {
     private fun onGridItemClick(selectedView: View) {
         selectedItemId?.let { previousSelectedId ->
             val previousView = findViewById<View>(previousSelectedId)
-            previousView.setBackgroundResource(R.drawable.card_background)
+            previousView.setBackgroundResource(R.drawable.back_card_unselected)
         }
 
         selectedItemId = selectedView.id
-        selectedView.setBackgroundResource(R.drawable.card_selected_background)
+        selectedView.setBackgroundResource(R.drawable.back_card_selected)
 
         binding.btnSubmit.isEnabled = true
     }

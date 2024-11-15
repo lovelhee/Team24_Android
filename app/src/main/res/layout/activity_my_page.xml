@@ -21,38 +21,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cslIcon"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="56dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/llUserProfile"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/ibSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_search"
-                    android:background="@android:color/transparent"
-                    android:layout_gravity="fill"
-                    app:layout_constraintEnd_toStartOf="@+id/ibHome"/>
+                app:layout_constraintBottom_toTopOf="@id/llUserProfile">
 
                 <ImageButton
                     android:id="@+id/ibHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_home"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
                     android:background="@android:color/transparent"
-                    android:layout_gravity="fill"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    android:src="@drawable/ic_home" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageButton
+                    android:id="@+id/ibSearch"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_search" />
+
+                <ImageButton
+                    android:id="@+id/ibAlarm"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_alarm" />
+
+            </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout
                 android:id="@+id/llUserProfile"
@@ -61,7 +64,7 @@
                 android:layout_margin="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cslIcon"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -174,6 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
+                    android:layout_gravity="center"
                     android:rowCount="1"
                     android:columnCount="3"
                     android:background="@color/background_gray">
@@ -279,7 +283,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="자주 묻는 질문"
                         android:textSize="13sp"
                         android:textColor="@color/text_gray" />
@@ -290,7 +294,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="문의하기"
                         android:textSize="13sp"
                         android:textColor="@color/text_gray" />
@@ -327,7 +331,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="탈퇴하기"
                         android:textSize="13sp"/>
 
@@ -337,7 +341,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/my_page_button"
+                        android:background="@drawable/btn_my_page"
                         android:text="로그아웃"
                         android:textSize="13sp"/>
 
@@ -349,10 +353,12 @@
                 android:id="@+id/fragmentContainer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
